@@ -1,0 +1,34 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
+mkdir -p "$(dirname "$HISTFILE")"
+
+# bash settings
+shopt -s autocd
+shopt -s checkwinsize
+
+# aliases
+alias dot="git --git-dir=${XDG_DATA_HOME:-$HOME/.local/share}/dotfiles --work-tree=${HOME}"
+
+if command -v eza &>/dev/null; then
+  alias ls='eza --icons=auto --git --group-directories-first'
+else
+  alias ls='ls --color=auto --group-directories-first'
+fi
+
+alias la='ls -a'
+alias ll='ls -alh'
+alias l='ls -CF'
+
+alias grep='grep --color=auto'
+
+#prompt
+PS1='[\u@\h \W]\$ '
+
+# command not found handler
+source /usr/share/doc/pkgfile/command-not-found.bash

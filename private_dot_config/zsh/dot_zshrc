@@ -1,0 +1,285 @@
+####################################################
+## start of zshrc
+####################################################
+
+# if not running interactively or as login shell, don't do anything
+[[ -o no_interactive ]] && return
+
+# enable powerlevel10k instant prompt. should stay close to the top of ~/.zshrc.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+####################################################
+## znap initialization
+####################################################
+
+# enable extended globbing
+setopt extended_glob
+
+# download znap if not found
+ZNAP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/znap"
+if [[ ! -r $ZNAP_DIR/znap.zsh ]]; then
+  print -P "%B%F{yellow}warn:%f%b znap not found."
+  print -P "%B%F{blue}info:%f%b Installing znap..."
+  command git clone --depth 1 https://github.com/marlonrichert/zsh-snap.git $ZNAP_DIR && \
+    print -P "%B%F{green}done:%f%b znap installed." || \
+    print -P "%B%F{red}error%f%b: cloning failed."
+fi
+
+# configure znap
+zstyle ':znap:*' repos-dir "$ZNAP_DIR/plugins"
+zstyle '*:compinit' arguments -C
+
+# load znap
+source "$ZNAP_DIR/znap.zsh"
+
+# load plugins
+for file in $ZDOTDIR/plugins/init/*.zsh; do
+  source $file
+done
+
+znap source romkatv/powerlevel10k
+znap source zsh-users/zsh-completions
+znap source zsh-users/zsh-history-substring-search
+znap source zsh-users/zsh-autosuggestions
+znap source zsh-users/zsh-syntax-highlighting
+znap source MichaelAquilina/zsh-you-should-use
+znap source hlissner/zsh-autopair
+znap source ohmyzsh/ohmyzsh plugins/{extract,sudo}
+
+znap eval zoxide 'zoxide init zsh'
+znap eval fzf 'fzf --zsh'
+znap eval gh-copilot 'gh copilot alias -- zsh'
+
+for file in $ZDOTDIR/plugins/lazy/*.zsh; do
+  source $file
+done
+
+RECOMPILE_ON_CHANGE=($ZDOTDIR/{p10k.zsh,.zshrc,.zshenv})
+for file in $RECOMPILE_ON_CHANGE; do
+  if [[ ! -f $file.zwc || $file -nt $file.zwc ]]; then
+    zcompile -R -- $file
+  fi
+done
+
+####################################################
+## end of znap initialization
+####################################################
+
+####################################################
+## plugin configuration
+####################################################
+
+## zsh-history-substring-search config
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=0,fg=12,underline'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=0,fg=9,underline'
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+## zsh-autosuggestions config
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_COMPLETION_IGNORE='_*|pre(cmd|exec)|man*|\#*'
+# ZSH_AUTOSUGGEST_HISTORY_IGNORE='(cd|nvim|vim|vi|nano) *'
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert backward-delete-char kill-line)
+
+## zsh-syntax-highlighting config
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(regexp main brackets cursor)
+
+ZSH_HIGHLIGHT_STYLES[path]='fg=magenta,underline'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[arithmetic-expansion]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[cursor]=none
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[named-fd]='fg=yellow'
+
+# highlight variables
+ZSH_HIGHLIGHT_REGEXP+=('\$([[:alnum:]_-]+|\{[[:alnum:]_-]+\})' 'fg=cyan')
+
+## zsh-you-should-use config
+YSU_MESSAGE_POSITION=after
+YSU_MESSAGE_FORMAT='\e[34;1m[tip]\e[0m \e[1m%alias\e[0m => %command'
+YSU_IGNORED_ALIASES=(':q' ':x')
+
+## zsh-autopair config
+bindkey '^H' autopair-delete-word
+
+## ohmyzsh sudo plugin config (use alt+s instead of double esc)
+bindkey -r '^[^['
+bindkey '^[s' sudo-command-line
+
+####################################################
+## end of plugin configuration
+####################################################
+
+####################################################
+## zsh settings
+####################################################
+
+# general settings
+setopt auto_cd                              # change to directory without cd
+setopt interactive_comments                 # allow comments in interactive shell
+setopt no_beep                              # disable beeping on tab completion
+setopt auto_menu                            # show completion menu on successive tabs
+setopt complete_in_word                     # allow completion from both ends
+setopt always_to_end                        # move cursor to end of completion
+setopt no_flow_control                      # disable shell pause/resume with ^S/^Q
+setopt nomatch                              # print error message on failed globbing
+setopt rc_quotes                            # escape single quotes in single quotes
+setopt correct                              # autocorrect commands
+setopt no_auto_param_slash                  # disable automatic slash insertion
+
+# history settings
+HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh_history"
+[[ ! -d ${HISTFILE:h} ]] && mkdir -p "${HISTFILE:h}"
+HISTSIZE=50000
+SAVEHIST=10000
+
+setopt extended_history                     # save timestamp and duration of command
+setopt hist_ignore_dups                     # ignore duplicate commands
+setopt hist_ignore_space                    # ignore commands starting with space
+setopt hist_reduce_blanks                   # remove leading and trailing blanks
+setopt hist_expire_dups_first               # remove duplicates first when history is full
+setopt hist_verify                          # verify history expansion
+setopt share_history                        # share history between sessions
+setopt inc_append_history                   # append new history to history file
+
+# set LS_COLORS
+source <(dircolors)
+
+# completion config
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate
+zstyle ':completion:*' menu select
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' insert-tab false
+# zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' list-separator '->'
+zstyle ':completion:*:default' list-colors '=(#b)*(-> *)==33;3' ${(s.:.)LS_COLORS}
+zstyle ':completion:*:default' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*:default' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*:corrections' format '%B%%F{yellow}!-> %d (error: %e) <-!%f%b'
+zstyle ':completion:*:descriptions' format '%B%F{cyan}--> %d <--%f%b'
+zstyle ':completion:*:warnings' format '%B%F{red}--> no match found <--%f%b'
+zstyle ':completion:*:messages' format '%B%F{yellow}--> %d <--%f%B'
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
+zstyle ':completion:*:(vim|nvim|vi|nano):*' ignored-patterns '*.(wav|mp3|flac|ogg|mp4|avi|mkv|iso|so|o|7z|zip|tar|gz|bz2|rar|deb|pkg|gzip|pdf|png|jpeg|jpg|gif|zwc)'
+zstyle ':completion:*:matches' group yes
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+zstyle ':completion:*' list-dirs-first true
+
+# on-demand rehash using SIGUSR1
+# NOTE requires pacman hook to be installed
+# https://wiki.archlinux.org/title/Zsh#Alternative_on-demand_rehash_using_SIGUSR1
+trap 'rehash' USR1
+
+# auto quote problematic urls
+autoload -Uz bracketed-paste-url-magic
+zle -N bracketed-paste bracketed-paste-url-magic
+
+# disable highlight of pasted text
+zle_highlight+=(paste:none)
+
+# prompt used in multiline commands
+PROMPT2="%8F·%f "
+
+# change zsh eol character
+[[ $TERM == 'linux' ]] || PROMPT_EOL_MARK='%F{8}󰘌%f'
+
+# autocorrect prompt
+SPROMPT='zsh: correct %B%F{red}%R%f%b to %B%F{green}%r%f%b [nyae]? '
+
+# a list of non-alphanum chars considered part of a word by the line editor.
+# zsh's default is "*?_-.[]~=/&;!#$%^(){}<>"
+# WORDCHARS='@_-'
+
+# generate completion from `--help`
+compdef _gnu_generic fzf
+
+####################################################
+## end of zsh settings
+####################################################
+
+####################################################
+## aliases
+####################################################
+if (( ${+commands[eza]} )); then
+  alias ls='eza --icons=auto --git --color=auto --group-directories-first'
+else
+  alias ls='ls --color=auto --group-directories-first'
+fi
+alias la='ls -a'
+alias l='ls -lh'
+alias ll='ls -alh'
+alias lr='ls -aR'
+alias lR='ls -alRh'
+
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -Iv'
+alias ln='ln -iv'
+alias rd='rmdir -v'
+alias mkdir='mkdir -pv'
+
+alias chown='chown -v --preserve-root'
+alias chmod='chmod -v --preserve-root'
+alias chgrp='chgrp -v --preserve-root'
+
+alias grep='grep --color=auto'
+alias egrep='grep -E'
+alias fgrep='grep -F'
+
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
+alias ping='ping -c 5 -W 30'
+alias watch='watch --color'
+alias df='df -h'
+alias du='du -ch'
+alias dmesg='dmesg -H'
+alias free='free -h'
+alias cat='bat --style=plain --paging=never'
+
+alias reload='exec zsh'
+alias :q='exit'
+alias :x='exit'
+
+# aliases for dotfiles bare repo
+alias dot="git --git-dir=${XDG_DATA_HOME}/dotfiles --work-tree=${HOME}"
+alias lazydot="lazygit --git-dir=${XDG_DATA_HOME}/dotfiles --work-tree=${HOME}"
+
+if (( UID )); then
+  alias root='sudo --preserve-env --shell'
+  alias scat='sudo cat'
+fi
+
+# abbreviations
+if (( ${+functions[abbr]} )); then
+  abbr ..='cd ..'
+  abbr ...='cd ../..'
+  abbr ....='cd ../../..'
+  abbr .....='cd ../../../..'
+
+  abbr ff=fastfetch
+  abbr v=nvim
+  abbr hy=hyperfine
+
+  (( UID )) && abbr sv=sudoedit
+fi
+
+####################################################
+## end of aliases
+####################################################
+
+# To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
+[[ -f ${ZDOTDIR}/p10k.zsh ]] && source "$ZDOTDIR/p10k.zsh"
