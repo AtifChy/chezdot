@@ -302,7 +302,7 @@ function dot() {
   selects=($(
       chezmoi managed --include=files --exclude=externals --path-style relative | \
         fzf --multi --height=60% --query=$1 \
-        --preview='bat -pp --color=always --line-range=:200 $HOME/{}'
+        --preview='bat --style=plain --paging=never --color=always --line-range=:200 $HOME/{}'
   ))
 
   [[ -z $selects ]] && return 1
