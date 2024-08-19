@@ -290,18 +290,24 @@ fi
 ####################################################
 
 function dot() {
-  if (( ! ${+commands[chezmoi]} )); then
-    print -P "%B%F{red}error%f%b: chezmoi not found."
-    return 1
-  elif (( ! ${+commands[fzf]} )); then
-    print -P "%B%F{red}error%f%b: fzf not found."
-    return 1
-  fi
+  local -a req_cmds=(bat chezmoi fzf)
+  for cmd in ${req_cmds[@]}; do
+    if (( ! ${+commands[$cmd]} )); then
+      print -P "%B%F{red}error%f%b: $cmd not found."
+      return 1
+    fi
+  done
 
-  chezmoi managed --include=files --exclude=externals --path-style relative | \
-    fzf --multi --height=60% --query=$1 \
-    --preview='bat -pp --color=always --line-range=:200 $HOME/{}' \
-    --bind 'enter:become(selects=({+}); chezmoi edit $HOME/${^selects})'
+  local -a selects
+  selects=($(
+      chezmoi managed --include=files --exclude=externals --path-style relative | \
+        fzf --multi --height=60% --query=$1 \
+        --preview='bat -pp --color=always --line-range=:200 $HOME/{}'
+  ))
+
+  [[ -z $selects ]] && return 1
+
+  chezmoi edit $HOME/${^selects[@]}
 }
 
 ####################################################
