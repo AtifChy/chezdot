@@ -23,6 +23,31 @@ export LESS='-F -R --use-color -Dd+r$Du+b$DS+ky$DP+kg$DE+kR$'
 # manpages
 export MANROFFOPT='-P -c'
 
+# fzf
+export FZF_DEFAULT_OPTS="--layout=reverse
+--cycle
+--border=rounded
+--preview-window=rounded
+--info=default"
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
+--color=fg:#c2c2c2,bg:-1,hl:#c678dd
+--color=fg+:#d7dae0,bg+:#282c34,hl+:#de73ff
+--color=info:#e5c07b,prompt:#a5e075,pointer:#4dc4ff
+--color=marker:#e06c75,spinner:#98c379,header:#4cd1e0
+--color=border:#3f4451"
+
+# zoxide fzf config
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS
+--preview='eza --all\
+  --ignore-glob .git\* --classify\
+  --tree --level 2\
+  --color=always --icons=always\
+  --group-directories-first {2..}\
+  | head -200'
+--height=50%
+--cycle"
+
 # docker
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker-machine"

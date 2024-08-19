@@ -1,0 +1,12 @@
+[user]
+  name = Atif Chowdhury
+  email = iftakhar.awal@gmail.com
+  signingKey = F38A1A85E1EC3996
+[commit]
+  gpgSign = true
+[tag]
+  gpgSign = true
+[alias]
+  undo = reset --soft HEAD~1
+[init]
+  defaultBranch = main

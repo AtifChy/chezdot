@@ -10,6 +10,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# set history file
+HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh_history"
+[[ ! -d ${HISTFILE:h} ]] && mkdir -p "${HISTFILE:h}"
+HISTSIZE=50000
+SAVEHIST=10000
+
 ####################################################
 ## znap initialization
 ####################################################
@@ -29,6 +35,7 @@ fi
 
 # configure znap
 zstyle ':znap:*' repos-dir "$ZNAP_DIR/plugins"
+zstyle ':znap:*:<glob pattern>' git-maintenance off
 zstyle '*:compinit' arguments -C
 
 # load znap
@@ -51,6 +58,7 @@ znap source ohmyzsh/ohmyzsh plugins/{extract,sudo}
 znap eval zoxide 'zoxide init zsh'
 znap eval fzf 'fzf --zsh'
 znap eval gh-copilot 'gh copilot alias -- zsh'
+znap eval ls-colors 'dircolors'
 
 for file in $ZDOTDIR/plugins/lazy/*.zsh; do
   source $file
@@ -135,13 +143,9 @@ setopt nomatch                              # print error message on failed glob
 setopt rc_quotes                            # escape single quotes in single quotes
 setopt correct                              # autocorrect commands
 setopt no_auto_param_slash                  # disable automatic slash insertion
+setopt glob_dots                            # include dotfiles in completion
 
 # history settings
-HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh_history"
-[[ ! -d ${HISTFILE:h} ]] && mkdir -p "${HISTFILE:h}"
-HISTSIZE=50000
-SAVEHIST=10000
-
 setopt extended_history                     # save timestamp and duration of command
 setopt hist_ignore_dups                     # ignore duplicate commands
 setopt hist_ignore_space                    # ignore commands starting with space
@@ -150,9 +154,6 @@ setopt hist_expire_dups_first               # remove duplicates first when histo
 setopt hist_verify                          # verify history expansion
 setopt share_history                        # share history between sessions
 setopt inc_append_history                   # append new history to history file
-
-# set LS_COLORS
-source <(dircolors)
 
 # completion config
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -205,7 +206,7 @@ SPROMPT='zsh: correct %B%F{red}%R%f%b to %B%F{green}%r%f%b [nyae]? '
 # WORDCHARS='@_-'
 
 # generate completion from `--help`
-compdef _gnu_generic fzf
+compdef _gnu_generic fzf dircolors
 
 ####################################################
 ## end of zsh settings
@@ -255,8 +256,8 @@ alias :q='exit'
 alias :x='exit'
 
 # aliases for dotfiles bare repo
-alias dot="git --git-dir=${XDG_DATA_HOME}/dotfiles --work-tree=${HOME}"
-alias lazydot="lazygit --git-dir=${XDG_DATA_HOME}/dotfiles --work-tree=${HOME}"
+# alias dot="git --git-dir=${XDG_DATA_HOME}/dotfiles --work-tree=${HOME}"
+# alias lazydot="lazygit --git-dir=${XDG_DATA_HOME}/dotfiles --work-tree=${HOME}"
 
 if (( UID )); then
   alias root='sudo --preserve-env --shell'
@@ -272,13 +273,36 @@ if (( ${+functions[abbr]} )); then
 
   abbr ff=fastfetch
   abbr v=nvim
-  abbr hy=hyperfine
+  abbr cz=chezmoi
 
   (( UID )) && abbr sv=sudoedit
 fi
 
 ####################################################
 ## end of aliases
+####################################################
+
+####################################################
+## fzf functions
+####################################################
+
+function dot() {
+  if (( ! ${+commands[chezmoi]} )); then
+    print -P "%B%F{red}error%f%b: chezmoi not found."
+    return 1
+  elif (( ! ${+commands[fzf]} )); then
+    print -P "%B%F{red}error%f%b: fzf not found."
+    return 1
+  fi
+
+  chezmoi managed --include=files --exclude=externals --path-style relative | \
+    fzf --multi --height=60% --query=$1 \
+    --preview='bat -pp --color=always --line-range=:200 $HOME/{}' \
+    --bind 'enter:become(selects=({+}); chezmoi edit $HOME/${^selects})'
+}
+
+####################################################
+## end of fzf functions
 ####################################################
 
 # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
