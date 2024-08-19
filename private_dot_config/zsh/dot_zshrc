@@ -35,7 +35,7 @@ fi
 
 # configure znap
 zstyle ':znap:*' repos-dir "$ZNAP_DIR/plugins"
-zstyle ':znap:*:<glob pattern>' git-maintenance off
+zstyle ':znap:*' git-maintenance off
 zstyle '*:compinit' arguments -C
 
 # load znap
@@ -108,7 +108,7 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[named-fd]='fg=yellow'
 
-# highlight variables
+# highlight parameters
 ZSH_HIGHLIGHT_REGEXP+=('\$([[:alnum:]_-]+|\{[[:alnum:]_-]+\})' 'fg=cyan')
 
 ## zsh-you-should-use config
@@ -183,7 +183,10 @@ zstyle ':completion:*' list-dirs-first true
 # on-demand rehash using SIGUSR1
 # NOTE requires pacman hook to be installed
 # https://wiki.archlinux.org/title/Zsh#Alternative_on-demand_rehash_using_SIGUSR1
-trap 'rehash' USR1
+function TRAPUSR1() {
+  command rm ${_comp_dumpfile}*
+  rehash
+}
 
 # auto quote problematic urls
 autoload -Uz bracketed-paste-url-magic
