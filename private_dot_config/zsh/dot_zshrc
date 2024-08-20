@@ -184,7 +184,6 @@ zstyle ':completion:*' list-dirs-first true
 # NOTE requires pacman hook to be installed
 # https://wiki.archlinux.org/title/Zsh#Alternative_on-demand_rehash_using_SIGUSR1
 function TRAPUSR1() {
-  command rm ${_comp_dumpfile}*
   rehash
 }
 
