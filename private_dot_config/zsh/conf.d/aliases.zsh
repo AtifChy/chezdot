@@ -15,7 +15,6 @@ alias lR='ls -alRh'
 
 alias cp='cp -v'
 alias mv='mv -v'
-alias rm='rm -Iv'
 alias ln='ln -iv'
 alias rd='rmdir -v'
 alias mkdir='mkdir -pv'
@@ -37,6 +36,16 @@ alias du='du -ch'
 alias dmesg='dmesg -H'
 alias free='free -h'
 alias cat='bat --style=plain --paging=never'
+
+# trash aliases
+if (( ${+commands[trash]} )); then
+  alias rm='trash -v'
+  alias tl='trash-list'
+  alias tr='trash-restore'
+  alias te='trash-empty'
+else
+  alias rm='rm -v'
+fi
 
 alias reload='exec zsh'
 alias :q='exit'
