@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 local -a req_cmds=(bat chezmoi fzf)
 for cmd in ${req_cmds[@]}; do
   if (( ! ${+commands[$cmd]} )); then
@@ -16,5 +18,3 @@ selects=($(
 [[ -z $selects ]] && return 1
 
 chezmoi edit $HOME/${^selects[@]}
-
-# vim:ft=zsh

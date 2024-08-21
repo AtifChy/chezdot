@@ -1,4 +1,6 @@
-## zsh-syntax-highlighting config
+#!/usr/bin/zsh
+
+# zsh-syntax-highlighting config
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(regexp main brackets cursor)
 
 ZSH_HIGHLIGHT_STYLES[path]='fg=magenta,underline'
@@ -13,4 +15,3 @@ ZSH_HIGHLIGHT_STYLES[named-fd]='fg=yellow'
 
 # highlight parameters
 ZSH_HIGHLIGHT_REGEXP+=('\$([[:alnum:]_-]+|\{[[:alnum:]_-]+\})' 'fg=cyan')
-

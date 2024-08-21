@@ -1,5 +1,6 @@
+#!/usr/bin/zsh
+
 # zsh-you-should-use config
 YSU_MESSAGE_POSITION=after
 YSU_MESSAGE_FORMAT='\e[34;1m[tip]\e[0m \e[1m%alias\e[0m => %command'
 YSU_IGNORED_ALIASES=(':q' ':x')
-
