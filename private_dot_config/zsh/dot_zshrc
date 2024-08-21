@@ -45,7 +45,8 @@ zstyle ':zephyr:plugin:*' use-cache yes
 zstyle ':antidote:bundle' file $ZDOTDIR/.zplugins
 zstyle ':antidote:static' file $XDG_CACHE_HOME/zsh/antidote-static.zsh
 
-source ${ANTIDOTE[BIN]}/antidote.zsh
+fpath=(${ANTIDOTE[BIN]}/functions $fpath)
+autoload -Uz antidote
 antidote load
 
 cached-eval 'ls-colors' dircolors
