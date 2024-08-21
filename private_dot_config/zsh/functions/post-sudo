@@ -1,0 +1,4 @@
+# ohmyzsh sudo plugin config (use alt+s instead of double esc)
+bindkey -r '^[^['
+bindkey '^[s' sudo-command-line
+

@@ -1,0 +1,8 @@
+# zsh-autosuggestions config
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_COMPLETION_IGNORE='_*|pre(cmd|exec)|man*|\#*'
+# ZSH_AUTOSUGGEST_HISTORY_IGNORE='(cd|nvim|vim|vi|nano) *'
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert backward-delete-char kill-line)
+

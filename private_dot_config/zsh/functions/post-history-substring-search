@@ -1,0 +1,9 @@
+# zsh-history-substring-search config
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=0,fg=12,underline'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=0,fg=9,underline'
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+
+# keymap
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+

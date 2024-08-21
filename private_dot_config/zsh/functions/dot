@@ -1,0 +1,20 @@
+local -a req_cmds=(bat chezmoi fzf)
+for cmd in ${req_cmds[@]}; do
+  if (( ! ${+commands[$cmd]} )); then
+    print -P "%B%F{red}error%f%b: $cmd not found."
+    return 1
+  fi
+done
+
+local -a selects
+selects=($(
+    chezmoi managed --include=files --exclude=externals --path-style relative | \
+      fzf --multi --height=60% --query=$1 \
+      --preview='bat --style=plain --paging=never --color=always --line-range=:200 $HOME/{}'
+))
+
+[[ -z $selects ]] && return 1
+
+chezmoi edit $HOME/${^selects[@]}
+
+# vim:ft=zsh

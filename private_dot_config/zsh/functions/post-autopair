@@ -1,0 +1,3 @@
+# zsh-autopair config
+bindkey '^H' autopair-delete-word
+
