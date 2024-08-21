@@ -1,7 +1,3 @@
-####################################################
-## keybinding
-####################################################
-
 # enable emacs keybinding
 bindkey -e
 
@@ -37,7 +33,3 @@ bindkey -M menuselect '^[' kill-buffer              # esc
 
 # make switching between insert and normal mode faster
 KEYTIMEOUT=10
-
-####################################################
-## end of keybinding
-####################################################
