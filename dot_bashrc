@@ -13,8 +13,6 @@ shopt -s autocd
 shopt -s checkwinsize
 
 # aliases
-# alias dot="git --git-dir=${XDG_DATA_HOME:-$HOME/.local/share}/dotfiles --work-tree=${HOME}"
-
 if command -v eza &>/dev/null; then
   alias ls='eza --icons=auto --git --group-directories-first'
 else
@@ -27,7 +25,7 @@ alias l='ls -CF'
 
 alias grep='grep --color=auto'
 
-#prompt
+# prompt
 PS1='[\u@\h \W]\$ '
 
 # command not found handler
