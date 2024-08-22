@@ -93,7 +93,9 @@ abbr gcs='git commit -S'
 
 abbr gcf='git config --list'
 
-abbr gcl='git clone --recurse-submodules'
+abbr gcl='git clone'
+abbr gcld='git clone --depth=1'
+abbr gclr='git clone  --recurse-submodules'
 
 abbr gclean='git clean -id'
 
