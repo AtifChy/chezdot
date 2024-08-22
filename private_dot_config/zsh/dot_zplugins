@@ -1,29 +1,50 @@
+# vim: ft=conf
+
+#
+# Prompt
+#
 romkatv/powerlevel10k
 
+#
+# Local plugins
+#
 $ZDOTDIR/plugins/keymap.zsh
 $ZDOTDIR/plugins/title.zsh
 
 $ZDOTDIR/plugins/abbr.zsh
 $ZDOTDIR/plugins/git-abbr.zsh kind:defer
 
+#
+# Completion
+#
 mattmc3/ez-compinit
 zsh-users/zsh-completions kind:fpath path:src
 
 hlissner/zsh-autopair kind:defer post:post-autopair
 MichaelAquilina/zsh-you-should-use kind:defer post:post-you-should-use
 
+#
+# Zephyr
+#
 mattmc3/zephyr path:plugins/zfunctions
 mattmc3/zephyr path:plugins/confd
 
+#
+# Local plugins
+#
 $ZDOTDIR/plugins/command-not-found.zsh
 $ZDOTDIR/plugins/clipboard.zsh
 $ZDOTDIR/plugins/fancy-ctrl-z.zsh
 
+#
+# ohmyzsh
+#
 ohmyzsh/ohmyzsh path:plugins/sudo post:post-sudo
 ohmyzsh/ohmyzsh path:plugins/extract
 
+#
+# fish-like plugins
+#
 zsh-users/zsh-history-substring-search kind:defer post:post-history-substring-search
 zsh-users/zsh-syntax-highlighting kind:defer post:post-syntax-highlighting
 zsh-users/zsh-autosuggestions kind:defer post:post-autosuggestions
-
-# vim: ft=conf
