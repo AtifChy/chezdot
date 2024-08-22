@@ -1,6 +1,6 @@
 # Based on https://github.com/momo-lab/zsh-abbrev-alias
 
-typeset -gA _abbrs
+typeset -gA __abbrs
 typeset -gi ABBR_TIPS_STATUS
 
 function __abbr_register() {
@@ -10,14 +10,14 @@ function __abbr_register() {
     c) alias $key=$value ;;
     *) return 1 ;;
   esac
-  _abbrs[$key]="$kind\0$value"
+  __abbrs[$key]="$kind\0$value"
 }
 
 function __abbr_expand() {
   emulate -L zsh -o extended_glob
   local MATCH
-  _tmp=${LBUFFER%%(#m)[-_a-zA-Z0-9#%+.~,:!/]#}
-  local abbr=${_abbrs[${MATCH}]}
+  __temp=${LBUFFER%%(#m)[-_a-zA-Z0-9#%+.~,:!/]#}
+  local abbr=${__abbrs[${MATCH}]}
   if [[ -n $abbr ]]; then
     zle _expand_alias
     ABBR_TIPS_STATUS=0
@@ -64,7 +64,7 @@ function __abbr_init() {
 function __abbr_show() {
   local kind_filter=$1
   local key=$2
-  local abbr=${_abbrs[$key]}
+  local abbr=${__abbrs[$key]}
   [[ -n $abbr ]] || return 1
   local kind=${${(s.\0.)abbr}[1]}
   local value=${${(s.\0.)abbr}[2]}
@@ -77,7 +77,7 @@ function __abbr_show() {
 function __abbr_list() {
   local kind_filters=$1
   for kind_filter in ${(s::)kind_filters}; do
-    for key in ${(ko)_abbrs}; do
+    for key in ${(ko)__abbrs}; do
       __abbr_show $kind_filter $key
     done
   done
@@ -85,9 +85,9 @@ function __abbr_list() {
 
 function __abbr_unregister() {
   local key=$1
-  if [[ -n $_abbrs[$key] ]]; then
+  if [[ -n $__abbrs[$key] ]]; then
     unalias $key
-    unset "_abbrs[$key]"
+    unset "__abbrs[$key]"
   else
     print "abbr: $key: not found" >&2
     return 1
@@ -97,12 +97,11 @@ function __abbr_unregister() {
 function __abbr_help() {
   print -P "%B%F{blue}abbr%f%b is a command to manage abbreviations.
 
-%BUSAGE:%b
+%U%BUSAGE:%b%u
   abbr [options] {name=value ...}
   abbr -u {name ...}
-  abbr --init
 
-%BOPTIONS:%b
+%U%BOPTIONS:%b%u
   -c, --command       register alias as 'alias name=value'
   -g, --global        register alias as 'alias -g name=value'
   -u, --unset         unset abbreviation
