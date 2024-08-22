@@ -14,20 +14,12 @@ function __abbr_register() {
 }
 
 function __abbr_expand() {
-  emulate -L zsh -o extended_glob
-  local MATCH
-  __temp=${LBUFFER%%(#m)[-_a-zA-Z0-9#%+.~,:!/]#}
-  local abbr=${__abbrs[${MATCH}]}
+  local word=${${(Az)LBUFFER}[-1]}
+  local abbr=${__abbrs[$word]}
   if [[ -n $abbr ]]; then
     zle _expand_alias
     ABBR_TIPS_STATUS=0
   fi
-  # local kind=${${(s.\0.)abbr}[1]}
-  # local new_buffer=${${(s.\0.)abbr}[2]:-$MATCH}
-  # if [[ $kind == 'c' && ! ( $LBUFFER == '' || $LBUFFER =~ '(\||;|&|\$\(|`) ?$' ) ]]; then
-  #   new_buffer=$MATCH
-  # fi
-  # LBUFFER+=$new_buffer
 }
 
 function __abbr_expand_and_insert() {
