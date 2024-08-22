@@ -21,7 +21,6 @@ $ZDOTDIR/plugins/fancy-ctrl-z.zsh
 
 ohmyzsh/ohmyzsh path:plugins/sudo post:post-sudo
 ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/magic-enter
 
 zsh-users/zsh-syntax-highlighting kind:defer post:post-syntax-highlighting
 zsh-users/zsh-autosuggestions kind:defer post:post-autosuggestions
