@@ -36,6 +36,7 @@ alias du='du -ch'
 alias dmesg='dmesg -H'
 alias free='free -h'
 alias cat='bat --style=plain --paging=never'
+alias hist='fc -l -L -i'
 
 # trash aliases
 if (( ${+commands[trash]} )); then
