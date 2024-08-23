@@ -34,6 +34,7 @@ zstyle ':completion:*' insert-tab false
 # zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' verbose true
+zstyle ':completion:*:match:*' original only
 zstyle ':completion:*' list-separator '->'
 zstyle ':completion:*:default' list-colors '=(#b)*(-> *)==33;3' ${(s.:.)LS_COLORS}
 zstyle ':completion:*:default' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
@@ -48,13 +49,31 @@ zstyle ':completion:*:matches' group yes
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
 zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# ignore multiple entries.
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
+zstyle ':completion:*:rm:*' file-patterns '*:all-files'
+
+# directories
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+
+# man
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
+zstyle ':completion:*:man:*' menu yes select
+
+# kill
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,command -w'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
+zstyle ':completion:*:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*' insert-ids single
 
 # on-demand rehash using SIGUSR1
 # NOTE requires pacman hook to be installed
 # https://wiki.archlinux.org/title/Zsh#Alternative_on-demand_rehash_using_SIGUSR1
-function TRAPUSR1() {
-  rehash
-}
+trap 'rehash' USR1
 
 # auto quote problematic urls
 autoload -Uz bracketed-paste-url-magic
