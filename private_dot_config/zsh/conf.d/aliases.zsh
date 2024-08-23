@@ -40,9 +40,6 @@ alias cat='bat --style=plain --paging=never'
 # trash aliases
 if (( ${+commands[trash]} )); then
   alias rm='trash -v'
-  alias tl='trash-list'
-  alias tr='trash-restore'
-  alias te='trash-empty'
 else
   alias rm='rm -v'
 fi
