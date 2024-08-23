@@ -16,7 +16,7 @@ setopt extended_glob                        # enable extended globbing
 # history settings
 setopt extended_history                     # save timestamp and duration of command
 setopt hist_ignore_dups                     # ignore duplicate commands
-setopt hist_ignore_all_dups                 # ignore all duplicate commands
+# setopt hist_ignore_all_dups                 # ignore all duplicate commands
 setopt hist_ignore_space                    # ignore commands starting with space
 setopt hist_reduce_blanks                   # remove leading and trailing blanks
 setopt hist_expire_dups_first               # remove duplicates first when history is full
@@ -101,4 +101,5 @@ compdef _gnu_generic \
   dircolors \
   trash
 
+# use eza completion for exa
 compdef exa=eza
