@@ -35,6 +35,15 @@ zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
+zstyle ':completion:*:(vim|nvim|vi|nano):*' ignored-patterns '*.(wav|mp3|flac|ogg|mp4|avi|mkv|iso|so|o|7z|zip|tar|gz|bz2|rar|deb|pkg|gzip|pdf|png|jpeg|jpg|gif|zwc)'
+zstyle ':completion:*:matches' group yes
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# list style
 zstyle ':completion:*' list-separator '->'
 zstyle ':completion:*:default' list-colors '=(#b)*(-> *)==33;3' ${(s.:.)LS_COLORS}
 zstyle ':completion:*:default' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
@@ -43,13 +52,6 @@ zstyle ':completion:*:corrections' format '%B%%F{yellow}!-> %d (error: %e) <-!%f
 zstyle ':completion:*:descriptions' format '%B%F{cyan}--> %d <--%f%b'
 zstyle ':completion:*:warnings' format '%B%F{red}--> no match found <--%f%b'
 zstyle ':completion:*:messages' format '%B%F{yellow}--> %d <--%f%B'
-zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
-zstyle ':completion:*:(vim|nvim|vi|nano):*' ignored-patterns '*.(wav|mp3|flac|ogg|mp4|avi|mkv|iso|so|o|7z|zip|tar|gz|bz2|rar|deb|pkg|gzip|pdf|png|jpeg|jpg|gif|zwc)'
-zstyle ':completion:*:matches' group yes
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
-zstyle ':completion:*' list-dirs-first true
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 # ignore multiple entries.
 zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
