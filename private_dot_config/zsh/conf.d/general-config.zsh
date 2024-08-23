@@ -96,4 +96,4 @@ SPROMPT='zsh: correct %B%F{red}%R%f%b to %B%F{green}%r%f%b [nyae]? '
 # WORDCHARS='@_-'
 
 # generate completion from `--help`
-compdef _gnu_generic fzf dircolors
+compdef _gnu_generic fzf dircolors trash
