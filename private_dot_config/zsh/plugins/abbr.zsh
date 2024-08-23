@@ -94,7 +94,7 @@ function __abbr_help() {
   abbr -u {name ...}
 
 %U%BOPTIONS:%b%u
-  -c, --command       register alias as 'alias name=value'
+  -c, --command       register alias as 'alias name=value' [default]
   -g, --global        register alias as 'alias -g name=value'
   -u, --unset         unset abbreviation
   -h, --help          show this help"
