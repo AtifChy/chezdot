@@ -5,6 +5,9 @@
 # if not running interactively or as login shell, don't do anything
 [[ -o no_interactive ]] && return
 
+# zsh profiling
+(( ${+ZSH_PROFILE_RC} )) && zmodload zsh/zprof
+
 # enable powerlevel10k instant prompt. should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -14,7 +17,7 @@ fi
 HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh_history"
 [[ ! -d ${HISTFILE:h} ]] && mkdir -p "${HISTFILE:h}"
 HISTSIZE=50000
-SAVEHIST=10000
+SAVEHIST=100000
 
 ####################################################
 ## antidote initialization
