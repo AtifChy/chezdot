@@ -24,7 +24,7 @@ export LESS='-F -R --use-color -Dd+r$Du+b$DS+ky$DP+kg$DE+kR$'
 # manpages
 export MANROFFOPT='-P -c'
 
-# fzf
+# fzf config
 export FZF_DEFAULT_OPTS="--layout=reverse
 --cycle
 --border=rounded
