@@ -9,7 +9,7 @@ setopt no_flow_control                      # disable shell pause/resume with ^S
 setopt nomatch                              # print error message on failed globbing
 setopt rc_quotes                            # escape single quotes in single quotes
 setopt correct                              # autocorrect commands
-setopt no_auto_param_slash                  # disable automatic slash insertion
+# setopt no_auto_param_slash                  # disable automatic slash insertion
 setopt glob_dots                            # include dotfiles in completion
 setopt extended_glob                        # enable extended globbing
 
