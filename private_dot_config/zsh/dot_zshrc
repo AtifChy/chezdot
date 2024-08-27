@@ -52,10 +52,10 @@ fpath=(${ANTIDOTE[BIN]}/functions $fpath)
 autoload -Uz antidote
 antidote load
 
-cached-eval 'fzf' fzf --zsh
-cached-eval 'zoxide' zoxide init zsh
-cached-eval 'gh-copilot' gh copilot alias -- zsh
-cached-eval 'ls-colors' dircolors -b
+lazy-eval --regen 'fzf' fzf --zsh
+lazy-eval --regen 'zoxide' zoxide init zsh
+lazy-eval --regen 'gh-copilot' gh copilot alias -- zsh
+lazy-eval 'ls-colors' dircolors -b
 
 ####################################################
 ## end of antidote initialization
