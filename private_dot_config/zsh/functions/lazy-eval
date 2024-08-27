@@ -1,9 +1,12 @@
 #!/usr/bin/zsh
 
 function _lazy_eval {
-  emulate -L zsh;
-  setopt local_options extended_glob
-  (( $# >= 2 )) || return 1
+  emulate -L zsh -o local_options -o extended_glob
+
+  (( $# >= 2 )) || {
+    print "Usage: lazy-eval [--regen] cmdname cmd args..." >&2
+    return 1
+  }
 
   local regen=0
   if [[ $1 == --regen ]]; then
