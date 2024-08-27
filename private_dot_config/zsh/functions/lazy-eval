@@ -1,31 +1,27 @@
 #!/usr/bin/zsh
 
-function _lazy_eval {
-  emulate -L zsh -o local_options -o extended_glob
+emulate -L zsh -o local_options -o extended_glob
 
-  (( $# >= 2 )) || {
-    print "Usage: lazy-eval [--regen] cmdname cmd args..." >&2
-    return 1
-  }
-
-  local regen=0
-  if [[ $1 == --regen ]]; then
-    regen=1
-    shift
-  fi
-
-  local cmdname=$1
-  shift
-
-  local cachefile=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/lazy-eval/${cmdname}.zsh
-  local -a cached=($cachefile(Nmh-28))
-
-  # If the file has no size (is empty), or is older than 28 hours re-gen the cache.
-  if [[ ! -s $cachefile ]] || (( ! ${#cached} && ${+regen} )); then
-    mkdir -p ${cachefile:h}
-    "$@" >| $cachefile
-  fi
-  source $cachefile
+(( $# >= 2 )) || {
+  print "Usage: ${0:A:t} [--regen] cmdname cmd args..." >&2
+  return 1
 }
 
-_lazy_eval "$@"
+local regen=0
+if [[ $1 == --regen ]]; then
+  regen=1
+  shift
+fi
+
+local cmdname=$1
+shift
+
+local cachefile=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/lazy-eval/${cmdname}.zsh
+local -a cached=($cachefile(Nmh-28))
+
+# If the file has no size (is empty), or is older than 28 hours re-gen the cache.
+if [[ ! -s $cachefile ]] || (( ! ${#cached} && ${+regen} )); then
+  mkdir -p ${cachefile:h}
+  "$@" >| $cachefile
+fi
+source $cachefile
