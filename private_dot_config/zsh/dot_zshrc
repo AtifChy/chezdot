@@ -55,7 +55,7 @@ antidote load
 cached-eval 'fzf' fzf --zsh
 cached-eval 'zoxide' zoxide init zsh
 cached-eval 'gh-copilot' gh copilot alias -- zsh
-cached-eval 'ls-colors' dircolors
+cached-eval 'ls-colors' dircolors -b
 
 ####################################################
 ## end of antidote initialization
