@@ -1,5 +1,8 @@
 # based on ohmyzsh/lib/termsupport.zsh
 
+ZSH_WINDOW_TITLE="%n@%m:%30<…<%~%<<"
+ZSH_TAB_TITLE="%30<…<%~%<<"
+
 function title() {
   # Don't set the title if inside emacs, unless using vterm
   [[ -n "${INSIDE_EMACS:-}" && "$INSIDE_EMACS" != vterm ]] && return
@@ -10,17 +13,17 @@ function title() {
 
   case "$TERM" in
     cygwin|xterm*|putty*|rxvt*|konsole*|ansi|mlterm*|alacritty|st*|wezterm*)
-      print -Pn "\e]2;${2:q}\a"
-      print -Pn "\e]1;${1:q}\a"
+      printf '\e]1;%s\a' ${(%)1}      # set tab title
+      printf '\e]2;%s\a' ${(%)2}      # set window title
       ;;
     screen*|tmux*)
-      print -Pn "\ek${1:q}\e\\"
+      printf '\ek%s\e\\' ${(%)1}
       ;;
   esac
 }
 
 function __title_precmd() {
-  title "%n@%m:%30<…<%~%<<"
+  title "$ZSH_TAB_TITLE" "$ZSH_WINDOW_TITLE"
 }
 
 function __title_preexec() {
@@ -74,6 +77,9 @@ function __title_preexec() {
 function __title_cwd() {
   print -Pn "\e]7;file://%m%d\e\\"
 }
+
+# add hooks to update the title
+autoload -Uz add-zsh-hook
 
 if [[ -z "$INSIDE_EMACS" || "$INSIDE_EMACS" = vterm ]]; then
   add-zsh-hook -Uz precmd __title_precmd

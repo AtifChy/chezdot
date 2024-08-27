@@ -1,6 +1,10 @@
 # enable emacs keybinding
 bindkey -e
 
+# a list of non-alphanum chars considered part of a word by the line editor.
+# zsh's default is "*?_-.[]~=/&;!#$%^(){}<>"
+WORDCHARS=
+
 bindkey '^[[H' beginning-of-line                    # home
 bindkey '^[[F' end-of-line                          # end
 bindkey '^[[2~' overwrite-mode                      # insert
@@ -8,10 +12,8 @@ bindkey '^[[3~' delete-char                         # delete
 bindkey '^[[3;5~' delete-word                       # ctrl-delete
 bindkey '^[[D' backward-char                        # left
 bindkey '^[[C' forward-char                         # right
-bindkey '^[[1;5D' backward-word                     # ctrl-left
-bindkey '^[[1;5C' forward-word                      # ctrl-right
-bindkey '^[[1;3D' backward-word                     # alt-left
-bindkey '^[[1;3C' forward-word                      # alt-right
+bindkey '^[[1;5D' emacs-backward-word               # ctrl-left
+bindkey '^[[1;5C' emacs-forward-word                # ctrl-right
 bindkey '^[[5~' beginning-of-buffer-or-history      # pageup
 bindkey '^[[6~' end-of-buffer-or-history            # pagedown
 bindkey '^[[Z' reverse-menu-complete                # shift-tab
@@ -33,3 +35,20 @@ bindkey -M menuselect '^[' kill-buffer              # esc
 
 # make switching between insert and normal mode faster
 KEYTIMEOUT=10
+
+# custom keybindings
+function shift-forward-word() {
+  local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+  zle .emacs-forward-word
+}
+
+function shift-backward-word() {
+  local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+  zle .emacs-backward-word
+}
+
+zle -N shift-forward-word
+zle -N shift-backward-word
+
+bindkey '^[[1;2C' shift-forward-word
+bindkey '^[[1;2D' shift-backward-word
