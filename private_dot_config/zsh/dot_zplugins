@@ -26,7 +26,7 @@ hlissner/zsh-autopair kind:defer post:post-autopair
 # Misc
 #
 MichaelAquilina/zsh-you-should-use kind:defer post:post-you-should-use
-AtifChy/zman branch:fzf-opts
+mattmc3/zman
 
 #
 # Zephyr
@@ -41,6 +41,7 @@ $ZDOTDIR/plugins/command-not-found.zsh
 $ZDOTDIR/plugins/clipboard.zsh
 $ZDOTDIR/plugins/fancy-ctrl-z.zsh
 $ZDOTDIR/plugins/abbr.zsh
+$ZDOTDIR/plugins/gpg-agent.zsh
 
 #
 # ohmyzsh
