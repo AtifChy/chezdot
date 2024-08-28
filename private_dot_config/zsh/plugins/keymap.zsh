@@ -5,6 +5,9 @@ bindkey -e
 # zsh's default is "*?_-.[]~=/&;!#$%^(){}<>"
 WORDCHARS=
 
+# make switching between insert and normal mode faster
+# KEYTIMEOUT=10
+
 bindkey '^[[H' beginning-of-line                    # home
 bindkey '^[[F' end-of-line                          # end
 bindkey '^[[2~' overwrite-mode                      # insert
@@ -32,9 +35,6 @@ bindkey -M menuselect '?' history-incremental-search-forward
 bindkey -M menuselect '/' history-incremental-search-backward
 bindkey -M menuselect '^?' send-break               # ctrl-backspace
 bindkey -M menuselect '^[' kill-buffer              # esc
-
-# make switching between insert and normal mode faster
-KEYTIMEOUT=10
 
 # custom keybindings
 function shift-forward-word() {
