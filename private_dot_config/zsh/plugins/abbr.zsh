@@ -3,7 +3,7 @@
 typeset -gA __abbrs
 typeset -gi ABBR_TIPS_STATUS
 
-function __abbr_register() {
+function __abbr_register {
   local kind=$1 key=${2%%=*} value=${2#*=}
   case $kind in
     g) alias -g $key=$value ;;
@@ -13,7 +13,7 @@ function __abbr_register() {
   __abbrs[$key]="$kind\0$value"
 }
 
-function __abbr_expand() {
+function __abbr_expand {
   local word=${${(Az)LBUFFER}[-1]}
   local abbr=${__abbrs[$word]}
   if [[ -n $abbr ]]; then
@@ -22,26 +22,26 @@ function __abbr_expand() {
   fi
 }
 
-function __abbr_expand_and_insert() {
+function __abbr_expand_and_insert {
   zle __abbr_expand
   zle self-insert
 }
 
-function __abbr_expand_and_accept_line() {
+function __abbr_expand_and_accept_line {
   zle __abbr_expand
   zle accept-line
 }
 
-function __abbr_expand_and_end_of_line() {
+function __abbr_expand_and_end_of_line {
   zle __abbr_expand
   zle end-of-line
 }
 
-function __abbr_no_expand() {
+function __abbr_no_expand {
   LBUFFER+=' '
 }
 
-function __abbr_init() {
+function __abbr_init {
   zle -N __abbr_expand
   zle -N __abbr_expand_and_insert
   zle -N __abbr_no_expand
@@ -53,7 +53,7 @@ function __abbr_init() {
   bindkey '^[[F' __abbr_expand_and_end_of_line
 }
 
-function __abbr_show() {
+function __abbr_show {
   local kind_filter=$1
   local key=$2
   local abbr=${__abbrs[$key]}
@@ -66,7 +66,7 @@ function __abbr_show() {
   return 0
 }
 
-function __abbr_list() {
+function __abbr_list {
   local kind_filters=$1
   for kind_filter in ${(s::)kind_filters}; do
     for key in ${(ko)__abbrs}; do
@@ -75,7 +75,7 @@ function __abbr_list() {
   done
 }
 
-function __abbr_unregister() {
+function __abbr_unregister {
   local key=$1
   if [[ -n $__abbrs[$key] ]]; then
     unalias $key
@@ -86,7 +86,7 @@ function __abbr_unregister() {
   fi
 }
 
-function __abbr_help() {
+function __abbr_help {
   print -P "%B%F{blue}abbr%f%b is a command to manage abbreviations.
 
 %U%BUSAGE:%b%u
@@ -100,7 +100,7 @@ function __abbr_help() {
   -h, --help          show this help"
 }
 
-function abbr() {
+function abbr {
   zparseopts -D -F -- \
     {h,-help}=help \
     {u,-unset}=unset \
