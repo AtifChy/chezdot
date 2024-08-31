@@ -3,7 +3,7 @@
 ZSH_WINDOW_TITLE="%n@%m:%30<…<%~%<<"
 ZSH_TAB_TITLE="%30<…<%~%<<"
 
-function title() {
+function title {
   # Don't set the title if inside emacs, unless using vterm
   [[ -n "${INSIDE_EMACS:-}" && "$INSIDE_EMACS" != vterm ]] && return
   
@@ -22,11 +22,11 @@ function title() {
   esac
 }
 
-function __title_precmd() {
+function __title_precmd {
   title "$ZSH_TAB_TITLE" "$ZSH_WINDOW_TITLE"
 }
 
-function __title_preexec() {
+function __title_preexec {
   emulate -L zsh -o extended_glob
 
   # split command into array of arguments
@@ -74,7 +74,7 @@ function __title_preexec() {
 }
 
 # emits the control sequence to notify the terminal of cwd
-function __title_cwd() {
+function __title_cwd {
   print -Pn "\e]7;file://%m%d\e\\"
 }
 
