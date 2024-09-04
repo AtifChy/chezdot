@@ -2,11 +2,11 @@
 
 (( ${+functions[abbr]} )) || return
 
-function git_current_branch() {
+function git_current_branch {
   command git branch --show-current
 }
 
-function git_main_branch() {
+function git_main_branch {
   command git rev-parse --git-dir &>/dev/null || return
   local ref
   for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default,stable,master}; do
@@ -20,7 +20,7 @@ function git_main_branch() {
   return 1
 }
 
-function git_develop_branch() {
+function git_develop_branch {
   command git rev-parse --git-dir &>/dev/null || return
   local branch
   for branch in dev devel development; do
@@ -34,7 +34,7 @@ function git_develop_branch() {
   return 1
 }
 
-function git_feature_branch_prepend() {
+function git_feature_branch_prepend {
   command git rev-parse --git-dir &>/dev/null || return
   if [[ $(git show-ref) =~ '/feat/' ]]; then
     print "feat"
