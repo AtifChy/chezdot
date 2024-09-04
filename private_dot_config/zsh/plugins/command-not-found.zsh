@@ -1,4 +1,4 @@
-function command_not_found_handler() {
+function command_not_found_handler {
   local pkgs cmd="$1"
 
   pkgs=(${(f)"$(pkgfile -bvw -- "$cmd" 2>/dev/null)"})
