@@ -20,7 +20,7 @@ local cachefile=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/lazy-eval/${cmdname}.zsh
 local -a cached=($cachefile(Nmh-28))
 
 # If the file has no size (is empty), or is older than 28 hours re-gen the cache.
-if [[ ! -s $cachefile ]] || (( ${+regen} && ! ${#cached} )); then
+if [[ ! -s $cachefile ]] || (( regen && ! ${#cached} )); then
   mkdir -p ${cachefile:h}
   "$@" >| $cachefile
 fi
