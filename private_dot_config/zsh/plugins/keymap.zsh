@@ -37,12 +37,12 @@ bindkey -M menuselect '^?' send-break               # ctrl-backspace
 bindkey -M menuselect '^[' kill-buffer              # esc
 
 # custom keybindings
-function shift-forward-word() {
+function shift-forward-word {
   local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
   zle .emacs-forward-word
 }
 
-function shift-backward-word() {
+function shift-backward-word {
   local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
   zle .emacs-backward-word
 }
