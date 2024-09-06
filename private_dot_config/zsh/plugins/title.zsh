@@ -6,7 +6,7 @@ ZSH_TAB_TITLE="%30<…<%~%<<"
 function title {
   # Don't set the title if inside emacs, unless using vterm
   [[ -n "${INSIDE_EMACS:-}" && "$INSIDE_EMACS" != vterm ]] && return
-  
+
   # if $2 is unset use $1 as default
   # if it is set and empty, leave it as is
   : ${2=$1}
