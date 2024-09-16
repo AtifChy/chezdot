@@ -147,4 +147,4 @@ function abbr {
 }
 
 __abbr_init
-unfunction __abbr_init
+# unfunction __abbr_init
