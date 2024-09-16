@@ -17,7 +17,19 @@ zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' list-separator '->'
-zstyle ':completion:*:default' list-colors '=(#b)*(-> *)==33;3' ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+zstyle -e ':completion:*' list-colors 'reply=(
+	"${(s<:>)LS_COLORS}"
+	"sa=32;4"
+	"(global-aliases|parameters)=*=36"
+	"(aliases|executables|functions|commands|builtins|jobs)=*=32"
+	"(reserved-words)=*=33;40"
+	"(glob(flags|quals)|modifiers)=*=34"
+)'
+
+zstyle ':completion:*:options' list-colors '=(#b)*(-> *)==33;3'
+# zstyle ':completion:*:options' list-colors '=(#b)(-[^ -]#)#( [^-]*)=0=0=33'
 zstyle ':completion:*:default' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*:default' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:corrections' format '%B%%F{yellow}!-> %d (error: %e) <-!%f%b'
@@ -53,6 +65,14 @@ zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,comma
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
 zstyle ':completion:*:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*' insert-ids single
+
+# enable completion caching
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
+
+# initialize completion system
+autoload -Uz compinit
+compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
 
 # on-demand rehash using SIGUSR1
 # NOTE requires pacman hook to be installed
