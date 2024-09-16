@@ -42,7 +42,6 @@ zstyle ':antidote:bundle:MichaelAquilina/zsh-you-should-use' defer-options '-a +
 zstyle ':antidote:bundle:zsh-users/zsh-syntax-highlighting' defer-options '-a +pr'
 zstyle ':antidote:bundle:zsh-users/zsh-autosuggestions' defer-options '-a +ms'
 
-zstyle ':plugin:ez-compinit' use-cache yes
 zstyle ':zephyr:plugin:*' use-cache yes
 
 zstyle ':antidote:bundle' file $ZDOTDIR/.zplugins
