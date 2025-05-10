@@ -13,9 +13,10 @@ function __fish_git_prompt
     set -q __fish_git_prompt_color_merging; or set -g __fish_git_prompt_color_merging yellow --bold
 
     set -l vcs_raw (fish_git_prompt %s | string split '|')
+    set -l vcs
     for item in $vcs_raw
         if test (string length --visible $item) -gt 0
-            set vcs $vcs $item
+            set -a vcs $item
         end
     end
 
