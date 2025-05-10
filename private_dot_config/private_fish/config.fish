@@ -64,6 +64,7 @@ abbr --add dotdot --regex '^\.\.+$' --function multicd
 abbr --add v nvim
 abbr --add ff fastfetch
 abbr --add sv sudoedit
+abbr --add cz chezmoi
 
 if set -q WSLENV
     alias wsl wsl.exe
