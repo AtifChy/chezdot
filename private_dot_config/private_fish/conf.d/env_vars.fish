@@ -23,7 +23,11 @@ set -x SUDO_PROMPT (
 )
 
 # ssh config 
-set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+if set -q WSLENV
+  eval (wsl2-ssh-agent -format fish)
+else
+  set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+end
 
 # gpg config
 set -x GPG_TTY (tty)
@@ -50,7 +54,8 @@ end
 
 # wget
 set -x WGETRC "$XDG_CONFIG_HOME/wget/wgetrc"
-if not test -f "$WGETRC"
+if not test -d (path dirname $WGETRC)
+  mkdir (path dirname $WGETRC)
   echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" >> "$WGETRC"
 end
 
