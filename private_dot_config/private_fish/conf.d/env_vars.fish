@@ -24,9 +24,9 @@ set -x SUDO_PROMPT (
 
 # ssh config 
 if set -q WSLENV
-  eval (wsl2-ssh-agent -format fish)
+    wsl2-ssh-agent -format fish | source
 else
-  set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+    set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 end
 
 # gpg config
@@ -41,35 +41,35 @@ set -l git_config_dir "$XDG_CONFIG_HOME/git"
 not test -d "$git_config_dir"; and mkdir -p "$git_config_dir"
 
 for file in $HOME/.{gitconfig,gitignore,gitattributes,git-credentials,gitk}
-  if test -f $file
-    set -l base_name (string match -r '[^/]*$' -- $file)
-    switch $base_name
-      case '.gitk'
-        mv $file "$git_config_dir/gitk"
-      case '*'
-        mv $file "$git_config_dir"/(string replace -r '\.git-?' '' -- $base_name)
+    if test -f $file
+        set -l base_name (string match -r '[^/]*$' -- $file)
+        switch $base_name
+            case '.gitk'
+                mv $file "$git_config_dir/gitk"
+            case '*'
+                mv $file "$git_config_dir"/(string replace -r '\.git-?' '' -- $base_name)
+        end
     end
-  end
 end
 
 # wget
 set -x WGETRC "$XDG_CONFIG_HOME/wget/wgetrc"
 if not test -d (path dirname $WGETRC)
-  mkdir (path dirname $WGETRC)
-  echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" >> "$WGETRC"
+    mkdir (path dirname $WGETRC)
+    echo "hsts-file = $XDG_CACHE_HOME/wget-hsts" >>"$WGETRC"
 end
 
 # node
 set -x NODE_REPL_HISTORY "$XDG_DATA_HOME/node_repl_history"
 set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
 if not test -f "$NPM_CONFIG_USERCONFIG"
-  mkdir -p (dirname "$NPM_CONFIG_USERCONFIG")
-  echo "\
+    mkdir -p (dirname "$NPM_CONFIG_USERCONFIG")
+    echo "\
 prefix=$XDG_DATA_HOME/npm
 cache=$XDG_CACHE_HOME/npm
 init-module=$XDG_CONFIG_HOME/npm/config/npm-init.js
 logs-dir=$XDG_STATE_HOME/npm/logs\
-" >> "$NPM_CONFIG_USERCONFIG"
+" >>"$NPM_CONFIG_USERCONFIG"
 end
 
 # go

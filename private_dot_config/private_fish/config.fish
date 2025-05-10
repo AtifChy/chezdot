@@ -23,7 +23,7 @@ fish_add_path -g "$XDG_DATA_HOME/npm/bin"
 set -l LS ls
 command -q eza; and set LS eza
 
-eval (dircolors -c)
+dircolors -c | source
 #set -x LS_COLORS (dircolors -c | string split ' ')[3]
 
 alias ls "$LS --color=auto --group-directories-first"
