@@ -14,7 +14,7 @@ return {
         separator = " ",
       },
       -- List of LSP names to ignore (e.g., `null-ls`):
-      ignore_lsp = {},
+      ignore_lsp = { "copilot" },
     })
   end,
 }
