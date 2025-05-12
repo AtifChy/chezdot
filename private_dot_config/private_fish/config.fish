@@ -47,7 +47,7 @@ alias df 'df -h'
 alias du 'du -ch'
 alias dmesg 'dmesg -H'
 alias free 'free -h'
-alias visudo "EDITOR=$EDITOR command visudo"
+# alias visudo "EDITOR=$EDITOR command visudo"
 
 alias :q exit
 alias :x exit
@@ -66,6 +66,10 @@ abbr --add ff fastfetch
 abbr --add sv sudoedit
 abbr --add cz chezmoi
 
+# bindings
+bind ctrl-h backward-kill-path-component
+
+# wsl specific aliases
 if set -q WSLENV
     alias wsl wsl.exe
     alias winget winget.exe
