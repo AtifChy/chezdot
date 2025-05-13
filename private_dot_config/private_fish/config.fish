@@ -6,9 +6,6 @@ end
 # exit if not running interactively
 not status is-interactive; and return
 
-#prompt
-oh-my-posh init fish -c ~/.config/oh-my-posh/mytheme.omp.yaml | source
-
 if not type -q fisher
     curl -sL https://git.io/fisher | source
     and fisher install jorgebucaran/fisher
@@ -21,6 +18,11 @@ set -g fish_greeting
 # add to path if needed
 fish_add_path -g "$HOME/.local/bin"
 fish_add_path -g "$XDG_DATA_HOME/npm/bin"
+
+#prompt
+if command -q oh-my-posh
+    oh-my-posh init fish -c ~/.config/oh-my-posh/mytheme.omp.yaml | source
+end
 
 # aliases
 set -l LS ls

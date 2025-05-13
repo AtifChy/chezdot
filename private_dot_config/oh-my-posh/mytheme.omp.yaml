@@ -27,17 +27,17 @@ blocks:
         style: plain
         foreground: white
         template: "\
-          on <b><magenta>{{ .HEAD }} \
-          {{ if .Working }}[{{ end }}\
+          on <b><magenta>{{ .HEAD }}</> \
+          {{ if .Working }}<black>[{{ end }}\
           {{ if .BranchStatus }}<cyan>{{ .BranchStatus }}</>{{ end }}\
-          {{ if .Working.Changed }} {{ end }}\
+          {{ if .Working.Changed }}|{{ end }}\
           {{ if gt .Working.Untracked 0 }}<yellow>?{{ .Working.Untracked }}</>{{ end }}\
           {{ if gt .Working.Modified 0 }}<yellow>~{{ .Working.Modified }}</>{{ end }}\
           {{ if gt .Working.Unmerged 0 }}<red>x{{ .Working.Unmerged }}</>{{ end }}\
           {{ if gt .Working.Deleted 0 }}<red>-{{ .Working.Deleted }}</>{{ end }}\
           {{ if gt .Staging.Added 0 }}<green>+{{ .Staging.Added }}</>{{ end }}\
-          {{ if gt .StashCount 0 }} <blue>${{ .StashCount }}</>{{ end }}\
-          {{ if .Working }}]{{ end }}</b></> "
+          {{ if gt .StashCount 0 }}|<blue>${{ .StashCount }}</>{{ end }}\
+          {{ if .Working }}]</>{{ end }}</b> "
         properties:
           fetch_stash_count: true
           fetch_status: true
