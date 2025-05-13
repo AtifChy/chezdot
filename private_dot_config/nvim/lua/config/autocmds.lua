@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
   callback = function()
     vim.opt.guicursor = ""
     vim.fn.chansend(vim.v.stderr, "\x1b[ q")
-  end
+  end,
 })
 
 -- custom tabwidth for fish
@@ -22,5 +22,5 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.bo.tabstop = 4
     vim.bo.shiftwidth = 4
-  end
+  end,
 })

@@ -1,0 +1,69 @@
+$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 3
+final_space: true
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: session
+        style: plain
+        foreground: white
+        template: "\
+          {{ if .Root }}<red>󰒘</> {{ end }}\
+          {{ if .SSHSession }} <b><blue>{{ .UserName }}@{{ .HostName }}</> in {{ end }}"
+
+      - type: path
+        style: plain
+        foreground_templates:
+          - "{{ if not .Writable }}red{{ else }}cyan{{ end }}"
+        template: " <b>{{ .Path }}</b> "
+        properties:
+          folder_icon: …
+          max_depth: 3
+          style: agnoster_short
+          windows_registry_icon: " "
+
+      - type: git
+        style: plain
+        foreground: white
+        template: "\
+          on <b><magenta>{{ .HEAD }} \
+          {{ if .Working }}[{{ end }}\
+          {{ if .BranchStatus }}<cyan>{{ .BranchStatus }}</>{{ end }}\
+          {{ if .Working.Changed }} {{ end }}\
+          {{ if gt .Working.Untracked 0 }}<yellow>?{{ .Working.Untracked }}</>{{ end }}\
+          {{ if gt .Working.Modified 0 }}<yellow>~{{ .Working.Modified }}</>{{ end }}\
+          {{ if gt .Working.Unmerged 0 }}<red>x{{ .Working.Unmerged }}</>{{ end }}\
+          {{ if gt .Working.Deleted 0 }}<red>-{{ .Working.Deleted }}</>{{ end }}\
+          {{ if gt .Staging.Added 0 }}<green>+{{ .Staging.Added }}</>{{ end }}\
+          {{ if gt .StashCount 0 }} <blue>${{ .StashCount }}</>{{ end }}\
+          {{ if .Working }}]{{ end }}</b></> "
+        properties:
+          fetch_stash_count: true
+          fetch_status: true
+          fetch_upstream_icon: true
+
+      - type: executiontime
+        style: plain
+        foreground: white
+        template: "took <b><yellow>{{ nospace .FormattedMs }}</> "
+        properties:
+          style: round
+          threshold: 5000
+
+      - type: status
+        style: plain
+        foreground: red
+        template: "{{ if eq .Code 0 }}✔{{ else }} {{ reason .Code }}{{ end }}"
+
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: status
+        style: powerline
+        template: ➜
+        properties:
+          always_enabled: true
+        foreground_templates:
+          - "{{ if gt .Code 0 }}red{{ else }}green{{ end }}"

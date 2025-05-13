@@ -6,6 +6,9 @@ end
 # exit if not running interactively
 not status is-interactive; and return
 
+#prompt
+oh-my-posh init fish -c ~/.config/oh-my-posh/mytheme.omp.yaml | source
+
 if not type -q fisher
     curl -sL https://git.io/fisher | source
     and fisher install jorgebucaran/fisher
