@@ -28,15 +28,15 @@ blocks:
         foreground: white
         template: "\
           on <b><magenta>{{ .HEAD }}</> \
-          {{ if .Working }}<black>[{{ end }}\
-          {{ if .BranchStatus }}<cyan>{{ .BranchStatus }}</>{{ end }}\
-          {{ if .Working.Changed }}|{{ end }}\
+          {{ if .Working }}<darkGray>[{{ end }}\
+          {{ if .BranchStatus }}<blue>{{ .BranchStatus }}</>{{ end }}\
+          {{ if or (.Working.Changed) (.Staging.Changed) }}|{{ end }}\
           {{ if gt .Working.Untracked 0 }}<yellow>?{{ .Working.Untracked }}</>{{ end }}\
           {{ if gt .Working.Modified 0 }}<yellow>~{{ .Working.Modified }}</>{{ end }}\
           {{ if gt .Working.Unmerged 0 }}<red>x{{ .Working.Unmerged }}</>{{ end }}\
           {{ if gt .Working.Deleted 0 }}<red>-{{ .Working.Deleted }}</>{{ end }}\
           {{ if gt .Staging.Added 0 }}<green>+{{ .Staging.Added }}</>{{ end }}\
-          {{ if gt .StashCount 0 }}|<blue>${{ .StashCount }}</>{{ end }}\
+          {{ if gt .StashCount 0 }}|<cyan>${{ .StashCount }}</>{{ end }}\
           {{ if .Working }}]</>{{ end }}</b> "
         properties:
           fetch_stash_count: true
