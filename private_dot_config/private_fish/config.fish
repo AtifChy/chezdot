@@ -24,11 +24,12 @@ if command -q oh-my-posh
     oh-my-posh init fish -c ~/.config/oh-my-posh/mytheme.omp.yaml | source
 end
 
+# set LS_COLORS
+dircolors -c | source
+
 # aliases
 set -l LS ls
 command -q eza; and set LS eza
-
-dircolors -c | source
 
 alias ls "$LS --color=auto --group-directories-first"
 alias la 'ls -A'
@@ -51,7 +52,6 @@ alias df 'df -h'
 alias du 'du -ch'
 alias dmesg 'dmesg -H'
 alias free 'free -h'
-# alias visudo "EDITOR=$EDITOR command visudo"
 
 alias :q exit
 alias :x exit
@@ -59,8 +59,8 @@ alias :x exit
 command -q eza; and alias tree 'eza --tree --icons'
 
 # abbreviations
-set -x ABBR_TIPS_PROMPT '\e[1;34mtip:\e[0m \e[1m{{ .abbr }}\e[0m => {{ .cmd }}'
-set -x ABBR_TIPS_ALIAS_WHITELIST 'cd exit'
+# set -x ABBR_TIPS_PROMPT '\e[1;34mtip:\e[0m \e[1m{{ .abbr }}\e[0m => {{ .cmd }}'
+# set -x ABBR_TIPS_ALIAS_WHITELIST 'cd exit'
 
 function multicd
     echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
