@@ -9,18 +9,21 @@ blocks:
         style: plain
         foreground: white
         template: "\
-          {{ if .Root }}<red>󰒘</> {{ end }}\
-          {{ if .SSHSession }} <b><blue>{{ .UserName }}@{{ .HostName }}</> in {{ end }}"
+          {{ if .SSHSession }}󱘖 <b><blue>{{ .UserName }}@{{ .HostName }}</></b> in {{ end }}\
+          {{ if .Root }}<red>󰒘</> {{ end }}"
 
       - type: path
         style: plain
         foreground_templates:
           - "{{ if not .Writable }}red{{ else }}cyan{{ end }}"
-        template: " <b>{{ .Path }}</b> "
+        template: " {{ .Path }} "
         properties:
-          folder_icon: …
-          max_depth: 3
-          style: agnoster_short
+          edge_format: "<b>%s</b>"
+          # folder_icon: …
+          # max_depth: 3
+          max_width: 30
+          # style: agnoster_short
+          style: powerlevel
           windows_registry_icon: " "
 
       - type: git
@@ -30,18 +33,22 @@ blocks:
           on <b><magenta>{{ .HEAD }}</> \
           {{ if .Working }}<darkGray>[{{ end }}\
           {{ if .BranchStatus }}<blue>{{ .BranchStatus }}</>{{ end }}\
-          {{ if or (.Working.Changed) (.Staging.Changed) }}|{{ end }}\
-          {{ if gt .Working.Untracked 0 }}<yellow>?{{ .Working.Untracked }}</>{{ end }}\
-          {{ if gt .Working.Modified 0 }}<yellow>~{{ .Working.Modified }}</>{{ end }}\
-          {{ if gt .Working.Unmerged 0 }}<red>x{{ .Working.Unmerged }}</>{{ end }}\
-          {{ if gt .Working.Deleted 0 }}<red>-{{ .Working.Deleted }}</>{{ end }}\
-          {{ if gt .Staging.Added 0 }}<green>+{{ .Staging.Added }}</>{{ end }}\
+          {{ if .Working.Changed }}|{{ end }}\
+          {{ nospace .Working.String }}\
+          {{ if .Staging.Changed }}|{{ end }}\
+          {{ nospace .Staging.String }}\
           {{ if gt .StashCount 0 }}|<cyan>${{ .StashCount }}</>{{ end }}\
           {{ if .Working }}]</>{{ end }}</b> "
         properties:
           fetch_stash_count: true
           fetch_status: true
           fetch_upstream_icon: true
+          status_formats:
+            Added: <green>+%d</>
+            Deleted: <red>-%d</>
+            Modified: <yellow>~%d</>
+            Untracked: <yellow>?%d</>
+            Unmerged: <red>x%d</>
 
       - type: executiontime
         style: plain

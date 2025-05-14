@@ -29,7 +29,6 @@ set -l LS ls
 command -q eza; and set LS eza
 
 dircolors -c | source
-#set -x LS_COLORS (dircolors -c | string split ' ')[3]
 
 alias ls "$LS --color=auto --group-directories-first"
 alias la 'ls -A'
@@ -56,6 +55,8 @@ alias free 'free -h'
 
 alias :q exit
 alias :x exit
+
+command -q eza; and alias tree 'eza --tree --icons'
 
 # abbreviations
 set -x ABBR_TIPS_PROMPT '\e[1;34mtip:\e[0m \e[1m{{ .abbr }}\e[0m => {{ .cmd }}'
