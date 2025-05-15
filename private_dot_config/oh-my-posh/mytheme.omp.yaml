@@ -1,6 +1,7 @@
-$schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 version: 3
 final_space: true
+
 blocks:
   - type: prompt
     alignment: left
@@ -8,15 +9,15 @@ blocks:
       - type: session
         style: plain
         foreground: white
-        template: "\
-          {{ if .SSHSession }}󱘖 <b><blue>{{ .UserName }}@{{ .HostName }}</></b> in {{ end }}\
-          {{ if .Root }}<red>󰒘</> {{ end }}"
+        template: "{{ if .SSHSession }}󱘖 <b><blue>{{ .UserName }}@{{ .HostName }}</></b> in {{ end }}"
 
       - type: path
         style: plain
-        foreground_templates:
-          - "{{ if not .Writable }}red{{ else }}cyan{{ end }}"
-        template: " {{ .Path }} "
+        foreground: cyan
+        template: "\
+          {{ if .Root }}<red>󰒘</> {{ end }}\
+          {{ if not .Writable }}<red> </>{{ else }}<cyan> </>{{ end }}\
+          {{ .Path }} "
         properties:
           edge_format: "<b>%s</b>"
           # folder_icon: …
@@ -24,7 +25,6 @@ blocks:
           max_width: 30
           # style: agnoster_short
           style: powerlevel
-          windows_registry_icon: " "
 
       - type: git
         style: plain
@@ -32,23 +32,36 @@ blocks:
         template: "\
           on <b><magenta>{{ .HEAD }}</> \
           {{ if .Working }}<darkGray>[{{ end }}\
-          {{ if .BranchStatus }}<blue>{{ .BranchStatus }}</>{{ end }}\
+          {{ if .BranchStatus }}<red>{{ .BranchStatus }}</>{{ end }}\
           {{ if .Working.Changed }}|{{ end }}\
-          {{ nospace .Working.String }}\
+          <yellow>{{ nospace .Working.String }}</>\
           {{ if .Staging.Changed }}|{{ end }}\
-          {{ nospace .Staging.String }}\
-          {{ if gt .StashCount 0 }}|<cyan>${{ .StashCount }}</>{{ end }}\
+          <green>{{ nospace .Staging.String }}</>\
+          {{ if gt .StashCount 0 }}|<blue>${{ .StashCount }}</>{{ end }}\
           {{ if .Working }}]</>{{ end }}</b> "
         properties:
+          branch_icon: " "
+          commit_icon: " "
+          tag_icon: " "
+          rebase_icon: " "
+          cherry_pick_icon: " "
+          revert_icon: " "
+          merge_icon: " "
+          no_commits_icon: "󰂕 "
           fetch_stash_count: true
           fetch_status: true
           fetch_upstream_icon: true
           status_formats:
-            Added: <green>+%d</>
-            Deleted: <red>-%d</>
-            Modified: <yellow>~%d</>
-            Untracked: <yellow>?%d</>
-            Unmerged: <red>x%d</>
+            Added: +%d
+            Deleted: -%d
+            Modified: ~%d
+            Untracked: ?%d
+            Unmerged: ×%d
+
+      - type: python
+        style: plain
+        foreground: white
+        template: "via <lightYellow> <b>{{ .Full }}</b></> "
 
       - type: executiontime
         style: plain
@@ -68,7 +81,7 @@ blocks:
     newline: true
     segments:
       - type: status
-        style: powerline
+        style: plain
         template: ➜
         properties:
           always_enabled: true
