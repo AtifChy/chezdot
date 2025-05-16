@@ -23,6 +23,7 @@ bindkey '^[[Z' reverse-menu-complete                # shift-tab
 bindkey '^Z' undo                                   # ctrl-z
 bindkey '^_' redo                                   # ctrl-/
 bindkey '^[' kill-line                              # esc
+bindkey '^I' complete-word                          # tab
 
 # bindkey '^?' backward-delete-char                 # backspace
 # bindkey '^H' backward-delete-word                 # ctrl-backspace

@@ -43,6 +43,11 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS
 --height=50%
 --cycle"
 
+# wsl2 ssh integration
+if [[ -n $WSLENV ]]; then
+  eval "$(wsl2-ssh-agent -format zsh)"
+fi
+
 # docker
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 export MACHINE_STORAGE_PATH=$XDG_DATA_HOME/docker-machine

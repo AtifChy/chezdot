@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # Collected from https://github.com/lewisacidic/fish-git-abbr/blob/master/conf.d/git_abbr.fish
 
 (( ${+functions[abbr]} )) || return
