@@ -18,7 +18,7 @@ function __abbr_expand {
   local abbr=${__abbrs[$word]}
   if [[ -n $abbr ]]; then
     zle _expand_alias
-    ABBR_TIPS_STATUS=0
+    ABBR_TIPS_STATUS=1
   fi
 }
 
