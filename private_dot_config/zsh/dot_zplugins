@@ -29,7 +29,7 @@ AtifChy/zsh-mini-abbr
 #
 # Misc
 #
-MichaelAquilina/zsh-you-should-use kind:defer post:post-you-should-use
+AtifChy/zsh-you-should-use kind:defer post:post-you-should-use
 mattmc3/zman
 # psprint/zsh-sweep kind:path path:bin
 

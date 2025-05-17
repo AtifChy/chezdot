@@ -3,15 +3,16 @@
 #
 
 if (( ${+commands[eza]} )); then
-  alias ls='eza --icons=auto --git --color=auto --group-directories-first'
+  LS_CMD='eza --icons=auto --git --color=auto --group-directories-first'
 else
-  alias ls='ls --color=auto --group-directories-first'
+  LS_CMD='ls --color=auto --group-directories-first'
 fi
-alias la='ls -a'
-alias l='ls -lh'
-alias ll='ls -alh'
-alias lr='ls -aR'
-alias lR='ls -alRh'
+alias ls="$LS_CMD"
+alias la="$LS_CMD -a"
+alias l="$LS_CMD -lh"
+alias ll="$LS_CMD -alh"
+alias lr="$LS_CMD -aR"
+alias lR="$LS_CMD -alRh"
 
 alias cp='cp -v'
 alias mv='mv -v'

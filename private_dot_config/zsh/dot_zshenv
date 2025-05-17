@@ -44,7 +44,7 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS
 --cycle"
 
 # wsl2 ssh integration
-if [[ -n $WSLENV ]]; then
+if [[ -n $WSLENV ]] && (( ${+commands[wsl2-ssh-agent]} )); then
   eval "$(wsl2-ssh-agent -format zsh)"
 fi
 
