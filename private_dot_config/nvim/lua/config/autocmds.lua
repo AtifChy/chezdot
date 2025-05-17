@@ -17,13 +17,13 @@ vim.api.nvim_create_autocmd("VimLeave", {
 })
 
 -- fixed tabstop and shiftwidth for fish files
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "fish" },
-  callback = function()
-    vim.bo.tabstop = 4
-    vim.bo.shiftwidth = 4
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "fish" },
+--   callback = function()
+--     vim.bo.tabstop = 4
+--     vim.bo.shiftwidth = 4
+--   end,
+-- })
 
 -- disable indent for toml files
 vim.api.nvim_create_autocmd("FileType", {

@@ -31,6 +31,7 @@ AtifChy/zsh-mini-abbr
 #
 MichaelAquilina/zsh-you-should-use kind:defer post:post-you-should-use
 mattmc3/zman
+# psprint/zsh-sweep kind:path path:bin
 
 #
 # Zephyr
