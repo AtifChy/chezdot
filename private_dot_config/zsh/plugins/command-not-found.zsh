@@ -41,7 +41,7 @@ function command_not_found_handler() {
     done
   else
     print -rn -- "zsh: command not found: $cmd"
-  fi 1>&2
+  fi >&2
 
   return 127
 }

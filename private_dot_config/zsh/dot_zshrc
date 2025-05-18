@@ -24,7 +24,7 @@ SAVEHIST=100000
 ####################################################
 
 typeset -A ANTIDOTE
-ANTIDOTE[HOME]=$XDG_DATA_HOME/antidote
+ANTIDOTE[HOME]=${XDG_DATA_HOME}/antidote
 ANTIDOTE[BIN]=${ANTIDOTE[HOME]}/bin
 ANTIDOTE[PLUGIN]=${ANTIDOTE[HOME]}/plugins
 
@@ -44,10 +44,10 @@ zstyle ':antidote:bundle:zsh-users/zsh-autosuggestions' defer-options '-a +ms'
 
 zstyle ':zephyr:plugin:*' use-cache yes
 
-zstyle ':antidote:bundle' file $ZDOTDIR/.zplugins
-zstyle ':antidote:static' file $XDG_CACHE_HOME/zsh/antidote-static.zsh
+zstyle ':antidote:bundle' file ${ZDOTDIR}/.zplugins
+zstyle ':antidote:static' file ${XDG_CACHE_HOME}/zsh/antidote-static.zsh
 
-fpath=(${ANTIDOTE[BIN]}/functions $fpath)
+fpath+=(${ANTIDOTE[BIN]}/functions)
 autoload -Uz antidote
 antidote load
 
