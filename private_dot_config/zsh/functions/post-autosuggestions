@@ -12,4 +12,6 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(
   kill-line
   history-substring-search-up
   history-substring-search-down
+  mini-abbr-expand-and-insert
+  mini-abbr-expand-and-accept-line
 )

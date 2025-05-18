@@ -4,6 +4,7 @@
 
 if (( ${+commands[eza]} )); then
   LS_CMD='eza --icons=auto --git --color=auto --group-directories-first'
+  alias tree="$LS_CMD --tree"
 else
   LS_CMD='ls --color=auto --group-directories-first'
 fi
@@ -72,6 +73,9 @@ abbr .....='cd ../../../..'
 
 abbr ff=fastfetch
 abbr v=nvim
+
 abbr cz=chezmoi
+abbr czd='chezmoi diff'
+abbr czs='chezmoi status'
 
 (( UID )) && abbr sv=sudoedit

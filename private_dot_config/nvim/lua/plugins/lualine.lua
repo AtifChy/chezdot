@@ -16,10 +16,10 @@ return {
       -- List of LSP names to ignore (e.g., `null-ls`):
       ignore_lsp = { "copilot" },
     })
-    opts.sections.lualine_z = {
-      function()
-        return " " .. os.date("%I:%M%p")
-      end,
-    }
+    -- opts.sections.lualine_z = {
+    --   function()
+    --     return " " .. os.date("%I:%M%p")
+    --   end,
+    -- }
   end,
 }
