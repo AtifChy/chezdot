@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
 
 -- disable indent for toml files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "toml" },
+  pattern = { "toml*" },
   callback = function()
     vim.b.snacks_indent = false
   end,
