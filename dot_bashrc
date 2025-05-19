@@ -14,14 +14,14 @@ shopt -s checkwinsize
 
 # aliases
 if command -v eza &>/dev/null; then
-  alias ls='eza --icons=auto --git --group-directories-first'
+  lS_CMD='eza --icons=auto --git --group-directories-first'
 else
-  alias ls='ls --color=auto --group-directories-first'
+  lS_CMD='ls --color=auto --group-directories-first'
 fi
 
-alias la='ls -a'
-alias ll='ls -alh'
-alias l='ls -CF'
+alias la="$lS_CMD -a"
+alias ll="$lS_CMD -alh"
+alias l="$lS_CMD -CF"
 
 alias grep='grep --color=auto'
 
@@ -29,4 +29,4 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # command not found handler
-source /usr/share/doc/pkgfile/command-not-found.bash
+source /usr/share/doc/filkoll/command-not-found.bash

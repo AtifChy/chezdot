@@ -1,11 +1,19 @@
 function command_not_found_handler() {
   local cmd=$1
-  local pkgs
+  local -a pkgs
+
+  local -A repo_colors;
+  repo_colors=(
+    [core]="magenta",
+    [extra]="blue",
+    [multilib]="green"
+  )
 
   pkgs=(${(f)"$(CLICOLOR=0 filkoll binary --no-fuzzy-if-exact -- "$cmd" 2>/dev/null)"})
  
   if [[ -n $pkgs ]]; then
-    local -i max_prefix=0 max_path=0
+    local -i max_prefix max_path
+    local repo name ver path others
 
     print -Pr -- "%B$cmd%b may be found in the following packages:"
  
@@ -23,6 +31,7 @@ function command_not_found_handler() {
     for pkg in ${(@)pkgs}; do
       pkg=(${(s: :)pkg})
       repo=${pkg[1]%%/*}
+      repo_color=${repo_colors[$repo]:-cyan}
       name=${pkg[1]##*/}
       ver=${pkg[2]}
       path=${pkg[3]}
@@ -30,7 +39,7 @@ function command_not_found_handler() {
       prefix=$(( ${#pkg[1]} + ${#pkg[2]} + 2 ))
  
       # a) colored prefix
-      print -Prn -- "  %B%F{magenta}${repo}/%F{white}${name} %F{green}${ver}%f%b"
+      print -Prn -- "  %B%F{${repo_color}}${repo}/%F{white}${name} %F{green}${ver}%f%b"
  
       # b) pad so path always starts at column
       pad=$(( max_prefix - ${prefix} + 3 ))

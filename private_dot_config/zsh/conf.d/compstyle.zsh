@@ -67,12 +67,12 @@ zstyle ':completion:*:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*' insert-ids single
 
 # enable completion caching
-zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' use-cache yes
 zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
 
 # initialize completion system
 autoload -Uz compinit
-compinit -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
+compinit -u -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
 
 # on-demand rehash using SIGUSR1
 # NOTE requires pacman hook to be installed
