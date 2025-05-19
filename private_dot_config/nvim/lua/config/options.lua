@@ -3,3 +3,6 @@
 -- Add any additional options here
 
 vim.opt.wrap = true -- Enable line wrap
+
+vim.o.title = true -- Enable window title
+vim.o.titlestring = "%t - nvim" -- Set window title format

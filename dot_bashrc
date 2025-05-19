@@ -29,4 +29,6 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # command not found handler
-source /usr/share/doc/filkoll/command-not-found.bash
+if command -v filkoll &>/dev/null; then
+  source /usr/share/doc/filkoll/command-not-found.bash
+fi

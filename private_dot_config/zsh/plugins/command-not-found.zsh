@@ -1,11 +1,11 @@
 function command_not_found_handler() {
   local cmd=$1
-  local -a pkgs
+  local -a pkgs pkg
 
-  local -A repo_colors;
+  local -A repo_colors
   repo_colors=(
-    [core]="magenta",
-    [extra]="blue",
+    [core]="magenta"
+    [extra]="blue"
     [multilib]="green"
   )
 
@@ -13,7 +13,7 @@ function command_not_found_handler() {
  
   if [[ -n $pkgs ]]; then
     local -i max_prefix max_path
-    local repo name ver path others
+    local repo name ver path others prefix
 
     print -Pr -- "%B$cmd%b may be found in the following packages:"
  
