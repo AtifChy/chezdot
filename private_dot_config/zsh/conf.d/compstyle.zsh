@@ -28,7 +28,7 @@ zstyle -e ':completion:*' list-colors 'reply=(
 	"(glob(flags|quals)|modifiers)=*=34"
 )'
 
-zstyle ':completion:*:options' list-colors '=(#b)*(-> *)==33;3'
+zstyle ':completion:*:default' list-colors '=(#b)*(-> *)=*=33;3' 'ma=48;5;238;3'
 # zstyle ':completion:*:options' list-colors '=(#b)(-[^ -]#)#( [^-]*)=0=0=33'
 zstyle ':completion:*:default' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*:default' select-prompt '%SScrolling active: current selection at %p%s'

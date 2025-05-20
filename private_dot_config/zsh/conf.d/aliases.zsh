@@ -42,10 +42,11 @@ alias hist='fc -l -L -i'
 
 # trash aliases
 if (( ${+commands[trash]} )); then
-  alias rm='trash -v'
+  RM_CMD='trash'
 else
-  alias rm='rm -v'
+  RM_CMD='rm'
 fi
+alias rm="$RM_CMD -v"
 
 alias reload='exec zsh'
 alias :q='exit'
@@ -75,7 +76,5 @@ abbr ff=fastfetch
 abbr v=nvim
 
 abbr cz=chezmoi
-abbr czd='chezmoi diff'
-abbr czs='chezmoi status'
 
 (( UID )) && abbr sv=sudoedit
