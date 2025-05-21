@@ -3,7 +3,7 @@ bindkey -e
 
 # a list of non-alphanum chars considered part of a word by the line editor.
 # zsh's default is "*?_-.[]~=/&;!#$%^(){}<>"
-WORDCHARS=
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # make switching between insert and normal mode faster
 # KEYTIMEOUT=10
@@ -37,19 +37,5 @@ bindkey -M menuselect '/' history-incremental-search-backward
 bindkey -M menuselect '^?' send-break               # ctrl-backspace
 bindkey -M menuselect '^[' kill-buffer              # esc
 
-# custom keybindings
-function shift-forward-word {
-  local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
-  zle .emacs-forward-word
-}
-
-function shift-backward-word {
-  local WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
-  zle .emacs-backward-word
-}
-
-zle -N shift-forward-word
-zle -N shift-backward-word
-
-bindkey '^[[1;2C' shift-forward-word
-bindkey '^[[1;2D' shift-backward-word
+bindkey '^[[1;2C' emacs-forward-word                # shift-right
+bindkey '^[[1;2D' emacs-backward-word               # shift-left
