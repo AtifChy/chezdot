@@ -1,25 +1,3 @@
-# xdg specification variables
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_BIN_HOME=$HOME/.local/bin
-
-path+=($XDG_BIN_HOME)
-
-# set default editor
-EDITOR=${commands[nvim]:-${commands[vim]:-nano}}
-export EDITOR=${EDITOR:t}
-
-# sudo
-export SUDO_PROMPT=$'\e[1;7;31m[sudo]\e[0m password for \e[35m%p\e[0m: '
-
-# less
-export LESS='-F -R --tabs=4 --use-color -Dd+r$Du+b$DS+ky$DP+kg$DE+kR$'
-
-# manpages
-export MANROFFOPT='-P -c'
-
 # fzf config
 export FZF_DEFAULT_OPTS="--layout=reverse
 --cycle
@@ -45,5 +23,5 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS
 --height=50%
 --cycle"
 
-# ranger
-export RANGER_LOAD_DEFAULT_RC=false
+# zman fzf config
+_zman_fzf_opts=('--height=60%')

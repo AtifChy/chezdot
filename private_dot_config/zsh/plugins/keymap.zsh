@@ -6,7 +6,7 @@ bindkey -e
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # make switching between insert and normal mode faster
-# KEYTIMEOUT=10
+KEYTIMEOUT=10
 
 bindkey '^[[H' beginning-of-line                    # home
 bindkey '^[[F' end-of-line                          # end
