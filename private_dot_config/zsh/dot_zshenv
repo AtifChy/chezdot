@@ -5,6 +5,8 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_BIN_HOME=$HOME/.local/bin
 
+path+=($XDG_BIN_HOME)
+
 # set default editor
 EDITOR=${commands[nvim]:-${commands[vim]:-nano}}
 export EDITOR=${EDITOR:t}
@@ -45,7 +47,7 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS
 
 # wsl2 ssh integration
 if [[ -n $WSLENV ]] && (( ${+commands[wsl2-ssh-agent]} )); then
-  eval "$(wsl2-ssh-agent -format zsh)"
+  source <(wsl2-ssh-agent -format zsh)
 fi
 
 # docker

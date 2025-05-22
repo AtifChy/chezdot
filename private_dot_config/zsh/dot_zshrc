@@ -6,7 +6,9 @@
 [[ -o no_interactive ]] && return
 
 # zsh profiling
-(( ${+ZSH_PROFILE_RC} )) && zmodload zsh/zprof
+if (( ${+ZSH_PROFILE_RC} )); then 
+  zmodload zsh/zprof
+fi
 
 # enable powerlevel10k instant prompt. should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -62,3 +64,8 @@ lazy-eval 'ls-colors' dircolors -b
 
 # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
 [[ -f ${ZDOTDIR}/p10k.zsh ]] && source "$ZDOTDIR/p10k.zsh"
+
+# zsh profiling
+if (( ${+ZSH_PROFILE_RC} )); then 
+  zprof
+fi
