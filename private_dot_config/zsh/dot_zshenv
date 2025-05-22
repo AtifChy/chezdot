@@ -47,7 +47,12 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS
 
 # wsl2 ssh integration
 if [[ -n $WSLENV ]] && (( ${+commands[wsl2-ssh-agent]} )); then
-  source <(wsl2-ssh-agent -format zsh)
+  agent_socket=$HOME/.ssh/wsl2-ssh-agent.sock
+  if [[ -S $agent_socket ]]; then
+    export SSH_AUTH_SOCK=$agent_socket
+  else
+    source <(wsl2-ssh-agent -format zsh)
+  fi
 fi
 
 # docker
@@ -55,26 +60,25 @@ export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 export MACHINE_STORAGE_PATH=$XDG_DATA_HOME/docker-machine
 
 # git
-(
-  GIT_CONFIG_DIR=$XDG_CONFIG_HOME/git
-  [[ ! -d $GIT_CONFIG_DIR ]] && mkdir -p $GIT_CONFIG_DIR
-  for file in $HOME/.{gitconfig,gitignore,gitattributes,git-credentials,gitk}; do
-    if [[ -f $file && -s $file ]]; then
-      _basename=${file:t}
-      case $_basename in
-        '.gitk')
-          mv -b $file $GIT_CONFIG_DIR/gitk
-          ;;
-        '.git-credentials')
-          mv -b $file $GIT_CONFIG_DIR/credentials
-          ;;
-        *)
-          mv -b $file $GIT_CONFIG_DIR/${_basename//.git/}
-          ;;
-      esac
-    fi
-  done
-)
+git_config_dir=$XDG_CONFIG_HOME/git
+[[ ! -d $git_config_dir ]] && mkdir -p $git_config_dir
+for file in $HOME/.{gitconfig,gitignore,gitattributes,git-credentials,gitk}; do
+  if [[ -f $file && -s $file ]]; then
+    _basename=${file:t}
+    case $_basename in
+      '.gitk')
+        mv -b $file $git_config_dir/gitk
+        ;;
+      '.git-credentials')
+        mv -b $file $git_config_dir/credentials
+        ;;
+      *)
+        mv -b $file $git_config_dir/${_basename//.git/}
+        ;;
+    esac
+  fi
+done
+unset git_config_dir
 
 # wget
 export WGETRC=$XDG_CONFIG_HOME/wget/wgetrc
