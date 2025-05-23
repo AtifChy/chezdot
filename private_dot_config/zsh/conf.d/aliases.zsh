@@ -78,3 +78,5 @@ abbr v=nvim
 abbr cz=chezmoi
 
 (( UID )) && abbr sv=sudoedit
+
+abbr -g G='| grep'
