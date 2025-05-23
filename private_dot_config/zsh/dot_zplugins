@@ -45,8 +45,8 @@ mattmc3/zephyr path:plugins/confd
 $ZDOTDIR/plugins/command-not-found.zsh
 $ZDOTDIR/plugins/clipboard.zsh
 $ZDOTDIR/plugins/fancy-ctrl-z.zsh
-# $ZDOTDIR/plugins/abbr.zsh
 $ZDOTDIR/plugins/gpg-agent.zsh
+$ZDOTDIR/plugins/xdg.zsh
 
 #
 # ohmyzsh
@@ -63,3 +63,6 @@ zsh-users/zsh-autosuggestions kind:defer post:post-autosuggestions
 
 # load git abbreviations
 $ZDOTDIR/plugins/git-abbr.zsh kind:defer
+
+# wsl2-ssh
+$ZDOTDIR/plugins/wsl2-ssh.zsh kind:defer

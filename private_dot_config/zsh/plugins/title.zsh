@@ -1,7 +1,7 @@
 # based on ohmyzsh/lib/termsupport.zsh
 
-ZSH_WINDOW_TITLE="%n@%m:%30<…<%~%<<"
-ZSH_TAB_TITLE="%30<…<%~%<<"
+: ${ZSH_WINDOW_TITLE:="%n@%m:%30<…<%~%<<"}
+: ${ZSH_TAB_TITLE:="%30<…<%~%<<"}
 
 function title {
   # Don't set the title if inside emacs, unless using vterm
@@ -80,10 +80,9 @@ function __title_cwd {
 
 # add hooks to update the title
 autoload -Uz add-zsh-hook
+add-zsh-hook -Uz precmd __title_cwd
 
 if [[ -z "$INSIDE_EMACS" || "$INSIDE_EMACS" = vterm ]]; then
   add-zsh-hook -Uz precmd __title_precmd
   add-zsh-hook -Uz preexec __title_preexec
 fi
-
-add-zsh-hook -Uz precmd __title_cwd
