@@ -65,4 +65,4 @@ zsh-users/zsh-autosuggestions kind:defer post:post-autosuggestions
 $ZDOTDIR/plugins/git-abbr.zsh kind:defer
 
 # wsl2-ssh
-$ZDOTDIR/plugins/wsl2-ssh.zsh kind:defer
+$ZDOTDIR/plugins/wsl2-ssh.zsh
