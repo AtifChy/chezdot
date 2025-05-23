@@ -2,11 +2,15 @@
 # ~/.bashrc
 #
 
+# shellcheck disable=SC2139
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
 mkdir -p "${HISTFILE%/*}"
+
+HISTCONTROL="erasedups:ignoreboth"
 
 # bash settings
 shopt -s autocd
@@ -14,19 +18,24 @@ shopt -s checkwinsize
 
 # aliases
 if command -v eza &>/dev/null; then
-  lS_CMD='eza --icons=auto --git --group-directories-first'
+  LS_CMD='eza --color=auto --icons=auto --git --group-directories-first'
 else
-  lS_CMD='ls --color=auto --group-directories-first'
+  LS_CMD='ls --color=auto --group-directories-first'
 fi
 
-alias la="$lS_CMD -a"
-alias ll="$lS_CMD -alh"
-alias l="$lS_CMD -CF"
+alias ls="$LS_CMD"
+alias la="$LS_CMD -a"
+alias ll="$LS_CMD -alh"
+alias l="$LS_CMD -CF"
 
 alias grep='grep --color=auto'
 
 # prompt
 PS1='[\u@\h \W]\$ '
+
+# bindings
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
 
 # command not found handler
 if command -v filkoll &>/dev/null; then
