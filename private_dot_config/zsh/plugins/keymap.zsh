@@ -3,7 +3,7 @@ bindkey -e
 
 # a list of non-alphanum chars considered part of a word by the line editor.
 # zsh's default is "*?_-.[]~=/&;!#$%^(){}<>"
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS='*?_-[]~=&!#$%^(){}<>'
 
 # make switching between insert and normal mode faster
 KEYTIMEOUT=10
