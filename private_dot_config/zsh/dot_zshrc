@@ -49,14 +49,9 @@ zstyle ':zephyr:plugin:*' use-cache yes
 zstyle ':antidote:bundle' file ${ZDOTDIR}/.zplugins
 zstyle ':antidote:static' file ${XDG_CACHE_HOME}/zsh/antidote-static.zsh
 
-fpath+=(${ANTIDOTE[BIN]}/functions)
+fpath+=( ${ANTIDOTE[BIN]}/functions )
 autoload -Uz antidote
 antidote load
-
-lazy-eval --regen 'fzf' fzf --zsh
-lazy-eval --regen 'zoxide' zoxide init zsh
-lazy-eval 'gh-copilot' gh copilot alias -- zsh
-lazy-eval 'ls-colors' dircolors -b
 
 ####################################################
 ## end of antidote initialization
