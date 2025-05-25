@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-# shellcheck disable=SC2139
+# shellcheck disable=SC2139,SC1090
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -15,6 +15,12 @@ HISTCONTROL="erasedups:ignoreboth"
 # bash settings
 shopt -s autocd
 shopt -s checkwinsize
+
+# prompt
+if oh-my-posh &>/dev/null; then
+  export POSH_THEME="${XDG_CONFIG_HOME:-$HOME/.config}/oh-my-posh/mytheme.omp.yaml"
+  source <(oh-my-posh init bash)
+fi
 
 # aliases
 if command -v eza &>/dev/null; then

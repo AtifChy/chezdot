@@ -49,7 +49,6 @@ $ZDOTDIR/plugins/clipboard.zsh
 $ZDOTDIR/plugins/fancy-ctrl-z.zsh
 $ZDOTDIR/plugins/gpg-agent.zsh
 $ZDOTDIR/plugins/git-abbr.zsh kind:defer
-$ZDOTDIR/plugins/wsl2-ssh.zsh
 
 #
 # ohmyzsh

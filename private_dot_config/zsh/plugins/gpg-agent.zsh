@@ -1,6 +1,7 @@
 export GPG_TTY=$TTY
 
 if [[ -n $WSLENV ]]; then
+  export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/wsl2-ssh-agent.sock
   return
 fi
 
