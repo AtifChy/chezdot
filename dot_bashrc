@@ -47,3 +47,6 @@ bind '"\e[B": history-search-forward'
 if command -v filkoll &>/dev/null; then
   source /usr/share/doc/filkoll/command-not-found.bash
 fi
+
+# zoxide init
+source <(zoxide init bash)
