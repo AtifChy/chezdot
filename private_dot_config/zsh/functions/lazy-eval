@@ -2,26 +2,56 @@
 
 emulate -L zsh -o local_options -o extended_glob
 
-(( $# >= 2 )) || {
-  print "Usage: ${0:A:t} [--regen] cmdname cmd args..." >&2
+if (( ! $# >= 2 )); then
+  print -r -- "Usage: ${0:A:t} [--regen] name cmd args..." >&2
   return 1
-}
+fi
 
-local regen=0
+local -i regen=0
 if [[ $1 == --regen ]]; then
-  regen=1
-  shift
+  regen=1; shift
 fi
 
-local cmdname=$1
-shift
+local name=$1; shift
+local cmd=$1; shift
 
-local cachefile=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/lazy-eval/${cmdname}.zsh
-local -a cached=($cachefile(Nmh-28))
-
-# If the file has no size (is empty), or is older than 28 hours re-gen the cache.
-if [[ ! -s $cachefile ]] || (( regen && ! ${#cached} )); then
-  mkdir -p ${cachefile:h}
-  "$@" >| $cachefile
+local cmdpath=${commands[$cmd]}
+if [[ -z $cmdpath ]]; then
+  print -r -- "${0:A:t}: command not found: $cmd" >&2
+  return 1
 fi
+
+local cachefile=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/lazy-eval/${name}.zsh
+[[ -s $cachefile ]] || mkdir -p ${cachefile:h}
+
+local -i current_mtime
+zstat -A stats -L +mtime $cmdpath
+current_mtime=${stats[1]:-0}
+
+local -i cached_mtime
+if (( regen )) && [[ -r $cachefile ]]; then
+  local header
+  read -r header < $cachefile
+  if [[ $header =~ ^#\ MTIME:([0-9]+)$ ]]; then
+    cached_mtime=${match[1]}
+  fi
+fi
+
+if [[ ! -s $cachefile ]] || (( regen && current_mtime != cached_mtime )); then
+  {
+    print -r -- "# MTIME:$current_mtime"
+    "$cmd" "$@"
+  } >| $cachefile
+fi
+
 source $cachefile
+
+# local cachefile=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/lazy-eval/${name}.zsh
+# local -a cached=($cachefile(Nmh-28))
+#
+# # If the file has no size (is empty), or is older than 28 hours re-gen the cache.
+# if [[ ! -s $cachefile || $regen -eq 1 && ! -n $cached ]]; then
+#   mkdir -p ${cachefile:h}
+#   "$@" >| $cachefile
+# fi
+# source $cachefile
