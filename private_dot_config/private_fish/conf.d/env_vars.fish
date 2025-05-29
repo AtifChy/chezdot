@@ -24,7 +24,7 @@ set -x SUDO_PROMPT (
 
 # ssh config 
 if set -q WSLENV
-    wsl2-ssh-agent -format fish | source
+    set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/wsl2-ssh-agent.sock"
 else
     set -x SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 end
