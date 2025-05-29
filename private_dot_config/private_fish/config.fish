@@ -28,10 +28,10 @@ end
 dircolors -c | source
 
 # aliases
-set -l LS ls
-command -q eza; and set LS eza
+set -l LS_CMD ls
+command -q eza; and set LS_CMD eza
 
-alias ls "$LS --color=auto --group-directories-first"
+alias ls "$LS_CMD --color=auto --group-directories-first"
 alias la 'ls -A'
 alias ll 'ls -Alh'
 

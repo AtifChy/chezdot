@@ -4,46 +4,46 @@
 
 (( ${+functions[abbr]} )) || return
 
-function git_current_branch {
-  command git branch --show-current
+function git_current_branch() {
+  command git branch --show-current 2>/dev/null
 }
 
-function git_main_branch {
+function git_main_branch() {
   command git rev-parse --git-dir &>/dev/null || return
   local ref
   for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default,stable,master}; do
     if command git show-ref -q --verify "$ref"; then
-      print "${ref:t}"
+      print -r -- "${ref:t}"
       return 0
     fi
   done
 
-  print "main"
+  print -r -- "main"
   return 1
 }
 
-function git_develop_branch {
+function git_develop_branch() {
   command git rev-parse --git-dir &>/dev/null || return
   local branch
   for branch in dev devel development; do
     if command git show-ref -q --verify "ref/heads/$branch"; then
-      print "$branch"
+      print -r -- "$branch"
       return 0
     fi
   done
 
-  print "develop"
+  print -r -- "develop"
   return 1
 }
 
-function git_feature_branch_prepend {
+function git_feature_branch_prepend() {
   command git rev-parse --git-dir &>/dev/null || return
   if [[ $(git show-ref) =~ '/feat/' ]]; then
-    print "feat"
+    print -r -- "feat"
     return 0
   fi
 
-  print "feature"
+  print -r -- "feature"
   reutrn 1
 }
 
@@ -104,9 +104,9 @@ abbr gclean='git clean -id'
 # gco: git checkout
 abbr gco='git checkout'
 abbr gcob='git checkout -b'
-abbr gcom='git checkout $(git_main_branch)'
-abbr gcod='git checkout $(git_develop_branch)'
-abbr gcof='git checkout $(git_feature_branch_prepend)/'
+abbr -e gcom='git checkout $(git_main_branch)'
+abbr -e gcod='git checkout $(git_develop_branch)'
+abbr -e gcof='git checkout $(git_feature_branch_prepend)/'
 abbr gcoh='git checkout hotfix/'
 abbr gcor='git checkout release/'
 abbr gcos='git checkout support/'
@@ -180,8 +180,9 @@ abbr gloga='git log --oneline --decorate --graph --all'
 
 # gm: git merge
 abbr gm='git merge'
-abbr gmom='git merge origin/$(git_main_branch)'
-abbr gmum='git merge upstream/$(git_main_branch)'
+abbr gms='git merge --squash'
+abbr -e gmom='git merge origin/$(git_main_branch)'
+abbr -e gmum='git merge upstream/$(git_main_branch)'
 abbr gma='git merge --abort'
 
 # gmtl: git mergetool
@@ -193,7 +194,7 @@ abbr gp='git push'
 abbr gpd='git push --dry-run'
 abbr gpf='git push --force-with-lease'
 abbr 'gpf!'='git push --force'
-abbr gpsu='git push --set-upstream origin $(git_current_branch)'
+abbr -e gpsu='git push --set-upstream origin $(git_current_branch)'
 abbr gpt='git push --tags'
 abbr gptf='git push --tags --force-with-lease'
 abbr 'gptf!'='git push --tags --force'
@@ -205,9 +206,9 @@ abbr gpv='git push -v'
 # gpl: git pull
 abbr gpl='git pull'
 abbr gplo='git pull origin'
-abbr gplom='git pull origin $(git_main_branch)'
+abbr -e gplom='git pull origin $(git_main_branch)'
 abbr gplu='git pull upstream'
-abbr gplum='git pull upstream $(git_main_branch)'
+abbr -e gplum='git pull upstream $(git_main_branch)'
 
 # gr: git remote
 abbr gr='git remote -v'
@@ -224,9 +225,9 @@ abbr grvv='git remote -vvv'
 abbr grb='git rebase'
 abbr grba='git rebase --abort'
 abbr grbc='git rebase --continue'
-abbr grbd='git rebase $(git_develop_branch)'
+abbr -e grbd='git rebase $(git_develop_branch)'
 abbr grbi='git rebase -i'
-abbr grbom='git rebase origin/$(git_main_branch)'
+abbr -e grbom='git rebase origin/$(git_main_branch)'
 abbr grbo='git rebase --onto'
 abbr grbs='git rebase --skip'
 
@@ -238,8 +239,8 @@ abbr grs='git reset'
 abbr 'grs!'='git reset --hard'
 abbr grsh='git reset HEAD'
 abbr 'grsh!'='git reset HEAD --hard'
-abbr grsoh='git reset origin/$(git_current_branch)'
-abbr 'grsoh!'='git reset origin/$(git_current_branch) --hard'
+abbr -e grsoh='git reset origin/$(git_current_branch)'
+abbr -e 'grsoh!'='git reset origin/$(git_current_branch) --hard'
 abbr gpristine='git reset --hard && git clean -dffx'
 abbr grs-='git reset --'
 
@@ -281,8 +282,8 @@ abbr gsu='git submodule update'
 # gsw: git switch
 abbr gsw='git switch'
 abbr gswc='git switch -c'
-abbr gswm='git switch $(git_main_branch)'
-abbr gswd='git switch $(git_develop_branch)'
+abbr -e gswm='git switch $(git_main_branch)'
+abbr -e gswd='git switch $(git_develop_branch)'
 
 # gt: git tag
 abbr gt='git tag'

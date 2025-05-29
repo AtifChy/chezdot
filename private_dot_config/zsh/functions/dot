@@ -9,14 +9,28 @@ for cmd in ${req_cmds[@]}; do
   fi
 done
 
-local -a selects
+local -a files timestamps sorted selects sorted
+files=( ${(@f)$(chezmoi managed --include=files --exclude=externals --path-style relative)} )
+
+for file in $files; do
+  abs="$HOME/$file"
+  [[ -f $abs ]] || continue
+  zstat -A stat +mtime -- "$abs"
+  timestamps+=( "${stat[1]} $file" )
+done
+
+sorted=( ${(On)timestamps} )
+
 selects=($(
-  chezmoi managed --include=files --exclude=externals --path-style relative | \
-    fzf --multi --height=60% --query=$1 \
-    --preview='bat --style=plain --paging=never --color=always --line-range=:200 $HOME/{}'
+  fzf \
+  --multi \
+  --height=60% \
+  --query=$1 \
+  --preview='bat --style=plain --paging=never --color=always --line-range=:200 $HOME/{}' \
+  < <(print -r -l -- ${sorted#* })
 ))
 
-[[ -z $selects ]] && return 1
+[[ -n $selects ]] || return 1
 
-chezmoi edit $HOME/${^selects[@]}
+chezmoi edit $HOME/${^selects}
 # }
