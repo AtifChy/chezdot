@@ -5,6 +5,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 --preview-window=rounded
 --info=default"
 
+# fzf colorscheme
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
 --color=fg:#c2c2c2,bg:-1,hl:#c678dd
 --color=fg+:#d7dae0,bg+:#282c34,hl+:#de73ff
