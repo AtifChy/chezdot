@@ -76,6 +76,9 @@ abbr ff=fastfetch
 abbr v=nvim
 
 abbr cz=chezmoi
+abbr czd='chezmoi diff'
+abbr czdr='chezmoi diff --reverse'
+abbr czs='chezmoi status'
 
 (( UID )) && abbr sv=sudoedit
 
