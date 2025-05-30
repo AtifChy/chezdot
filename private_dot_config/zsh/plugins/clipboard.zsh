@@ -11,7 +11,7 @@ function detect-clipboard {
     function clipcopy { xclip -selection clipboard -in < "${1:-/dev/stdin}" &>/dev/null }
     function clippaste { xclip -selection clipboard -out }
   elif (( ${+commands[win32yank.exe]} )); then
-    function clipcopy { tr -d '\n' < "${1:-/dev/stdin}" | win32yank.exe -i }
+    function clipcopy { win32yank.exe -i < <(tr -d '\n' < "${1:-/dev/stdin}") }
     function clippaste { win32yank.exe -o }
   else
     print -P "%B%F{red}error:%f%b no supported clipboard utility found" >&2
