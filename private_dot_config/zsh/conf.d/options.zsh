@@ -45,5 +45,6 @@ compdef _gnu_generic \
   dircolors \
   trash
 
-# use eza completion for exa
-compdef exa=eza
+compdef \
+  exa=eza \
+  docker=podman
