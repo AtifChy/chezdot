@@ -4,6 +4,18 @@
     "size": {
       "binaryPrefix": "jedec",
       "ndigits": 0
+    },
+    "color": {
+      "title": "blue",
+      "keys": "blue"
+    }
+  },
+  "logo": {
+    "source": "${XDG_CONFIG_HOME:-$HOME/.config}/fastfetch/images/archlinux-logo-380.png",
+    "type": "iterm",
+    "color": {
+      "1": "blue",
+      "2": "blue"
     }
   },
   "modules": [
