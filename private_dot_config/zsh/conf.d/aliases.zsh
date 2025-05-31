@@ -79,6 +79,7 @@ abbr cz=chezmoi
 abbr czd='chezmoi diff'
 abbr czdr='chezmoi diff --reverse'
 abbr czs='chezmoi status'
+abbr czp='chezmoi git push'
 
 (( UID )) && abbr sv=sudoedit
 
