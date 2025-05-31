@@ -1,3 +1,6 @@
+# keep only unique entries
+typeset -gU cdpath fpath path
+
 # xdg specification variables
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
