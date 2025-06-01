@@ -72,7 +72,7 @@ zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/
 
 # initialize completion system
 autoload -Uz compinit
-compinit -u -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump
+compinit -u -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
 
 # on-demand rehash using SIGUSR1
 # NOTE requires pacman hook to be installed
