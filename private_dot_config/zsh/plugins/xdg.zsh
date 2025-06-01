@@ -57,3 +57,8 @@ export SQLITE_HISTORY="${SQLITE_HISTORY:-$XDG_DATA_HOME/sqlite/history}"
 
 # revolver
 export REVOLVER_DIR="${REVOLVER_DIR:-$XDG_DATA_HOME/revolver}"
+
+# texlive
+export TEXMFHOME="${TEXMFHOME:-$XDG_DATA_HOME/texmf}"
+export TEXMFVAR="${TEXMFVAR:-$XDG_CACHE_HOME/texlive/texmf-var}"
+export TEXMFCONFIG="${TEXMFCONFIG:-$XDG_CONFIG_HOME/texlive/texmf-config}"
