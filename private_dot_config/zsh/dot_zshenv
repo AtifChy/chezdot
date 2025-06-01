@@ -10,6 +10,9 @@ export XDG_BIN_HOME=$HOME/.local/bin
 
 path+=($XDG_BIN_HOME)
 
+# zsh entries
+export ZCACHEDIR=$XDG_CACHE_HOME/zsh
+
 # set default editor
 EDITOR=${commands[nvim]:-${commands[vim]:-nano}}
 export EDITOR=${EDITOR:t}

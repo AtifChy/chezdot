@@ -61,4 +61,5 @@ ohmyzsh/ohmyzsh path:plugins/extract
 #
 zsh-users/zsh-history-substring-search kind:defer post:post-history-substring-search
 zsh-users/zsh-syntax-highlighting kind:defer post:post-syntax-highlighting
+# zdharma-continuum/fast-syntax-highlighting kind:defer
 zsh-users/zsh-autosuggestions kind:defer post:post-autosuggestions

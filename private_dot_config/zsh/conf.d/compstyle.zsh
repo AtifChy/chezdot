@@ -68,13 +68,18 @@ zstyle ':completion:*:*:kill:*' insert-ids single
 
 # enable completion caching
 zstyle ':completion::complete:*' use-cache yes
-zstyle ':completion::complete:*' cache-path ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache
+zstyle ':completion::complete:*' cache-path ${ZCACHEDIR:-$XDG_CACHE_HOME/zsh}/zcompcache
 
 # initialize completion system
 autoload -Uz compinit
-compinit -u -d ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
+alias compinit="compinit -d ${ZCACHEDIR:-$XDG_CACHE_HOME/zsh}/zcompdump-$ZSH_VERSION"
+compinit
 
 # on-demand rehash using SIGUSR1
 # NOTE requires pacman hook to be installed
 # https://wiki.archlinux.org/title/Zsh#Alternative_on-demand_rehash_using_SIGUSR1
+function rehash() {
+	builtin rehash
+	compinit -u
+}
 trap 'rehash' USR1

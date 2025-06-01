@@ -16,7 +16,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # set history file
-HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/zsh_history"
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 [[ ! -d ${HISTFILE:h} ]] && mkdir -p "${HISTFILE:h}"
 HISTSIZE=50000
 SAVEHIST=100000
@@ -41,9 +41,9 @@ zstyle ':antidote:bundle' use-friendly-names yes
 
 zstyle ':antidote:bundle:*' defer-options '-a'
 zstyle ':antidote:bundle:MichaelAquilina/zsh-you-should-use' defer-options '-a +m'
+# zstyle ':antidote:bundle:zdharma-continuum/fast-syntax-highlighting' defer-options '-a +pr'
 zstyle ':antidote:bundle:zsh-users/zsh-syntax-highlighting' defer-options '-a +pr'
 zstyle ':antidote:bundle:zsh-users/zsh-autosuggestions' defer-options '-a +ms'
-
 zstyle ':zephyr:plugin:*' use-cache yes
 
 zstyle ':antidote:bundle' file ${ZDOTDIR}/.zplugins
