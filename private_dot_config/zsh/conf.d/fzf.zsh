@@ -6,12 +6,19 @@ export FZF_DEFAULT_OPTS="--layout=reverse
 --info=default"
 
 # fzf colorscheme
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
---color=fg:#c2c2c2,bg:-1,hl:#c678dd
---color=fg+:#d7dae0,bg+:#282c34,hl+:#de73ff
---color=info:#e5c07b,prompt:#a5e075,pointer:#4dc4ff
---color=marker:#e06c75,spinner:#98c379,header:#4cd1e0
---color=border:#3f4451"
+# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS
+# --color=fg:#c2c2c2,bg:-1,hl:#c678dd
+# --color=fg+:#d7dae0,bg+:#282c34,hl+:#de73ff
+# --color=info:#e5c07b,prompt:#a5e075,pointer:#4dc4ff
+# --color=marker:#e06c75,spinner:#98c379,header:#4cd1e0
+# --color=border:#3f4451"
+# catppuccin macchiato colorscheme
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363A4F,bg:#24273A,spinner:#F4DBD6,hl:#ED8796 \
+--color=fg:#CAD3F5,header:#ED8796,info:#C6A0F6,pointer:#F4DBD6 \
+--color=marker:#B7BDF8,fg+:#CAD3F5,prompt:#C6A0F6,hl+:#ED8796 \
+--color=selected-bg:#494D64 \
+--color=border:#363A4F,label:#CAD3F5"
 
 # zoxide fzf config
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS
