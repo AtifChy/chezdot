@@ -14,7 +14,7 @@ files=( ${(@f)$(chezmoi managed --include=files --exclude=externals --path-style
 
 for file in $files; do
   abs="$HOME/$file"
-  [[ -f $abs ]] || continue
+  [[ -f $abs && -w $abs ]] || continue
   zstat -A stat +mtime -- "$abs"
   timestamps+=( "${stat[1]} $file" )
 done
