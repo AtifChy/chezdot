@@ -1,0 +1,4 @@
+verbose = true
+
+[cd]
+command = '{{ if lookPath "nu" }}nu{{ else if lookPath "pwsh" }}pwsh{{ else }}powershell{{ end }}'
