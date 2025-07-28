@@ -1,0 +1,96 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 3
+final_space: true
+upgrade:
+  source: cdn
+  interval: 168h
+  auto: false
+  notice: false
+
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: session
+        style: plain
+        foreground: white
+        template: "{{ if .Root }}<red>\U000F0498</> {{end}}{{ if .SSHSession }} <b><cyan>{{ .UserName }}@{{ .HostName }}</> in {{ end }}"
+
+      - type: path
+        style: plain
+        foreground_templates:
+          - "{{ if not .Writable }}red{{ else }}blue{{ end }}"
+        template: " <b>{{ .Path }}</b> "
+        properties:
+          folder_icon: …
+          max_depth: 3
+          style: agnoster_short
+          windows_registry_icon: " "
+
+      - type: git
+        style: plain
+        foreground: white
+        template:
+          "on <b><magenta>{{ .HEAD }} </>{{ if .Working }}<b><red>[{{ end }}\
+          {{ if .BranchStatus }}{{ .BranchStatus }}{{ end }}\
+          {{ if or ( .Working.Changed ) ( .Staging.Changed ) }} {{ end }}\
+          {{ if gt .Working.Untracked 0 }}?{{ .Working.Untracked }}{{ end }}\
+          {{ if gt .Working.Modified 0 }}~{{ .Working.Modified }}{{ end }}\
+          {{ if gt .Working.Unmerged 0 }}x{{ .Working.Unmerged }}{{ end }}\
+          {{ if gt .Working.Deleted 0 }}-{{ .Working.Deleted }}{{ end }}\
+          {{ if gt .Staging.Added 0 }}+{{ .Staging.Added }}{{ end }}\
+          {{ if gt .StashCount 0 }} ${{ .StashCount }}{{ end }}\
+          {{ if .Working }}]</> {{ end }}"
+        properties:
+          fetch_stash_count: true
+          fetch_status: true
+          fetch_upstream_icon: true
+
+      - type: go
+        style: plain
+        foreground: white
+        template: "via <lightCyan> <b>{{ .Full }}</b></> "
+
+      - type: node
+        style: plain
+        foreground: white
+        template: "via <green> <b>{{ .Full }}</b></> "
+
+      - type: python
+        style: plain
+        foreground: white
+        template: "via <lightYellow> <b>{{ .Full }}</b></> "
+
+      - type: executiontime
+        style: plain
+        foreground: white
+        template: "took <b><yellow>{{ nospace .FormattedMs }}</> "
+        properties:
+          style: round
+          threshold: 5000
+
+      - type: status
+        style: plain
+        foreground: red
+        template: "{{ if eq .Code 0 }}✔{{ else }} {{ reason .Code }}{{ end }}"
+
+  - type: prompt
+    alignment: right
+    segments:
+      - type: text
+        style: plain
+        foreground: cyan
+        template: " <b>{{ .Shell }}</b>"
+
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: status
+        style: powerline
+        foreground: green
+        template: ➜
+        properties:
+          always_enabled: true
+        foreground_templates:
+          - "{{ if gt .Code 0 }}red{{ end }}"
