@@ -12,7 +12,7 @@ vim.opt.shellxquote = ""
 
 -- Windows specific settings
 if vim.fn.has("win32") == 1 then
-  vim.env.HOME = os.getenv("HOMEPATH")
+  vim.env.HOME = os.getenv("HOMEDRIVE") .. os.getenv("HOMEPATH")
 end
 
 -- Set python lsp to pyrefly
