@@ -20,7 +20,7 @@ alt + return            : komorebic toggle-maximize
 # f11                     : komorebic toggle-maximize
 
 ## App shortcuts
-win + return            : start $env:userprofile/scoop/apps/wezterm-nightly/current/wezterm-gui.exe
+win + return            : start wezterm-gui.exe
 
 ## Focus windows
 win + h                 : komorebic focus left
