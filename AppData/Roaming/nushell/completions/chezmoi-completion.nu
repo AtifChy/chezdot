@@ -1386,7 +1386,7 @@ def "nu-complete state" [] {
 }
 
 def "nu-complete bool" [] {
-  [true false auto]
+  ["'true'" "'false'" auto]
 }
 
 def "nu-complete log" [] {

@@ -5,10 +5,10 @@
 -- General
 vim.o.expandtab = true
 
-vim.opt.shell = "nu"
-vim.opt.shellcmdflag = "-c"
-vim.opt.shellquote = ""
-vim.opt.shellxquote = ""
+vim.o.shell = "nu"
+vim.o.shellcmdflag = "-c"
+vim.o.shellquote = ""
+vim.o.shellxquote = ""
 
 -- Windows specific settings
 if vim.fn.has("win32") == 1 then
@@ -16,4 +16,4 @@ if vim.fn.has("win32") == 1 then
 end
 
 -- Set python lsp to pyrefly
-vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_lsp = "pyrefly"

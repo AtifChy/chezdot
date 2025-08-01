@@ -94,12 +94,10 @@ win + 5                 : komorebic focus-workspace 4
 win + 6                 : komorebic focus-workspace 5
 win + 7                 : komorebic focus-workspace 6
 win + 8                 : komorebic focus-workspace 7
-win + tab               : komorebic focus-last-workspace
-# win + oem_8             : komorebic focus-last-workspace # oem_8 is ` (varies)
-win + prior             : komorebic cycle-workspace previous
+# win + tab               : komorebic focus-last-workspace
+win + oem_8             : komorebic focus-last-workspace # oem_8 is ` (varies)
 win + next              : komorebic cycle-workspace next
-win + alt + right       : komorebic cycle-workspace next
-win + alt + left        : komorebic cycle-workspace previous
+win + prior             : komorebic cycle-workspace previous
 
 ## Move windows across workspaces
 win + shift + 1           : komorebic move-to-workspace 0
@@ -110,5 +108,5 @@ win + shift + 5           : komorebic move-to-workspace 4
 win + shift + 6           : komorebic move-to-workspace 5
 win + shift + 7           : komorebic move-to-workspace 6
 win + shift + 8           : komorebic move-to-workspace 7
-win + alt + shift + right : komorebic cycle-move-to-workspace next
-win + alt + shift + left  : komorebic cycle-move-to-workspace previous
+win + shift + next        : komorebic cycle-move-to-workspace next
+win + shift + prior       : komorebic cycle-move-to-workspace previous

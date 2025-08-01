@@ -9,12 +9,27 @@ return {
     opts = {
       keymap = {
         preset = "super-tab",
-        -- ["<Tab>"] = {
-        --   require("blink.cmp.keymap.presets").get("super-tab")["<Tab>"][1],
-        --   require("lazyvim.util.cmp").map({ "snippet_forward", "ai_accept" }),
-        --   "fallback",
-        -- },
       },
+      completion = {
+        menu = {
+          -- border = "rounded",
+          draw = {
+            columns = {
+              { "kind_icon", "label", "label_description", gap = 1 },
+              { "kind" },
+            },
+          },
+        },
+        -- documentation = { window = { border = "rounded" } },
+      },
+      signature = {
+        enabled = true,
+        window = {
+          -- border = "rounded"
+          -- show_documentation = false,
+        },
+      },
+      -- fuzzy = { implementation = "prefer_rust_with_warning" },
     },
   },
 }

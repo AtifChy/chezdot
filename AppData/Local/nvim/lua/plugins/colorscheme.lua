@@ -8,7 +8,11 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    -- dir = "C:/Users/Atif/Desktop/catppuccin-nvim",
     url = "https://github.com/AtifChy/nvim",
-    branch = "improve/snacks_picker",
+    branch = "dev",
+    opts = {
+      auto_integrations = true,
+    },
   },
 }
