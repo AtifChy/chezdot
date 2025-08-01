@@ -936,7 +936,7 @@ export extern "chezmoi managed" [
   --format # Format (default json)
   --help(-h) # help for managed
   --include(-i): string@"nu-complete types" # Include entry types (default all)
-  --path-style # Path style (default relative)
+  --path-style: string@"nu-complete path-style" # Path style (default relative)
   --tree # Print paths as a tree
   --cache: path # Set cache directory
   --color: string@"nu-complete bool" # Colorize output (default auto)
@@ -1180,7 +1180,7 @@ export extern "chezmoi status" [
   --include(-i): string@"nu-complete types" # Include entry types (default all)
   --init # Recreate config file from template
   --parent-dirs(-P) # Show status of all parent directories
-  --path-style # Path style (default relative)
+  --path-style: string@"nu-complete path-style" # Path style (default relative)
   --recursive(-r) # Recurse into subdirectories (default true)
   --cache: path # Set cache directory
   --color: string@"nu-complete bool" # Colorize output (default auto)
@@ -1240,7 +1240,7 @@ export extern "chezmoi target-path" [
 # List the unmanaged files in the destination directory
 export extern "chezmoi unmanaged" [
   --help(-h) # help for unmanaged
-  --path-style # Path style (default relative)
+  --path-style: string@"nu-complete path-style" # Path style (default relative)
   --tree # Print paths as a tree
   --cache: path # Set cache directory
   --color: string@"nu-complete bool" # Colorize output (default auto)
@@ -1391,4 +1391,8 @@ def "nu-complete bool" [] {
 
 def "nu-complete log" [] {
   [error ignore warning]
+}
+
+def "nu-complete path-style" [] {
+  [absolute all relative source-absolute source-relative]
 }
