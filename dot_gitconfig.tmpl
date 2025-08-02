@@ -1,0 +1,43 @@
+[credential]
+  helper = manager
+[user]
+  name = Atif
+  email = iftakhar.awal@gmail.com
+  signingkey = 8C0681C49694B44A
+[gpg]
+  program = {{ .chezmoi.homeDir }}/scoop/apps/gpg4win/current/GnuPG/bin/gpg.exe
+[commit]
+  gpgsign = true
+[tag]
+  gpgsign = true
+[credential "helperselector"]
+  selected = manager
+[pull]
+  rebase = false
+[http]
+  sslBackend = openssl
+[core]
+  eol = lf
+  autocrlf = input
+[include]
+  path = {{ .chezmoi.homeDir }}/.config/delta/catppuccin.gitconfig
+[delta]
+  features = catppuccin-macchiato
+[core]
+  pager = delta
+  preloadIndex = true
+  fscache = true
+  fsmonitor = true
+  untrackedCache = true
+[interactive]
+  diffFilter = delta --color-only
+[merge]
+  conflictStyle = zdiff3
+[delta]
+  ; navigate = true
+  ; side-by-side = true
+  line-numbers = true
+[init]
+  defaultBranch = main
+[gc]
+  auto = 256
