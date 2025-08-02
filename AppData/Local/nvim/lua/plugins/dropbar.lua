@@ -7,11 +7,28 @@ return {
     -- },
     keys = {
       {
-        "<leader>D",
+        "<leader>;",
         function()
           require("dropbar.api").pick()
         end,
-        desc = "Window Breadcrumb Pick",
+        desc = "Pick Window Symbols",
+        mode = "n",
+      },
+      {
+        "[;",
+        function()
+          require("dropbar.api").goto_context_start()
+        end,
+        desc = "Go to start of current context",
+        mode = "n",
+      },
+      {
+        "];",
+        function()
+          require("dropbar.api").select_next_context()
+        end,
+        desc = "Select next context",
+        mode = "n",
       },
     },
     opts = function()

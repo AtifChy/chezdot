@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter-context",
-  event = { "VeryLazy" },
+  event = { "LazyFile" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter", -- ensure TS core is loaded first
   },
