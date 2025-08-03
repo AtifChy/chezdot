@@ -5,8 +5,5 @@ return {
   --   dependencies = {
   --     "folke/snacks.nvim",
   --   },
-  --   config = function()
-  --     require("vim-coach").setup()
-  --   end,
   -- },
 }
