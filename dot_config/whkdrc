@@ -23,10 +23,10 @@ alt + return            : komorebic toggle-maximize
 win + return            : start wezterm-gui.exe
 
 ## Focus windows
-win + h                 : komorebic focus left
-win + j                 : komorebic focus down
-win + k                 : komorebic focus up
-win + l                 : komorebic focus right
+# win + h                 : komorebic focus left
+# win + j                 : komorebic focus down
+# win + k                 : komorebic focus up
+# win + l                 : komorebic focus right
 
 win + left              : komorebic focus left
 win + down              : komorebic focus down
