@@ -92,3 +92,10 @@ blocks:
           always_enabled: true
         foreground_templates:
           - "{{ if gt .Code 0 }}red{{ end }}"
+
+transient_prompt:
+  background: transparent
+  template: ➜
+  foreground: green
+  foreground_templates:
+    - "{{ if gt .Code 0 }}red{{ end }}"
