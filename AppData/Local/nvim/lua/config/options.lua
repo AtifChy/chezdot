@@ -17,3 +17,9 @@ end
 
 -- Set python lsp to pyrefly
 vim.g.lazyvim_python_lsp = "pyrefly"
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "LspReferenceTarget", {})
+  end,
+})

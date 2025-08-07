@@ -4,5 +4,8 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter", -- ensure TS core is loaded first
   },
-  opts = {},
+  opts = {
+    max_lines = "15%",
+    multiline_threshold = 1,
+  },
 }
