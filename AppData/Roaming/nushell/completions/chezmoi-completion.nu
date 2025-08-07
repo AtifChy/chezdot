@@ -319,7 +319,7 @@ export extern "chezmoi completion" [
 
 # Print the template data
 export extern "chezmoi data" [
-  --format # Output format
+  --format: string@"nu-complete output-format" # Output format
   --help(-h) # help for data
   --cache: path # Set cache directory
   --color: string@"nu-complete bool" # Colorize output (default auto)
@@ -378,6 +378,7 @@ export extern "chezmoi decrypt" [
 
 # Permanently delete an entry from the source state, the destination directory, and the state
 export extern "chezmoi destroy" [
+  arg: string@"nu-complete managed" # Managed entry to destroy
   --help(-h) # help for destroy
   --recursive(-r) # Recurse into subdirectories
   --cache: path # Set cache directory
@@ -476,7 +477,7 @@ export extern "chezmoi doctor" [
 # Generate a dump of the target state
 export extern "chezmoi dump" [
   --exclude(-x): string@"nu-complete types" # Exclude entry types (default none)
-  --format # Output format
+  --format: string@"nu-complete output-format" # Output format
   --help(-h) # help for dump
   --include(-i): string@"nu-complete types" # Include entry types (default all)
   --init # Recreate config file from template
@@ -510,7 +511,7 @@ export extern "chezmoi dump" [
 
 # Dump the configuration values
 export extern "chezmoi dump-config" [
-  --format # Output format
+  --format: string@"nu-complete output-format" # Output format
   --help(-h) # help for dump-config
   --cache: path # Set cache directory
   --color: string@"nu-complete bool" # Colorize output (default auto)
@@ -702,6 +703,7 @@ export extern "chezmoi execute-template" [
 
 # Remove a target from the source state
 export extern "chezmoi forget" [
+  arg: string@"nu-complete managed" # Managed entry to forget
   --help(-h) # help for forget
   --cache: path # Set cache directory
   --color: string@"nu-complete bool" # Colorize output (default auto)
@@ -728,6 +730,8 @@ export extern "chezmoi forget" [
   --verbose(-v) # Make output more verbose
   --working-tree(-W): path # Set working tree directory
 ]
+
+export alias "chezmoi unmanage" = chezmoi forget
 
 # Generate a file for use with chezmoi
 export extern "chezmoi generate" [
@@ -1377,6 +1381,10 @@ def "nu-complete format" [] {
   [json toml yaml]
 }
 
+def "nu-complete output-format" [] {
+  [json yaml]
+}
+
 def "nu-complete mode" [] {
   [file symlink]
 }
@@ -1395,4 +1403,10 @@ def "nu-complete log" [] {
 
 def "nu-complete path-style" [] {
   [absolute all relative source-absolute source-relative]
+}
+
+def "nu-complete managed" [] {
+  ^chezmoi managed --include=all --exclude=externals --path-style=relative
+  | lines
+  | each { |line| $"~/($line)" }
 }
