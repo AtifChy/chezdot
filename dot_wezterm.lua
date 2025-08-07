@@ -7,6 +7,11 @@ if target:match("windows") then
 	-- config.default_domain = "WSL:archlinux"
 	config.launch_menu = {
 		{
+			label = "PowerShell 7",
+			args = { "pwsh.exe", "-NoLogo" },
+			domain = { DomainName = "local" },
+		},
+		{
 			label = "NuShell",
 			args = { "nu.exe" },
 			domain = { DomainName = "local" },
@@ -126,7 +131,7 @@ config.force_reverse_video_cursor = true
 -- 	config.win32_system_backdrop = "Mica"
 -- end
 
-config.font_size = 10
+config.font_size = 11
 config.font = wezterm.font_with_fallback({
 	{
 		family = "Operator Mono SSm Lig",
@@ -167,9 +172,9 @@ config.cursor_blink_rate = 500
 config.animation_fps = 5
 
 config.cursor_thickness = 1
--- config.underline_position = -2
--- config.underline_thickness = 2
--- config.strikethrough_position = "0.6cell"
+config.underline_position = -3
+-- config.underline_thickness = 1
+config.strikethrough_position = "0.6cell"
 
 -- config.tab_bar_at_bottom = true
 -- config.hide_tab_bar_if_only_one_tab = true

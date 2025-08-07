@@ -16,77 +16,112 @@ alignment = 'left'
 newline = true
 
 [[blocks.segments]]
-template = '{{ if .Root }}<red>󰒘</> {{end}}{{ if .SSHSession }} <b><cyan>{{ .UserName }}@{{ .HostName }}</> in {{ end }}'
-foreground = 'white'
 type = 'session'
 style = 'plain'
+foreground = 'white'
+template = """
+{{ if .Root }}<red>󰒘</> {{end}}\
+{{ if .SSHSession }} <b><cyan>{{ .UserName }}@{{ .HostName }}</> in {{ end }}\
+"""
 
 [[blocks.segments]]
-template = ' <b>{{ .Path }}</b> '
 type = 'path'
 style = 'plain'
+template = ' <b>{{ .Path }}</b> '
 foreground_templates = ['{{ if not .Writable }}red{{ else }}blue{{ end }}']
 
 [blocks.segments.properties]
+style = 'agnoster_short'
 folder_icon = '…'
 max_depth = 3
-style = 'agnoster_short'
 windows_registry_icon = ' '
 
 [[blocks.segments]]
-template = 'on <b><magenta>{{ .HEAD }} </>{{ if .Working }}<b><black>[{{ end }}<cyan>{{ if gt .Ahead 0 }}↑{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }}↓{{ .Behind }}{{ end }}{{ if and (eq .Ahead 0) (eq .Behind 0) .BranchStatus }}{{ .BranchStatus }}{{ end }}</>{{ if .Working.Changed }} <red>{{ nospace .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <green>{{ nospace .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} <yellow>${{ .StashCount }}</>{{ end }}{{ if .Working }}]</>{{ end }} '
-foreground = 'white'
 type = 'git'
 style = 'plain'
+foreground = 'white'
+template = """
+on <b><magenta>{{ .HEAD }} </>\
+{{ if .Working }}<b><black>[{{ end }}\
+<cyan>\
+{{ if gt .Ahead 0 }}↑{{ .Ahead }}{{ end }}\
+{{ if gt .Behind 0 }}↓{{ .Behind }}{{ end }}\
+{{ if and (eq .Ahead 0) (eq .Behind 0) .BranchStatus }}{{ .BranchStatus }}{{ end }}\
+</>\
+{{ if .Working.Changed }} <red>{{ nospace .Working.String }}</>{{ end }}\
+{{ if .Staging.Changed }} <green>{{ nospace .Staging.String }}</>{{ end }}\
+{{ if gt .StashCount 0 }} <yellow>${{ .StashCount }}</>{{ end }}{{ if .Working }}]</>{{ end }} \
+"""
 
 [blocks.segments.properties]
 fetch_stash_count = true
 fetch_status = true
 fetch_upstream_icon = true
+branch_icon = ' '
+commit_icon = ' '
+tag_icon = ' '
+rebase_icon = ' '
+cherry_pick_icon = ' '
+revert_icon = ' '
+merge_icon = ' '
+no_commit_icon = '󰂕 '
 
 [[blocks.segments]]
-template = 'via <lightCyan> <b>{{ .Full }}</b></> '
-foreground = 'white'
 type = 'go'
 style = 'plain'
+foreground = 'white'
+template = '{{ if .Full }}via <lightCyan> <b>{{ .Full }}</b></> {{ end }}'
 
 [[blocks.segments]]
-template = 'via <green> <b>{{ .Full }}</b></> '
-foreground = 'white'
 type = 'node'
 style = 'plain'
+foreground = 'white'
+template = '{{ if .Full }}via <green> <b>{{ .Full }}</b></> {{ end }}'
 
 [[blocks.segments]]
-template = 'via <lightYellow> <b>{{ .Full }}</b></> '
-foreground = 'white'
 type = 'python'
 style = 'plain'
+foreground = 'white'
+template = '{{ if .Full }}via <lightYellow> <b>{{ .Full }}</b></> {{ end }}'
 
 [[blocks.segments]]
-template = 'took <b><yellow>{{ nospace .FormattedMs }}</> '
+type = 'rust'
+style = 'plain'
 foreground = 'white'
+template = '{{ if .Full }}via <lightRed> <b>{{ .Full }}</b></> {{ end }}'
+
+[[blocks.segments]]
+type = 'lua'
+style = 'plain'
+foreground = 'white'
+template = '{{ if .Full }}via <lightBlue> <b>{{ .Full }}</b></> {{ end }}'
+
+[[blocks.segments]]
 type = 'executiontime'
 style = 'plain'
+foreground = 'white'
+template = 'took <b><yellow>{{ nospace .FormattedMs }}</> '
 
 [blocks.segments.properties]
 style = 'round'
 threshold = 5000
 
 [[blocks.segments]]
-template = '{{ if eq .Code 0 }}✔{{ else }} {{ reason .Code }}{{ end }}'
-foreground = 'red'
 type = 'status'
 style = 'plain'
+foreground = 'red'
+template = '{{ if eq .Code 0 }}✔{{ else }} {{ reason .Code }}{{ end }}'
 
 [[blocks]]
 type = 'prompt'
 alignment = 'right'
+overflow = 'hide'
 
 [[blocks.segments]]
-template = ' <b>{{ .Shell }}</b>'
-foreground = 'cyan'
 type = 'text'
 style = 'plain'
+foreground = 'cyan'
+template = ' <b>{{ .Shell }}</b>'
 
 [[blocks]]
 type = 'prompt'
