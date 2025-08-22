@@ -1,14 +1,14 @@
 return {
   {
     "Bekaboo/dropbar.nvim",
-    event = "LazyFile",
+    -- event = "LazyFile",
     keys = {
       {
         "<leader>;",
         function()
           require("dropbar.api").pick()
         end,
-        desc = "Pick Window Symbols",
+        desc = "Select Buffer Symbols (dropbar)",
         mode = "n",
       },
       {
@@ -16,7 +16,7 @@ return {
         function()
           require("dropbar.api").goto_context_start()
         end,
-        desc = "Go to start of current context",
+        desc = "Goto start of current context (dropbar)",
         mode = "n",
       },
       {
@@ -24,7 +24,7 @@ return {
         function()
           require("dropbar.api").select_next_context()
         end,
-        desc = "Select next context",
+        desc = "Select next context (dropbar)",
         mode = "n",
       },
     },
@@ -52,6 +52,7 @@ return {
               or vim.wo[win].winbar ~= ""
               or vim.bo[buf].ft == "help"
               or vim.bo[buf].ft == "copilot-chat"
+              or vim.bo[buf].ft == "codecompanion"
             then
               return false
             end

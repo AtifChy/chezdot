@@ -4,6 +4,7 @@
 
 -- General
 vim.o.expandtab = true
+vim.o.spell = false
 
 vim.o.shell = "nu"
 vim.o.shellcmdflag = "-c"
@@ -12,7 +13,8 @@ vim.o.shellxquote = ""
 
 -- Windows specific settings
 if vim.fn.has("win32") == 1 then
-  vim.env.HOME = os.getenv("USERPROFILE")
+  vim.env.HOME = vim.env.USERPROFILE
+  vim.env.USER = vim.env.USERNAME
 end
 
 -- Set python lsp to pyrefly

@@ -4,16 +4,16 @@ final_space = true
 shell_integration = true
 version = 3
 
-[transient_prompt]
-template = '➜ '
-foreground = 'green'
-background = 'transparent'
-foreground_templates = ['{{ if gt .Code 0 }}red{{ end }}']
+# [transient_prompt]
+# template = '➜ '
+# foreground = 'green'
+# background = 'transparent'
+# foreground_templates = ['{{ if gt .Code 0 }}red{{ end }}']
 
 [[blocks]]
 type = 'prompt'
 alignment = 'left'
-newline = true
+# newline = true
 
 [[blocks.segments]]
 type = 'session'

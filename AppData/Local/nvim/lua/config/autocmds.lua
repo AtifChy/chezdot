@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "diff",
     "toml*",
     "dockerfile",
+    "make",
   },
   callback = function()
     vim.b.snacks_indent = false

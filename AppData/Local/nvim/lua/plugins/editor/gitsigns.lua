@@ -6,8 +6,8 @@ return {
       current_line_blame_opts = {
         virt_text = true,
         virt_text_pos = "eol",
-        delay = 200,
-        ignore_whitespace = false,
+        delay = 0,
+        ignore_whitespace = true,
         virt_text_priority = 100,
         use_focus = true,
       },
@@ -19,17 +19,15 @@ return {
   {
     "gitsigns.nvim",
     opts = function()
-      require("snacks")
-        .toggle({
-          name = "Git Blame",
-          get = function()
-            return require("gitsigns.config").config.current_line_blame
-          end,
-          set = function(state)
-            require("gitsigns").toggle_current_line_blame(state)
-          end,
-        })
-        :map("<leader>uB")
+      Snacks.toggle({
+        name = "Git Blame",
+        get = function()
+          return require("gitsigns.config").config.current_line_blame
+        end,
+        set = function(state)
+          require("gitsigns").toggle_current_line_blame(state)
+        end,
+      }):map("<leader>uB")
     end,
   },
 }

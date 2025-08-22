@@ -62,6 +62,8 @@ alias cat = bat --style=plain --paging=never
 # alias ff = fastfetch
 # alias v = nvim
 alias htop = ntop
+alias vimdiff = nvim -d
+alias ll = ls --all
 
 use aliases/git.nu *
 use aliases/chezmoi/chezmoi-aliases.nu *
@@ -95,7 +97,7 @@ $env._ZO_FZF_OPTS = $env.FZF_DEFAULT_OPTS + "
 --height=50%
 --cycle"
 
-# File Explorer 
+# File Explorer
 def explorer [
   path: path # Path to open in Explorer
 ] {

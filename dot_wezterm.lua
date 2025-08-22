@@ -172,7 +172,7 @@ config.cursor_blink_rate = 500
 config.animation_fps = 5
 
 config.cursor_thickness = 1
-config.underline_position = -3
+config.underline_position = -2
 -- config.underline_thickness = 1
 config.strikethrough_position = "0.6cell"
 
@@ -186,6 +186,15 @@ config.keys = {
 		key = "q",
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.CloseCurrentTab({ confirm = false }),
+	},
+	-- workaround for neovim ctrl+space keybinding
+	{
+		key = " ",
+		mods = "CTRL",
+		action = wezterm.action.SendKey({
+			key = " ",
+			mods = "CTRL",
+		}),
 	},
 }
 

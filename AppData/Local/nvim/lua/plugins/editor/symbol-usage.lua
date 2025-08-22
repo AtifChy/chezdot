@@ -1,20 +1,26 @@
 return {
   "Wansmer/symbol-usage.nvim",
-  event = "BufReadPre",
+  event = "LspAttach",
   opts = {
     vt_position = "end_of_line",
+    references = {
+      enabled = true,
+      include_declaration = false,
+    },
+    definition = { enabled = true },
+    implementation = { enabled = true },
   },
   config = function(_, opts)
-    local function h(name)
+    local function hl(name)
       return vim.api.nvim_get_hl(0, { name = name })
     end
 
     -- hl-groups can have any name
-    vim.api.nvim_set_hl(0, "SymbolUsageRounding", { fg = h("CursorLine").bg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageContent", { bg = h("CursorLine").bg, fg = h("Comment").fg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = h("Function").fg, bg = h("CursorLine").bg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageDef", { fg = h("Type").fg, bg = h("CursorLine").bg, italic = true })
-    vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = h("@keyword").fg, bg = h("CursorLine").bg, italic = true })
+    vim.api.nvim_set_hl(0, "SymbolUsageRounding", { fg = hl("CursorLine").bg, italic = true })
+    vim.api.nvim_set_hl(0, "SymbolUsageContent", { bg = hl("CursorLine").bg, fg = hl("Comment").fg, italic = true })
+    vim.api.nvim_set_hl(0, "SymbolUsageRef", { fg = hl("Function").fg, bg = hl("CursorLine").bg, italic = true })
+    vim.api.nvim_set_hl(0, "SymbolUsageDef", { fg = hl("Type").fg, bg = hl("CursorLine").bg, italic = true })
+    vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = hl("@keyword").fg, bg = hl("CursorLine").bg, italic = true })
 
     local function text_format(symbol)
       local res = {}
