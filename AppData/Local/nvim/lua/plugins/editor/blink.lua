@@ -4,10 +4,10 @@ return {
     "xzbdmw/colorful-menu.nvim",
     "Bekaboo/dropbar.nvim", -- use dropbar icon set
   },
-  version = false, -- Use the latest version
+  version = false,          -- Use the latest version
   build = "cargo build --release",
 
-  ---@module 'blink.cmp'
+  ---@module "blink-cmp"
   ---@type blink.cmp.Config
   opts = {
     keymap = {

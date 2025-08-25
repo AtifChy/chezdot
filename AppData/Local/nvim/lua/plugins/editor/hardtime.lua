@@ -1,16 +1,13 @@
 return {
-  {
-    "m4xshen/hardtime.nvim",
-    event = "VeryLazy",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {
-      enabled = false,
-    },
+  "m4xshen/hardtime.nvim",
+  cmd = "Hardtime",
+  dependencies = { "MunifTanjim/nui.nvim" },
+  opts = {
+    enabled = false,
   },
-  {
-    "hardtime.nvim",
-    opts = function()
-      Snacks.toggle({
+  init = function()
+    require("snacks")
+      .toggle({
         name = "Hardtime",
         get = function()
           return require("hardtime").is_plugin_enabled
@@ -18,7 +15,7 @@ return {
         set = function()
           require("hardtime").toggle()
         end,
-      }):map("<leader>uH")
-    end,
-  },
+      })
+      :map("<leader>uH")
+  end,
 }

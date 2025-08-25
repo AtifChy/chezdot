@@ -4,7 +4,7 @@
 
 -- General
 vim.o.expandtab = true
-vim.o.spell = false
+vim.o.spelloptions = "camel,noplainbuffer"
 
 vim.o.shell = "nu"
 vim.o.shellcmdflag = "-c"

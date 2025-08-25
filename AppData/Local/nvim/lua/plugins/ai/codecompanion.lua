@@ -1,6 +1,13 @@
 return {
   "olimorris/codecompanion.nvim",
-  cmd = "CodeCompanionChat",
+  cmd = {
+    "CodeCompanion",
+    "CodeCompanionActions",
+    "CodeCompanionChat",
+    "CodeCompanionCmd",
+    "CodeCompanionHistory",
+    "CodeCompanionSummaries",
+  },
   opts = {
     show_model_choices = true,
     display = {
