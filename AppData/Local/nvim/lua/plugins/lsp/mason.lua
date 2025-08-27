@@ -5,15 +5,8 @@ return {
       ensure_installed = {
         "cssls",
         "rust_analyzer",
-        -- "typos_lsp",
+        -- "harper_ls",
       },
     },
-    -- init = function()
-    --   vim.lsp.config("typos_lsp", {
-    --     init_options = {
-    --       diagnosticSeverity = "Hint",
-    --     },
-    --   })
-    -- end,
   },
 }

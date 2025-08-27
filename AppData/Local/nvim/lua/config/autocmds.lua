@@ -19,3 +19,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.b.snacks_indent = false
   end,
 })
+
+-- vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")

@@ -37,6 +37,11 @@
       "kind": "Exe",
       "id": "crosvm.exe",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Title",
+      "id": "Car Race",
+      "matching_strategy": "Equals"
     }
   ],
   "ignore_rules": [

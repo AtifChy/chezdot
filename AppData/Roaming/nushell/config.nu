@@ -108,3 +108,5 @@ def explorer [
 ] {
   ^explorer.exe $path
 }
+
+$env.HOME = $env.USERPROFILE

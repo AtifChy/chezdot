@@ -1,7 +1,6 @@
 return {
   {
     "Civitasv/cmake-tools.nvim",
-    url = "https://github.com/AtifChy/cmake-tools.nvim",
     dependencies = { "stevearc/overseer.nvim" },
     cmd = "CMakeQuickStart",
     opts = {
