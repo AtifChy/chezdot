@@ -10,7 +10,7 @@ return {
           done = "",
           separator = " ",
         },
-        ignore_lsp = { "copilot", "cspell_ls", "typos_lsp" },
+        ignore_lsp = { "copilot", "cspell_ls", "typos_lsp", "harper_ls" },
       })
       table.insert(opts.sections.lualine_x, {
         function()
@@ -20,6 +20,15 @@ return {
           end
           return "󱉶 " .. table.concat(linters, " ")
         end,
+      })
+      table.insert(opts.sections.lualine_y, {
+        "fileformat",
+        icons_enabled = false,
+        -- symbols = {
+        --   unix = "",
+        --   dos = "",
+        --   mac = "",
+        -- },
       })
       opts.sections.lualine_z = {
         function()
@@ -41,11 +50,11 @@ return {
         symbols = {
           status = {
             icons = {
-              enabled = " ",
-              sleep = " ",
-              disabled = " ",
-              warning = " ",
-              unknown = " ",
+              enabled = "",
+              sleep = "",
+              disabled = "",
+              warning = "",
+              unknown = "",
             },
             hl = {
               enabled = colors.get_hl_value(0, "Keyword", "fg"),
