@@ -93,3 +93,10 @@ macchiato
 bufferline
 fnamemodify
 bufpath
+signingkey
+gpgsign
+helperselector
+fscache
+fsmonitor
+zdiff
+vsplit
