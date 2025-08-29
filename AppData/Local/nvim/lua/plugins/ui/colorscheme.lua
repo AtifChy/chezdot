@@ -23,6 +23,7 @@ return {
           SnacksInputIcon = { link = "SnacksInputTitle" },
           GitSignsCurrentLineBlame = { link = "LspInlayHint" },
           NoiceCmdlineIcon = { fg = colors.blue, style = {} },
+          NeogitSubtleText = { fg = colors.overlay0, style = {} },
         }
       end,
     },

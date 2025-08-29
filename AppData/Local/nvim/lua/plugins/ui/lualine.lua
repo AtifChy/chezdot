@@ -21,14 +21,13 @@ return {
           return "󱉶 " .. table.concat(linters, " ")
         end,
       })
-      table.insert(opts.sections.lualine_y, {
+      table.insert(opts.sections.lualine_x, {
         "fileformat",
-        icons_enabled = false,
-        -- symbols = {
-        --   unix = "",
-        --   dos = "",
-        --   mac = "",
-        -- },
+        symbols = {
+          unix = "",
+          dos = "",
+          mac = "",
+        },
       })
       opts.sections.lualine_z = {
         function()

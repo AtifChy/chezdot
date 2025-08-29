@@ -16,7 +16,7 @@ return {
     },
   },
   {
-    "Zeioth/makeit.nvim",
+    "Zeroth/makeit.nvim",
     url = "https://github.com/AtifChy/makeit.nvim",
     -- dir = "~/Desktop/makeit.nvim",
     cmd = { "MakeitOpen", "MakeitToggleResults", "MakeitRedo" },
@@ -27,7 +27,6 @@ return {
   },
   {
     "stevearc/overseer.nvim",
-    optional = true,
     opts = {
       task_list = {
         direction = "bottom",
@@ -39,7 +38,6 @@ return {
   },
   {
     "folke/which-key.nvim",
-    optional = true,
     opts = {
       spec = {
         { "<leader>o", group = "overseer", icon = { icon = "", color = "purple" } },
