@@ -11,6 +11,9 @@ return {
           separator = " ",
         },
         ignore_lsp = { "copilot", "cspell_ls", "typos_lsp", "harper_ls" },
+        color = function()
+          return { fg = Snacks.util.color("Identifier") }
+        end,
       })
       table.insert(opts.sections.lualine_x, {
         function()
@@ -20,6 +23,9 @@ return {
           end
           return "󱉶 " .. table.concat(linters, " ")
         end,
+        color = function()
+          return { fg = Snacks.util.color("DiagnosticInfo") }
+        end,
       })
       table.insert(opts.sections.lualine_x, {
         "fileformat",
@@ -28,6 +34,9 @@ return {
           dos = "",
           mac = "",
         },
+        color = function()
+          return { fg = Snacks.util.color("Tag") }
+        end,
       })
       opts.sections.lualine_z = {
         function()
@@ -43,7 +52,6 @@ return {
     },
     opts = function(_, opts)
       table.remove(opts.sections.lualine_x, 2)
-      local colors = require("copilot-lualine.colors")
       table.insert(opts.sections.lualine_x, 2, {
         "copilot",
         symbols = {
@@ -56,15 +64,15 @@ return {
               unknown = "",
             },
             hl = {
-              enabled = colors.get_hl_value(0, "Keyword", "fg"),
-              sleep = colors.get_hl_value(0, "Special", "fg"),
-              disabled = colors.get_hl_value(0, "Comment", "fg"),
-              warning = colors.get_hl_value(0, "WarningMsg", "fg"),
-              unknown = colors.get_hl_value(0, "ErrorMsg", "fg"),
+              enabled = Snacks.util.color("Keyword"),
+              sleep = Snacks.util.color("Special"),
+              disabled = Snacks.util.color("Comment"),
+              warning = Snacks.util.color("WarningMsg"),
+              unknown = Snacks.util.color("ErrorMsg"),
             },
           },
           spinners = "dots",
-          spinner_color = colors.get_hl_value(0, "Constant", "fg"),
+          spinner_color = Snacks.util.color("Constant"),
         },
         show_colors = true,
         show_loading = true,

@@ -13,7 +13,6 @@ return {
   opts = function(_, opts)
     local user = vim.env.USER or "User"
     user = user:sub(1, 1):upper() .. user:sub(2)
-
     local options = {
       log_level = "warn",
       headers = {

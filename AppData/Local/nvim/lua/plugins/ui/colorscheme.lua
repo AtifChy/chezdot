@@ -17,13 +17,17 @@ return {
       },
       custom_highlights = function(colors)
         return {
+          DiagnosticError = { style = false },
+          DiagnosticWarn = { style = false },
+          DiagnosticInfo = { style = false },
+          DiagnosticHint = { style = false },
+          DiagnosticOk = { style = false },
+
           SnacksPickerTitle = { fg = colors.pink, bg = colors.mantle },
           SnacksPickerPreviewTitle = { link = "SnacksPickerTitle" },
-          SnacksInputTitle = { fg = colors.teal, style = {} },
-          SnacksInputIcon = { link = "SnacksInputTitle" },
           GitSignsCurrentLineBlame = { link = "LspInlayHint" },
-          NoiceCmdlineIcon = { fg = colors.blue, style = {} },
-          NeogitSubtleText = { fg = colors.overlay0, style = {} },
+          NoiceCmdlineIcon = { fg = colors.lavender, style = false },
+          NeogitSubtleText = { fg = colors.overlay0, style = false },
         }
       end,
     },

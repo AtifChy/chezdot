@@ -6,7 +6,6 @@ return {
   },
   version = false, -- Use the latest version
   build = "cargo build --release",
-
   ---@module "blink-cmp"
   ---@type blink.cmp.Config
   opts = {

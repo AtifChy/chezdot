@@ -8,21 +8,26 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "sindrets/diffview.nvim",
+    "olimorris/codecompanion.nvim",
   },
   ---@module "neogit"
   ---@type NeogitConfig
   opts = {
-    highlight = {},
     integrations = {
+      diffview = true,
       snacks = true,
     },
     graph_style = "unicode",
-    process_spinner = true,
     signs = {
       -- { CLOSED, OPENED }
       hunk = { "", "" },
-      item = { "", "" },
-      section = { "", "" },
+      -- item = { "", "" },
+      -- section = { "", "" },
+      -- item = { "▶", "▼" },
+      -- section = { "▶", "▼" },
+      item = { "", "" },
+      section = { "", "" },
     },
   },
   keys = {

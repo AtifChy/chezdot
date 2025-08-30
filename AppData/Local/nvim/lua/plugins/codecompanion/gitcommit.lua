@@ -1,13 +1,7 @@
 return {
   "olimorris/codecompanion.nvim",
-  cmd = {
-    "CodeCompanionGitCommit",
-    -- "Neogit",
-    -- "NeogitCommit",
-  },
-  dependencies = {
-    "jinzhongjia/codecompanion-gitcommit.nvim",
-  },
+  cmd = { "CodeCompanionGitCommit" },
+  dependencies = { "jinzhongjia/codecompanion-gitcommit.nvim" },
   opts = {
     extensions = {
       gitcommit = {
