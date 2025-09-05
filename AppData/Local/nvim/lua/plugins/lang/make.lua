@@ -7,14 +7,14 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "make" } },
   },
-  {
-    "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
-        make = { "checkmake" },
-      },
-    },
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = {
+  --     linters_by_ft = {
+  --       make = { "checkmake" },
+  --     },
+  --   },
+  -- },
   {
     "Zeroth/makeit.nvim",
     url = "https://github.com/AtifChy/makeit.nvim",
@@ -33,19 +33,6 @@ return {
         min_height = 25,
         max_height = 25,
         default_detail = 1,
-      },
-    },
-  },
-  {
-    "folke/which-key.nvim",
-    opts = {
-      spec = {
-        { "<leader>o", group = "overseer", icon = { icon = "", color = "purple" } },
-      },
-      icons = {
-        rules = {
-          { plugin = "overseer.nvim", icon = "", color = "purple" },
-        },
       },
     },
   },

@@ -2,14 +2,17 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- General
-vim.o.expandtab = true
-vim.o.spelloptions = "camel,noplainbuffer"
+local opt = vim.o
 
-vim.o.shell = "nu"
-vim.o.shellcmdflag = "-c"
-vim.o.shellquote = ""
-vim.o.shellxquote = ""
+-- General
+opt.expandtab = true
+opt.spelloptions = "camel,noplainbuffer"
+-- opt.clipboard = ""
+
+opt.shell = "nu"
+opt.shellcmdflag = "-c"
+opt.shellquote = ""
+opt.shellxquote = ""
 
 -- Windows specific settings
 if vim.fn.has("win32") == 1 then

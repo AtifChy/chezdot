@@ -10,6 +10,7 @@ return {
     "nvim-lua/plenary.nvim",
     "sindrets/diffview.nvim",
     "olimorris/codecompanion.nvim",
+    "rbong/flog-symbols",
   },
   ---@module "neogit"
   ---@type NeogitConfig

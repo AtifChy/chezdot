@@ -5,7 +5,7 @@ return {
       ensure_installed = {
         "cssls",
         "rust_analyzer",
-        "cspell_ls",
+        -- "cspell_ls",
         -- "harper_ls",
       },
     },

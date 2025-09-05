@@ -9,13 +9,9 @@ return {
     multiline_threshold = 1,
   },
   config = function(_, opts)
-    local function hl(name)
-      return vim.api.nvim_get_hl(0, { name = name })
-    end
-
     -- Set the highlight group for the context
     vim.api.nvim_set_hl(0, "TreesitterContext", { link = "Normal" })
-    vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { fg = hl("LineNr").fg, bg = hl("Normal").bg })
+    vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { link = "LineNr" })
 
     require("treesitter-context").setup(opts)
   end,
