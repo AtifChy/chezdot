@@ -66,6 +66,12 @@ revert_icon = ' '
 merge_icon = ' '
 no_commit_icon = '󰂕 '
 
+[blocks.segments.properties.mapped_branches]
+"feat/*" = " "
+"feature/*" = " "
+"bug/*" = " "
+"fix/*" = " "
+
 [[blocks.segments]]
 type = 'go'
 style = 'plain'

@@ -14,6 +14,7 @@ return {
       auto_integrations = true,
       integrations = {
         bufferline = false,
+        lsp_trouble = true,
       },
       custom_highlights = function(colors)
         return {
@@ -28,6 +29,9 @@ return {
           GitSignsCurrentLineBlame = { link = "LspInlayHint" },
           NoiceCmdlineIcon = { fg = colors.lavender, style = false },
           NeogitSubtleText = { fg = colors.overlay0, style = false },
+
+          TroubleNormal = { link = "NormalFloat" },
+          TroubleIconField = { link = "WinBar" },
         }
       end,
     },
