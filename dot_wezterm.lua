@@ -187,6 +187,21 @@ config.keys = {
 		mods = "SHIFT|CTRL",
 		action = wezterm.action.CloseCurrentTab({ confirm = false }),
 	},
+	{
+		key = "w",
+		mods = "ALT|CTRL",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
+	{
+		key = "s",
+		mods = "ALT|CTRL",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "v",
+		mods = "ALT|CTRL",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
 	-- workaround for neovim ctrl+space keybinding
 	{
 		key = " ",

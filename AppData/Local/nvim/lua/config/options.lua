@@ -2,15 +2,30 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- General
-vim.o.expandtab = true
-vim.o.spell = true
-vim.opt.spelloptions:prepend("camel")
+local opt = vim.opt
 
-vim.o.shell = "nu"
-vim.o.shellcmdflag = "-c"
-vim.o.shellquote = ""
-vim.o.shellxquote = ""
+-- General
+opt.expandtab = true
+opt.spell = true
+opt.spelloptions:prepend("camel")
+opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+
+-- opt.shell = "nu"
+-- opt.shellcmdflag = "-c"
+-- opt.shellquote = ""
+-- opt.shellxquote = ""
+
+-- LazyVim settings
+vim.g.lazyvim_python_lsp = "pyrefly"
+
+-- LazyVim.terminal.setup("pwsh")
 
 -- Windows specific settings
 if vim.fn.has("win32") == 1 then
@@ -21,9 +36,6 @@ if vim.fn.has("win32") == 1 then
     vim.env.USER = vim.env.USERNAME
   end
 end
-
--- Set python lsp to pyrefly
-vim.g.lazyvim_python_lsp = "pyrefly"
 
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   callback = function()
