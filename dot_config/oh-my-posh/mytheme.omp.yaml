@@ -60,10 +60,12 @@ blocks:
           revert_icon: " "
           tag_icon: " "
           mapped_branches:
-            bug/*: " "
-            feat/*: " "
-            feature/*: " "
-            fix/*: " "
+            feat: &feat_icon " "
+            bug: &bug_icon " "
+            feature/*: *feat_icon
+            feat/*: *feat_icon
+            bug/*: *bug_icon
+            fix/*: *bug_icon
 
       - type: go
         style: plain
