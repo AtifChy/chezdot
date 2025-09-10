@@ -8,27 +8,36 @@ local opt = vim.opt
 opt.expandtab = true
 opt.spell = true
 opt.spelloptions:prepend("camel")
-opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
-}
 
--- opt.shell = "nu"
--- opt.shellcmdflag = "-c"
--- opt.shellquote = ""
--- opt.shellxquote = ""
+opt.shell = "nu"
+opt.shellcmdflag = "-c"
+opt.shellquote = ""
+opt.shellxquote = ""
 
 -- LazyVim settings
-vim.g.lazyvim_python_lsp = "pyrefly"
-
 -- LazyVim.terminal.setup("pwsh")
 
+vim.api.nvim_create_user_command("TabWidth", function(opts)
+  local width = tonumber(opts.args)
+  if not width or width < 1 then
+    vim.notify("Invalid width: " .. tostring(opts.args), vim.log.levels.ERROR)
+    return
+  end
+  vim.opt_local.tabstop = width
+  vim.opt_local.shiftwidth = width
+  vim.opt_local.softtabstop = width
+end, {
+  desc = "Set tab width",
+  nargs = 1,
+  complete = function()
+    return { "2", "4", "8" }
+  end,
+})
+
 -- Windows specific settings
-if vim.fn.has("win32") == 1 then
+local iswin32 = vim.fn.has("win32") == 1
+
+if iswin32 then
   if vim.env.HOME == nil then
     vim.env.HOME = vim.env.USERPROFILE
   end
@@ -36,9 +45,3 @@ if vim.fn.has("win32") == 1 then
     vim.env.USER = vim.env.USERNAME
   end
 end
-
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   callback = function()
---     vim.api.nvim_set_hl(0, "LspReferenceTarget", {})
---   end,
--- })

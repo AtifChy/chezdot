@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("UILeave", {
+vim.api.nvim_create_autocmd("VimLeave", {
   callback = function()
     local data_dir = vim.fn.stdpath("data")
     local file = vim.fs.joinpath(data_dir, "shada", "main.shada.tmp.x")
@@ -43,3 +43,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   callback = function()
+--     vim.api.nvim_set_hl(0, "LspReferenceTarget", {})
+--   end,
+-- })

@@ -7,6 +7,11 @@ if target:match("windows") then
 	-- config.default_domain = "WSL:archlinux"
 	config.launch_menu = {
 		{
+			label = "Command Prompt",
+			args = { "cmd.exe", "/K" },
+			domain = { DomainName = "local" },
+		},
+		{
 			label = "PowerShell 7",
 			args = { "pwsh.exe", "-NoLogo" },
 			domain = { DomainName = "local" },

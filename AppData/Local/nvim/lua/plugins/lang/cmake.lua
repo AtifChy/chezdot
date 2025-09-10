@@ -38,11 +38,8 @@ return {
     opts = {
       servers = {
         neocmake = false,
+        cmake = {},
       },
     },
-  },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    opts = { ensure_installed = { "cmake" } },
   },
 }

@@ -18,6 +18,8 @@ return {
       },
       custom_highlights = function(colors)
         return {
+          WinBarNC = { fg = colors.overlay0 },
+
           DiagnosticError = { style = false },
           DiagnosticWarn = { style = false },
           DiagnosticInfo = { style = false },
