@@ -21,7 +21,7 @@
 $env.config.show_banner = false
 
 # prompt config
-oh-my-posh init nu --config ($nu.home-path | path join .config/oh-my-posh/my-theme.omp.toml)
+oh-my-posh init nu --config ($nu.home-path | path join .config/oh-my-posh/my-theme.omp.yaml)
 
 # set default editor
 $env.EDITOR = "nvim"
@@ -76,6 +76,13 @@ use aliases/chezmoi/chezmoi-aliases.nu *
 let abbr = {
   ff: fastfetch,
   v: nvim,
+
+  cz: chezmoi,
+  cza: "chezmoi add",
+  czap: "chezmoi apply",
+  czd: "chezmoi diff",
+  czs: "chezmoi status",
+  czra: "chezmoi re-add",
 }
 
 ## carapace config
