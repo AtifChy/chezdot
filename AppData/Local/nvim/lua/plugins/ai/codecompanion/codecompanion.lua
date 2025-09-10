@@ -108,7 +108,7 @@ return {
       },
     },
     init = function()
-      require("plugins.codecompanion.extensions.noice").init()
+      require("plugins.ai.codecompanion.extensions.noice").init()
     end,
   },
   {

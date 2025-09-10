@@ -3,6 +3,11 @@
 final_space = true
 shell_integration = true
 version = 3
+async = true
+
+[upgrade]
+notice = false
+interval = "none"
 
 # [transient_prompt]
 # template = '➜ '
