@@ -1,5 +1,6 @@
 return {
   "LazyVim/LazyVim",
-  url = "https://github.com/AtifChy/LazyVim",
-  branch = "rolling",
+  version = false,
+  -- url = "https://github.com/AtifChy/LazyVim",
+  -- branch = "fix/schema-store",
 }

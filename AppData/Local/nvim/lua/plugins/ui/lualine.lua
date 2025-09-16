@@ -10,7 +10,13 @@ return {
           done = "",
           separator = " ",
         },
-        ignore_lsp = { "copilot", "cspell_ls", "typos_lsp", "harper_ls" },
+        ignore_lsp = {
+          "copilot",
+          "cspell_ls",
+          "typos_lsp",
+          "harper_ls",
+          "emmet_language_server",
+        },
         color = function()
           return { fg = Snacks.util.color("Identifier") }
         end,
@@ -64,11 +70,11 @@ return {
               unknown = "",
             },
             hl = {
-              enabled = Snacks.util.color("Keyword"),
+              enabled = Snacks.util.color("DiagnosticOk"),
               sleep = Snacks.util.color("Special"),
               disabled = Snacks.util.color("Comment"),
-              warning = Snacks.util.color("WarningMsg"),
-              unknown = Snacks.util.color("ErrorMsg"),
+              warning = Snacks.util.color("DiagnosticWarn"),
+              unknown = Snacks.util.color("DiagnosticError"),
             },
           },
           spinners = "dots",

@@ -7,8 +7,10 @@ return {
     "catgoose/nvim-colorizer.lua",
     event = "LazyFile",
     opts = {
+      filetypes = { "*", "!lazy", "!noice" },
+      buftypes = { "!nofile" },
+      lazy_load = true,
       user_default_options = {
-        lazy_load = true,
         names = false,
         tailwind = true,
         mode = "virtualtext",

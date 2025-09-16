@@ -30,6 +30,21 @@
       "kind": "Exe",
       "id": "matlab.exe",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "MATLAB.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "matlabwindowhelper.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Title",
+      "id": "MATLAB R2025a",
+      "matching_strategy": "StartsWith"
     }
   ],
   "floating_applications": [

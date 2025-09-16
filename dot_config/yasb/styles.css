@@ -42,7 +42,7 @@ QToolTip {
   color: var(--text);
   padding: 4px 12px 6px 12px;
   font-size: 13px;
-  font-family: 'Segoe UI';
+  font-family: "Segoe UI";
   font-weight: 600;
   margin-top: 0;
 }
@@ -112,6 +112,12 @@ QToolTip {
   /* border: 1px solid var(--surface0); */
 }
 
+.apps-widget .widget-container,
+.komorebi-workspaces .widget-container,
+.komorebi-active-layout .widget-container {
+  padding: 0 8px;
+}
+
 .komorebi-stack .widget-container {
   background-color: var(--surface0);
 }
@@ -122,7 +128,6 @@ QToolTip {
 
 .komorebi-stack .window {
   border-radius: 12px;
-  margin: 3px 0;
   padding: 0 4px;
 }
 
@@ -363,13 +368,16 @@ QToolTip {
 .home-menu,
 .komorebi-layout-menu {
   background-color: var(--mantle);
-  border-radius: 8px;
+  padding: 4px 0px;
 }
 
 .home-menu .menu-item,
 .komorebi-layout-menu .menu-item {
-  padding: 8px 48px 9px 18px;
+  background-color: transparent;
   color: var(--text);
+  padding: 6px 12px;
+  margin: 2px 4px;
+  border-radius: 4px;
 }
 
 .home-menu .menu-item:hover,
@@ -381,12 +389,13 @@ QToolTip {
 .home-menu .separator,
 .komorebi-layout-menu .separator {
   max-height: 1px;
-  background-color: rgba(128, 130, 158, 0.3);
+  background-color: var(--surface0);
 }
 
 .komorebi-layout-menu .menu-item-icon {
   color: var(--blue);
   font-size: 9px;
+  margin-right: 8px;
 }
 
 .home-menu .menu-item,
@@ -515,7 +524,7 @@ QToolTip {
 }
 
 .whkd-popup .keybind-button.special {
-  background-color: #343538;
+  background-color: var(--surface1);
 }
 
 .whkd-popup .keybind-row:hover {
@@ -535,16 +544,16 @@ QToolTip {
   padding: 0 8px 2px 8px;
   font-size: 14px;
   font-family: "Segoe UI", sans-serif;
-  border: 1px solid #2e2e2e;
+  border: 1px solid var(--surface0);
   border-radius: 4px;
   outline: none;
   color: white;
-  background-color: #2e2e2e;
+  background-color: var(--surface1);
   min-height: 32px;
 }
 
 .whkd-popup .filter-input:focus {
-  border: 1px solid #0078d4;
+  border: 1px solid var(--blue);
 }
 
 .whkd-popup .keybind-command {
@@ -560,4 +569,75 @@ QToolTip {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
+}
+
+.context-menu,
+.context-menu .menu-checkbox {
+  background-color: var(--mantle);
+  border: none;
+  padding: 4px 0px;
+  color: var(--text);
+  font-weight: 600;
+}
+.context-menu::right-arrow {
+  width: 8px;
+  height: 8px;
+  padding-right: 24px;
+}
+.context-menu::item,
+.context-menu .menu-checkbox {
+  background-color: transparent;
+  padding: 6px 12px;
+  margin: 2px 6px;
+  border-radius: 4px;
+  min-width: 100px;
+}
+.context-menu::item:selected,
+.context-menu .menu-checkbox:hover {
+  background-color: rgba(128, 130, 158, 0.15);
+  color: #ffffff;
+}
+.context-menu::separator {
+  height: 1px;
+  background-color: var(--surface0);
+  margin: 4px 8px;
+}
+.context-menu::item:disabled {
+  color: var(--surface2);
+  background-color: transparent;
+}
+.context-menu .menu-checkbox .checkbox {
+  border: none;
+  padding: 8px 16px;
+  margin: 0;
+  color: var(--text);
+  font-weight: 600;
+}
+.context-menu .submenu::item:disabled {
+  margin: 0;
+  padding-left: 16px;
+}
+.context-menu .menu-checkbox .checkbox:unchecked {
+  color: #999;
+}
+.context-menu .menu-checkbox .checkbox::indicator {
+  width: 12px;
+  height: 12px;
+  margin-left: 0px;
+  margin-right: 8px;
+}
+.context-menu .menu-checkbox .checkbox::indicator:unchecked {
+  background: var(--surface2);
+  border-radius: 2px;
+}
+.context-menu .menu-checkbox .checkbox::indicator:checked {
+  background: var(--blue);
+  border-radius: 2px;
+}
+.context-menu .menu-checkbox .checkbox:focus {
+  outline: none;
+}
+.context-menu::item:checked {
+  background-color: var(--blue);
+  color: white;
 }
