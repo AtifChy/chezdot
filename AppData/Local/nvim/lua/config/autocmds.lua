@@ -22,13 +22,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("VimLeave", {
-  callback = function()
-    local data_dir = vim.fn.stdpath("data")
-    local file = vim.fs.joinpath(data_dir, "shada", "main.shada.tmp.x")
-    vim.uv.fs_unlink(file)
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimLeave", {
+--   callback = function()
+--     local data_dir = vim.fn.stdpath("data")
+--     local file = vim.fs.joinpath(data_dir, "shada", "main.shada.tmp.x")
+--     vim.uv.fs_unlink(file)
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)

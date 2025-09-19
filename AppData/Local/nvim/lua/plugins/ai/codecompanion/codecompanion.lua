@@ -111,14 +111,4 @@ return {
       require("plugins.ai.codecompanion.extensions.noice").init()
     end,
   },
-  {
-    "folke/which-key.nvim",
-    opts = {
-      icons = {
-        rules = {
-          { plugin = "codecompanion.nvim", icon = " ", color = "orange" },
-        },
-      },
-    },
-  },
 }
