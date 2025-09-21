@@ -2,11 +2,13 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+---@module "lazyvim.config"
+
 local opt = vim.opt
 
 -- General
 opt.expandtab = true
-opt.spell = true
+-- opt.spell = true
 opt.spelloptions:prepend("camel")
 
 opt.shell = "nu"
@@ -17,22 +19,100 @@ opt.shellxquote = ""
 -- LazyVim settings
 -- LazyVim.terminal.setup("pwsh")
 
-vim.api.nvim_create_user_command("TabWidth", function(opts)
-  local width = tonumber(opts.args)
-  if not width or width < 1 then
-    vim.notify("Invalid width: " .. tostring(opts.args), vim.log.levels.ERROR)
-    return
-  end
-  vim.opt_local.tabstop = width
-  vim.opt_local.shiftwidth = width
-  vim.opt_local.softtabstop = width
-end, {
-  desc = "Set tab width",
-  nargs = 1,
-  complete = function()
-    return { "2", "4", "8" }
-  end,
-})
+vim.g.icons = {
+  kinds = {
+    Array = "󰅪 ",
+    BlockMappingPair = "󰅩 ",
+    Boolean = " ",
+    BreakStatement = "󰙧 ",
+    Call = "󰃷 ",
+    CaseStatement = "󱃙 ",
+    Class = " ",
+    Color = "󰏘 ",
+    Constant = "󰏿 ",
+    Constructor = " ",
+    ContinueStatement = "→ ",
+    Copilot = " ",
+    Declaration = "󰙠 ",
+    Delete = "󰩺 ",
+    DoStatement = "󰑖 ",
+    Element = "󰅩 ",
+    Enum = " ",
+    EnumMember = " ",
+    Event = " ",
+    Field = " ",
+    File = "󰈔 ",
+    Folder = "󰉋 ",
+    ForStatement = "󰑖 ",
+    Function = "󰊕 ",
+    GotoStatement = "󰁔 ",
+    Identifier = "󰀫 ",
+    IfStatement = "󰇉 ",
+    Interface = " ",
+    Keyword = "󰌋 ",
+    List = "󰅪 ",
+    Log = "󰦪 ",
+    Lsp = " ",
+    Macro = "󰁌 ",
+    MarkdownH1 = "󰉫 ",
+    MarkdownH2 = "󰉬 ",
+    MarkdownH3 = "󰉭 ",
+    MarkdownH4 = "󰉮 ",
+    MarkdownH5 = "󰉯 ",
+    MarkdownH6 = "󰉰 ",
+    Method = "󰆧 ",
+    Module = "󰏗 ",
+    Namespace = "󰅩 ",
+    Null = "󰢤 ",
+    Number = "󰎠 ",
+    Object = "󰅩 ",
+    Operator = "󰆕 ",
+    Package = "󰆦 ",
+    Pair = "󰅪 ",
+    Property = " ",
+    Reference = "󰦾 ",
+    Regex = " ",
+    Repeat = "󰑖 ",
+    Return = "󰌑 ",
+    RuleSet = "󰅩 ",
+    Scope = "󰅩 ",
+    Section = "󰅩 ",
+    Snippet = "󰩫 ",
+    Specifier = "󰦪 ",
+    Statement = "󰅩 ",
+    String = "󰉾 ",
+    Struct = " ",
+    SwitchStatement = "󰺟 ",
+    Table = "󰅩 ",
+    Terminal = " ",
+    Text = " ",
+    Type = " ",
+    TypeParameter = "󰆩 ",
+    Unit = " ",
+    Value = "󰎠 ",
+    Variable = "󰀫 ",
+    WhileStatement = "󰑖 ",
+  },
+}
+
+LazyVim.config.icons.kinds = vim.tbl_deep_extend("force", LazyVim.config.icons.kinds, vim.g.icons.kinds)
+
+-- vim.api.nvim_create_user_command("TabWidth", function(opts)
+--   local width = tonumber(opts.args)
+--   if not width or width < 1 then
+--     vim.notify("Invalid width: " .. tostring(opts.args), vim.log.levels.ERROR)
+--     return
+--   end
+--   vim.opt_local.tabstop = width
+--   vim.opt_local.shiftwidth = width
+--   vim.opt_local.softtabstop = width
+-- end, {
+--   desc = "Set tab width",
+--   nargs = 1,
+--   complete = function()
+--     return { "2", "4", "8" }
+--   end,
+-- })
 
 -- Windows specific settings
 local iswin32 = vim.fn.has("win32") == 1

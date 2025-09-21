@@ -1,9 +1,6 @@
 return {
   "saghen/blink.cmp",
-  dependencies = {
-    "xzbdmw/colorful-menu.nvim",
-    "Bekaboo/dropbar.nvim", -- use dropbar icon set
-  },
+  dependencies = { "xzbdmw/colorful-menu.nvim" },
   version = false, -- Use the latest version
   build = "cargo build --release",
   ---@module "blink-cmp"
@@ -48,13 +45,12 @@ return {
                 for _, idx in ipairs(ctx.label_matched_indices) do
                   table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
                 end
-                -- Do something else
                 return highlights
               end,
             },
             kind_icon = {
               text = function(ctx)
-                local icon = require("dropbar.configs").opts.icons.kinds.symbols[ctx.kind] or ctx.kind_icon
+                local icon = vim.g.icons.kinds[ctx.kind] or ctx.kind_icon
                 return icon .. ctx.icon_gap
               end,
             },

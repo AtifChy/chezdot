@@ -1,6 +1,9 @@
+---@module "lazy.pkg.packspec"
+---@type LazySpec
 return {
   {
     "olimorris/codecompanion.nvim",
+    enabled = false,
     cmd = {
       "CodeCompanion",
       "CodeCompanionActions",
@@ -25,14 +28,14 @@ return {
       },
       extensions = {
         history = { enabled = true },
-        vectorcode = {},
+        -- vectorcode = {},
       },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "ravitemer/codecompanion-history.nvim",
-      "Davidyz/VectorCode",
+      -- "Davidyz/VectorCode",
       {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown", "codecompanion" },

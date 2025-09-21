@@ -1,5 +1,6 @@
 return {
   "olimorris/codecompanion.nvim",
+  ft = "gitcommit",
   cmd = { "CodeCompanionGitCommit" },
   dependencies = { "jinzhongjia/codecompanion-gitcommit.nvim" },
   opts = {

@@ -1,6 +1,9 @@
+---@module "lazyvim"
+---@type LazySpec
 return {
   {
     "Bekaboo/dropbar.nvim",
+    event = "LspAttach",
     keys = {
       {
         "<leader>;",

@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   {
     "LazyVim/LazyVim",
@@ -15,6 +16,10 @@ return {
       integrations = {
         bufferline = false,
         lsp_trouble = true,
+        avante = {
+          enabled = true,
+          windows_sidebar_header_rounded = true,
+        },
       },
       custom_highlights = function(colors)
         return {
@@ -34,6 +39,8 @@ return {
 
           TroubleNormal = { link = "NormalFloat" },
           TroubleIconField = { link = "WinBar" },
+
+          AvanteSidebarNormal = { link = "Normal" },
         }
       end,
     },
