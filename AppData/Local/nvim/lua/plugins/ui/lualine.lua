@@ -57,6 +57,7 @@ return {
       "AndreM222/copilot-lualine",
     },
     opts = function(_, opts)
+      ---@module "snacks"
       table.remove(opts.sections.lualine_x, 2)
       table.insert(opts.sections.lualine_x, 2, {
         "copilot",

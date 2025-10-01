@@ -1,5 +1,11 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = { golangci_lint_ls = {} },
+    },
+  },
+  {
     "mfussenegger/nvim-dap",
     optional = true,
     dependencies = {
@@ -17,24 +23,24 @@ return {
       },
     },
   },
-  -- {
-  --   "mfussenegger/nvim-lint",
-  --   optional = true,
-  --   dependencies = {
-  --     {
-  --       "mason-org/mason.nvim",
-  --       opts = { ensure_installed = { "golangci-lint" } },
-  --     },
-  --   },
-  --   opts = {
-  --     linters_by_ft = {
-  --       go = { "golangcilint" },
-  --     },
-  --     linters = {
-  --       golangcilint = {
-  --         cmd = "golangci-lint.cmd",
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = {
+      "fredrikaverpil/neotest-golang",
+      {
+        "mason-org/mason.nvim",
+        opts = { ensure_installed = { "gotestsum" } },
+      },
+    },
+    opts = {
+      adapters = {
+        ["neotest-golang"] = {
+          dap_go_enabled = true, -- requires leoluz/nvim-dap-go
+          runner = "gotestsum",
+          log_level = vim.log.levels.DEBUG,
+        },
+      },
+    },
+  },
 }

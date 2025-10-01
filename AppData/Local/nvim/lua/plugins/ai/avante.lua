@@ -1,8 +1,11 @@
 ---@module "lazy.pkg.packspec"
----@type LazySpec
+---@type LazySpec[]
 return {
   {
     "yetone/avante.nvim",
+    url = "https://github.com/AtifChy/avante.nvim",
+    branch = "feat/proper_desc",
+    enabled = false,
     build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
       or "make",
     event = "VeryLazy",
@@ -38,19 +41,29 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
+    ---@module "avante"
+    ---@type avante.Config
     opts = {
       provider = "copilot",
-      -- providers = {
-      --   copilot = {
-      --     model = "claude-sonnet-4",
-      --   },
-      -- },
-      auto_suggestions_provider = "copilot",
+      -- auto_suggestions_provider = "copilot",
+      providers = {
+        copilot = {
+          model = "gpt-5-mini",
+        },
+      },
       windows = {
         wrap = true,
+        edit = {
+          border = "rounded",
+        },
+        ask = {
+          border = "rounded",
+        },
       },
       behaviour = {
         -- auto_set_keymaps = false,
+        auto_approve_tool_permissions = false,
+        new_option = true,
       },
       selector = {
         provider = "snacks",
@@ -61,7 +74,6 @@ return {
       file_selector = {
         provider = "snacks",
       },
-      use_absolute_path = function() end,
     },
     keys = {
       { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },

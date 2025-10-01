@@ -22,14 +22,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- vim.api.nvim_create_autocmd("VimLeave", {
---   callback = function()
---     local data_dir = vim.fn.stdpath("data")
---     local file = vim.fs.joinpath(data_dir, "shada", "main.shada.tmp.x")
---     vim.uv.fs_unlink(file)
---   end,
--- })
-
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
@@ -43,6 +35,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+-- vim.api.nvim_create_autocmd("QuitPre", {
+--   callback = function()
+--     local temp_shada = vim.fn.stdpath("data") .. "/shada/main.shada.tmp.x"
+--     if vim.uv.fs_stat(temp_shada) then
+--       local ok, _ = pcall(vim.uv.fs_unlink, temp_shada)
+--       if not ok then
+--         vim.fn.delete(temp_shada)
+--       end
+--     end
+--   end,
+-- })
 
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   callback = function()

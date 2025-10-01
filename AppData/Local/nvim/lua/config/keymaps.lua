@@ -2,6 +2,9 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+---@module "lazyvim"
+---@module "snacks"
+
 local map = vim.keymap.set
 
 -- git
@@ -16,3 +19,6 @@ map("n", "<M-/>", function()
   Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float" } })
 end, { desc = "Floating Terminal (Root Dir)" })
 map("t", "<M-/>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- Title case
+map("v", "gt", [[:s/\%V\v<(.)(\w*)/\u\1\L\2/g<CR>]], { desc = "Titlecase" })

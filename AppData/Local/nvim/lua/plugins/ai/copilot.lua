@@ -1,0 +1,47 @@
+---@module "lazy"
+---@type LazySpec[]
+return {
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   dependencies = {
+  --     "copilotlsp-nvim/copilot-lsp",
+  --     init = function()
+  --       vim.g.copilot_nes_debounce = 500
+  --     end,
+  --   },
+  --   opts = {
+  --     nes = {
+  --       enabled = false,
+  --       auto_trigger = true,
+  --       keymap = {
+  --         accept_and_goto = "<cr>",
+  --         accept = false,
+  --         dismiss = "<esc>",
+  --       },
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "saghen/blink.cmp",
+  --   ---@module "blink-cmp"
+  --   ---@type blink.cmp.Config
+  --   opts = {
+  --     keymap = {
+  --       preset = "enter",
+  --       ["<CR>"] = {
+  --         function(cmp)
+  --           if vim.b[vim.api.nvim_get_current_buf()].nes_state then
+  --             cmp.hide()
+  --             return (
+  --               require("copilot-lsp.nes").apply_pending_nes()
+  --               and require("copilot-lsp.nes").walk_cursor_end_edit()
+  --             )
+  --           end
+  --         end,
+  --         "accept",
+  --         "fallback",
+  --       },
+  --     },
+  --   },
+  -- },
+}

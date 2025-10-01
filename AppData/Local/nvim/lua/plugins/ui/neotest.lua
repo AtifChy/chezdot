@@ -3,7 +3,7 @@ return {
   optional = true,
   opts = {
     icons = {
-      expanded = "┐",
+      expanded = "┬",
       final_child_prefix = "└",
     },
   },

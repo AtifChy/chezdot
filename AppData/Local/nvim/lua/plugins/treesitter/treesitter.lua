@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  enabled = true,
   event = function()
     return "LazyFile"
   end,

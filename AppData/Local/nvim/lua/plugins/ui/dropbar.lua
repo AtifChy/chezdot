@@ -1,5 +1,3 @@
----@module "lazyvim"
----@type LazySpec
 return {
   {
     "Bekaboo/dropbar.nvim",

@@ -9,7 +9,7 @@ return {
         callback = "codecompanion._extensions.gitcommit",
         opts = {
           adapter = "copilot",
-          model = "gpt-4.1",
+          model = "gpt-5-mini",
           languages = { "English" },
 
           buffer = {

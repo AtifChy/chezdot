@@ -1,9 +1,10 @@
 ---@module "lazy.pkg.packspec"
----@type LazySpec
+---@type LazySpec[]
 return {
   {
     "olimorris/codecompanion.nvim",
-    enabled = false,
+    enabled = true,
+    event = "VeryLazy",
     cmd = {
       "CodeCompanion",
       "CodeCompanionActions",
@@ -14,10 +15,34 @@ return {
     },
     opts = {
       show_model_choices = true,
+      strategies = {
+        chat = {
+          adapter = {
+            name = "copilot",
+            model = "gpt-5-mini",
+          },
+        },
+        inline = {
+          adapter = {
+            name = "copilot",
+            model = "gpt-5-mini",
+          },
+        },
+      },
       display = {
         chat = {
           window = {
             width = 0.35,
+            opts = {
+              winfixwidth = true,
+            },
+          },
+        },
+      },
+      memory = {
+        opts = {
+          chat = {
+            enabled = true,
           },
         },
       },
@@ -67,6 +92,12 @@ return {
       { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
       {
         "<leader>aa",
+        ":CodeCompanionChat Add<CR>",
+        desc = "Add to Chat (CodeCompanion)",
+        mode = "v",
+      },
+      {
+        "<leader>at",
         function()
           require("codecompanion").toggle()
         end,
