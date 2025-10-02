@@ -21,7 +21,7 @@ return {
     },
     completion = {
       menu = {
-        border = "rounded",
+        border = vim.o.winborder,
         cmdline_position = function()
           if vim.g.ui_cmdline_pos ~= nil then
             return vim.g.ui_cmdline_pos
@@ -50,11 +50,11 @@ return {
           },
         },
       },
-      documentation = { window = { border = "rounded" } },
+      documentation = { window = { border = vim.o.winborder } },
     },
     signature = {
       enabled = true,
-      window = { border = "rounded" },
+      window = { border = vim.o.winborder },
     },
   },
 }

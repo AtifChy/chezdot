@@ -11,14 +11,15 @@ return {
         virt_text_priority = 100,
         use_focus = true,
       },
-      -- preview_config = {
-      --   border = "rounded",
-      -- },
+      preview_config = {
+        border = vim.o.winborder,
+      },
     },
   },
   {
     "gitsigns.nvim",
     opts = function()
+      ---@module "snacks"
       Snacks.toggle({
         name = "Git Blame",
         get = function()

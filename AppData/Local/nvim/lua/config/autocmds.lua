@@ -10,6 +10,14 @@
 -- vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lazy_backdrop",
+  callback = function(ctx)
+    local win = vim.fn.win_findbuf(ctx.buf)[1]
+    vim.api.nvim_win_set_config(win, { border = "none" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "text",
     "diff",

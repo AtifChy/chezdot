@@ -2,7 +2,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      servers = { golangci_lint_ls = {} },
+      servers = {
+        ---@type vim.lsp.Config
+        golangci_lint_ls = {
+          filetypes = { "go" },
+          before_init = function(...) end,
+        },
+      },
     },
   },
   {

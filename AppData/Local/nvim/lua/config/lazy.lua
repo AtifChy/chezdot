@@ -50,5 +50,7 @@ require("lazy").setup({
       },
     },
   },
-  ui = { border = "rounded" },
+  ui = {
+    border = "rounded",
+  },
 })

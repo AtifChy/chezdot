@@ -4,7 +4,7 @@ return {
   {
     "olimorris/codecompanion.nvim",
     enabled = true,
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     cmd = {
       "CodeCompanion",
       "CodeCompanionActions",

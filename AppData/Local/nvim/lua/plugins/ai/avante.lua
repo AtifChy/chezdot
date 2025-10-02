@@ -9,7 +9,7 @@ return {
     build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
       or "make",
     event = "VeryLazy",
-    version = false, -- Never set this value to "*"! Never!
+    version = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -40,6 +40,47 @@ return {
         },
         ft = { "markdown", "Avante" },
       },
+      {
+        "saghen/blink.cmp",
+        dependencies = {
+          "Kaiser-Yang/blink-cmp-avante",
+        },
+        opts = {
+          sources = {
+            default = { "avante" },
+            providers = {
+              avante = {
+                name = "avante",
+                module = "blink-cmp-avante",
+                opts = {
+                  avante = {
+                    command = {
+                      get_kind_name = function(_)
+                        return "AvanteCmd"
+                      end,
+                    },
+                    mention = {
+                      get_kind_name = function(_)
+                        return "AvanteMention"
+                      end,
+                    },
+                    shortcut = {
+                      get_kind_name = function(_)
+                        return "AvanteShortcut"
+                      end,
+                    },
+                  },
+                  kind_icons = {
+                    AvanteCmd = " ",
+                    AvanteMention = " ",
+                    AvanteShortcut = " ",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     ---@module "avante"
     ---@type avante.Config
@@ -54,10 +95,10 @@ return {
       windows = {
         wrap = true,
         edit = {
-          border = "rounded",
+          border = vim.o.winborder,
         },
         ask = {
-          border = "rounded",
+          border = vim.o.winborder,
         },
       },
       behaviour = {
@@ -77,47 +118,6 @@ return {
     },
     keys = {
       { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-    },
-  },
-  {
-    "saghen/blink.cmp",
-    dependencies = {
-      "Kaiser-Yang/blink-cmp-avante",
-    },
-    opts = {
-      sources = {
-        default = { "avante" },
-        providers = {
-          avante = {
-            name = "avante",
-            module = "blink-cmp-avante",
-            opts = {
-              avante = {
-                command = {
-                  get_kind_name = function(_)
-                    return "AvanteCmd"
-                  end,
-                },
-                mention = {
-                  get_kind_name = function(_)
-                    return "AvanteMention"
-                  end,
-                },
-                shortcut = {
-                  get_kind_name = function(_)
-                    return "AvanteShortcut"
-                  end,
-                },
-              },
-              kind_icons = {
-                AvanteCmd = " ",
-                AvanteMention = " ",
-                AvanteShortcut = " ",
-              },
-            },
-          },
-        },
-      },
     },
   },
 }

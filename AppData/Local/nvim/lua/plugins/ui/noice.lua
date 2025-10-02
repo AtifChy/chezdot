@@ -8,7 +8,7 @@ return {
     opts = {
       presets = {
         bottom_search = false,
-        lsp_doc_border = true,
+        lsp_doc_border = vim.o.winborder ~= "",
       },
       lsp = {
         enabled = false,
@@ -18,14 +18,4 @@ return {
       },
     },
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     diagnostics = {
-  --       float = {
-  --         border = "rounded",
-  --       },
-  --     },
-  --   },
-  -- },
 }

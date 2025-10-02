@@ -6,7 +6,7 @@
 
 local opt = vim.opt
 
--- opt.winborder = "rounded"
+opt.winborder = "rounded"
 
 -- General
 opt.expandtab = true
