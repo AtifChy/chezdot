@@ -37,6 +37,7 @@ return {
       {
         "<leader>gg",
         function()
+          ---@module "lazyvim.types"
           require("neogit").open({
             cwd = LazyVim.root.git(),
           })

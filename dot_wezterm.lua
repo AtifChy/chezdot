@@ -12,22 +12,18 @@ if target:match("windows") then
 		{
 			label = "Command Prompt",
 			args = { "cmd.exe", "/K" },
-			domain = { DomainName = "local" },
 		},
 		{
 			label = "PowerShell 7",
 			args = { "pwsh.exe", "-NoLogo" },
-			domain = { DomainName = "local" },
 		},
 		{
 			label = "NuShell",
 			args = { "nu.exe" },
-			domain = { DomainName = "local" },
 		},
 		{
 			label = "xonsh",
 			args = { "xonsh.exe" },
-			domain = { DomainName = "local" },
 		},
 	}
 end
@@ -216,6 +212,14 @@ config.keys = {
 		mods = "CTRL",
 		action = wezterm.action.SendKey({
 			key = " ",
+			mods = "CTRL",
+		}),
+	},
+	{
+		key = ".",
+		mods = "CTRL",
+		action = wezterm.action.SendKey({
+			key = ".",
 			mods = "CTRL",
 		}),
 	},

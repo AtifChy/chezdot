@@ -10,6 +10,7 @@
 -- vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("lazy_backdrop_fix", { clear = true }),
   pattern = "lazy_backdrop",
   callback = function(ctx)
     local win = vim.fn.win_findbuf(ctx.buf)[1]
@@ -18,6 +19,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("snacks_no_indent", { clear = true }),
   pattern = {
     "text",
     "diff",
@@ -31,15 +33,17 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp_detach_diffview", { clear = true }),
   callback = function(args)
     local bufnr = args.buf
     local bufname = vim.api.nvim_buf_get_name(bufnr)
-    if bufname:match("^diffview:") then
-      for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
-        vim.defer_fn(function()
-          vim.lsp.buf_detach_client(args.buf, client.id)
-        end, 10)
-      end
+    if not bufname:find("diffview:", 1, true) then
+      return
+    end
+    for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+      vim.defer_fn(function()
+        vim.lsp.buf_detach_client(args.buf, client.id)
+      end, 10)
     end
   end,
 })

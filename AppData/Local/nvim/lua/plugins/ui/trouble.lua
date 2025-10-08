@@ -1,9 +1,13 @@
 return {
   "folke/trouble.nvim",
-  optional = true,
+  ---@module "trouble"
+  ---@type trouble.Config
   opts = {
+    preview = {
+      border = "none",
+    },
     icons = {
-      kinds = vim.g.icons.kinds,
+      kinds = vim.g.icons,
     },
   },
 }

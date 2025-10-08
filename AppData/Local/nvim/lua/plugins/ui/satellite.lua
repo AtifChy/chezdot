@@ -5,7 +5,12 @@ return {
     opts = {
       handlers = {
         cursor = {
-          -- symbols = { "•" },
+          symbols = { "•" },
+        },
+        gitsigns = {
+          signs = {
+            delete = "",
+          },
         },
       },
     },

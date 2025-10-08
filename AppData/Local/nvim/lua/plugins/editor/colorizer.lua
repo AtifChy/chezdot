@@ -2,53 +2,8 @@
 ---@type LazySpec[]
 return {
   {
-    "nvim-mini/mini.hipatterns",
-    enabled = false,
-  },
-  -- {
-  --   "brenoprata10/nvim-highlight-colors",
-  --   event = "LazyFile",
-  --   opts = {
-  --     render = "virtual",
-  --     virtual_symbol = "",
-  --     virtual_symbol_position = "inline",
-  --     enable_tailwind = true,
-  --     exclude_filetypes = { "lazy", "noice" },
-  --     exclude_buftypes = { "nofile" },
-  --   },
-  --   init = function()
-  --     if vim.fn.has("nvim-0.12") == 1 then
-  --       vim.api.nvim_create_autocmd("LspAttach", {
-  --         callback = function(args)
-  --           vim.lsp.document_color.enable(false, args.buf)
-  --         end,
-  --       })
-  --     end
-  --   end,
-  -- },
-  -- {
-  --   "nvim-highlight-colors",
-  --   opts = function()
-  --     local highlight_colors = require("nvim-highlight-colors")
-  --     ---@module "snacks"
-  --     Snacks.toggle({
-  --       name = "Highlight Colors",
-  --       get = function()
-  --         return highlight_colors.is_active()
-  --       end,
-  --       set = function(state)
-  --         if state then
-  --           highlight_colors.turnOn()
-  --         else
-  --           highlight_colors.turnOff()
-  --         end
-  --       end,
-  --     }):map("<leader>uH")
-  --   end,
-  -- },
-  {
     "catgoose/nvim-colorizer.lua",
-    event = "LazyFile",
+    event = "BufReadPre",
     opts = {
       filetypes = { "*", "!lazy", "!noice" },
       buftypes = { "!nofile" },
@@ -58,13 +13,28 @@ return {
         mode = "virtualtext",
         virtualtext = "",
         virtualtext_inline = "before",
-        tailwind = "lsp",
+        tailwind = false,
       },
     },
     init = function()
       vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("ColorizerAttach", { clear = true }),
         callback = function(args)
-          vim.lsp.document_color.enable(false, args.buf)
+          local bufnr = args.buf
+          vim.lsp.document_color.enable(true, bufnr, { style = "virtual" })
+
+          local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+          for _, client in pairs(clients) do
+            if client.name == "jsonls" then
+              break
+            end
+
+            if client:supports_method("textDocument/documentColor") then
+              require("colorizer").detach_from_buffer(bufnr)
+              break
+            end
+          end
         end,
       })
     end,
@@ -73,6 +43,7 @@ return {
     "nvim-colorizer.lua",
     opts = function()
       local colorizer = require("colorizer")
+      ---@module "snacks"
       Snacks.toggle({
         name = "Colorizer",
         get = function()

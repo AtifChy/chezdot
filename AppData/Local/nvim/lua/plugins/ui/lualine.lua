@@ -2,6 +2,8 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
+      opts.options.section_separators = { left = "", right = "" }
+      opts.options.component_separators = { left = "", right = "" }
       table.insert(opts.sections.lualine_x, {
         "lsp_status",
         icon = "",
@@ -15,7 +17,7 @@ return {
           "cspell_ls",
           "typos_lsp",
           "harper_ls",
-          "emmet_language_server",
+          -- "emmet_language_server",
         },
         color = function()
           return { fg = Snacks.util.color("Identifier") }
@@ -46,7 +48,11 @@ return {
       })
       opts.sections.lualine_z = {
         function()
-          return " " .. os.date("%I:%M")
+          local hour12 = tonumber(os.date("%I"))
+          local icons =
+            { "󱑋", "󱑌", "󱑍", "󱑎", "󱑏", "󱑐", "󱑑", "󱑒", "󱑓", "󱑔", "󱑕", "󱑖" }
+          local icon = icons[hour12]
+          return icon .. " " .. os.date("%I:%M")
         end,
       }
     end,

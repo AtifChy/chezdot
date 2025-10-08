@@ -16,7 +16,7 @@ end, { desc = "Git Browse (open)" })
 
 -- Floating terminal
 map("n", "<M-/>", function()
-  Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float" } })
+  Snacks.terminal(nil, { cwd = LazyVim.root(), win = { position = "float", border = vim.o.winborder } })
 end, { desc = "Floating Terminal (Root Dir)" })
 map("t", "<M-/>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 

@@ -1,0 +1,93 @@
+---@module "lazy"
+---@type LazyPluginSpec[]
+return {
+  -- "NickvanDyke/opencode.nvim",
+  -- config = function()
+  --   ---@module "opencode"
+  --   ---@type opencode.Opts
+  --   vim.g.opencode_opts = {
+  --     -- port = 8080,
+  --     terminal = {
+  --       cmd = "opencode",
+  --       env = {
+  --         OPENCODE_THEME = vim.g.colors_name,
+  --       },
+  --       win = {
+  --         enter = true,
+  --         width = math.ceil(vim.o.columns * 0.4),
+  --       },
+  --     },
+  --   }
+  --
+  --   -- Required for `vim.g.opencode_opts.auto_reload`
+  --   vim.opt.autoread = true
+  -- end,
+  -- ---@type LazyKeysSpec[]
+  -- keys = {
+  --   { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+  --   {
+  --     "<leader>at",
+  --     function()
+  --       require("opencode").toggle()
+  --     end,
+  --     desc = "Toggle opencode",
+  --     mode = "n",
+  --   },
+  --   {
+  --     "<leader>an",
+  --     function()
+  --       require("opencode").command("session_new")
+  --     end,
+  --     desc = "New session",
+  --     mode = "n",
+  --   },
+  --   {
+  --     "<leader>aa",
+  --     function()
+  --       require("opencode").ask("@cursor: ")
+  --     end,
+  --     desc = "Ask about this",
+  --     mode = "n",
+  --   },
+  --   {
+  --     "<leader>aa",
+  --     function()
+  --       require("opencode").ask("@selection: ")
+  --     end,
+  --     desc = "Ask about selection",
+  --     mode = "v",
+  --   },
+  --   {
+  --     "<leader>ab",
+  --     function()
+  --       require("opencode").prompt("@buffer", { append = true })
+  --     end,
+  --     desc = "Add buffer to prompt",
+  --     mode = "n",
+  --   },
+  --   {
+  --     "<leader>ab",
+  --     function()
+  --       require("opencode").prompt("@selection", { append = true })
+  --     end,
+  --     desc = "Add selection to prompt",
+  --     mode = "v",
+  --   },
+  --   {
+  --     "<leader>ae",
+  --     function()
+  --       require("opencode").prompt("Explain @cursor and its context")
+  --     end,
+  --     desc = "Explain this code",
+  --     mode = "n",
+  --   },
+  --   {
+  --     "<leader>as",
+  --     function()
+  --       require("opencode").select()
+  --     end,
+  --     desc = "Select prompt",
+  --     mode = { "n", "v" },
+  --   },
+  -- },
+}

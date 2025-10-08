@@ -27,5 +27,13 @@ return {
         },
       },
     },
+    -- input = {
+    --   win = {
+    --     relative = "cursor",
+    --     row = -3,
+    --     col = 0,
+    --     width = 30,
+    --   },
+    -- },
   },
 }

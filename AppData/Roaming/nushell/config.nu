@@ -21,7 +21,7 @@
 $env.config.show_banner = false
 
 # prompt config
-oh-my-posh init nu --config ($nu.home-path | path join .config/oh-my-posh/mytheme.omp.yaml)
+oh-my-posh init nu --config ($nu.home-path | path join .config/oh-my-posh/starlight.omp.yaml)
 
 # set default editor
 $env.EDITOR = "nvim"

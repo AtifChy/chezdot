@@ -9,11 +9,22 @@ return {
       presets = {
         bottom_search = false,
         lsp_doc_border = vim.o.winborder ~= "",
+        inc_rename = {
+          cmdline = {
+            format = {
+              IncRename = {
+                title = " Rename ",
+              },
+            },
+          },
+        },
       },
       lsp = {
-        enabled = false,
         signature = {
-          enabled = true,
+          enabled = false,
+        },
+        hover = {
+          enabled = false,
         },
       },
     },

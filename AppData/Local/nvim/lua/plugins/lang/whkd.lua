@@ -4,12 +4,13 @@ vim.filetype.add({
   },
 })
 
-local spec = {
+return {
   "nvim-treesitter/nvim-treesitter",
   optional = true,
   init = function()
     vim.api.nvim_create_autocmd("User", {
       pattern = "TSUpdate",
+      group = vim.api.nvim_create_augroup("MyTSParsers", { clear = true }),
       callback = function()
         require("nvim-treesitter.parsers").whkd = {
           install_info = {
@@ -26,5 +27,3 @@ local spec = {
     ensure_installed = { "whkd" },
   },
 }
-
-return spec

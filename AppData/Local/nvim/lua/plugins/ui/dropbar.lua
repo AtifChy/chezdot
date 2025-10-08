@@ -42,6 +42,19 @@ return {
         end
       end
 
+      -- Expands the entry if possible.
+      local function expand()
+        local menu = menu_utils.get_current()
+        if not menu then
+          return
+        end
+        local row = vim.api.nvim_win_get_cursor(menu.win)[1]
+        local component = menu.entries[row]:first_clickable()
+        if component then
+          menu:click_on(component, nil, 1, "l")
+        end
+      end
+
       return {
         bar = {
           enable = function(buf, win, _)
@@ -75,23 +88,30 @@ return {
           keymaps = {
             -- Navigate back to the parent menu.
             ["h"] = "<C-w>q",
-            -- Expands the entry if possible.
-            ["l"] = function()
-              local menu = menu_utils.get_current()
-              if not menu then
-                return
-              end
-              local row = vim.api.nvim_win_get_cursor(menu.win)[1]
-              local component = menu.entries[row]:first_clickable()
-              if component then
-                menu:click_on(component, nil, 1, "l")
-              end
-            end,
+            ["<Left>"] = "<C-w>q",
+            ["l"] = expand,
+            ["<Right>"] = expand,
             ["q"] = close,
-            ["<esc>"] = close,
+            ["<Esc>"] = close,
           },
         },
       }
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd("BufWinEnter", {
+        group = vim.api.nvim_create_augroup("DropbarDisableFloatWinbar", { clear = true }),
+        callback = function()
+          local win = vim.api.nvim_get_current_win()
+          local config = vim.api.nvim_win_get_config(win)
+
+          -- Check if the current window is floating
+          if config.relative ~= "" then
+            -- Disable winbar for any floating window
+            vim.wo[win].winbar = ""
+            vim.w[win].winbar_no_attach = true
+          end
+        end,
+      })
     end,
   },
 }

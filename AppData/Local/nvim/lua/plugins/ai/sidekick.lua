@@ -6,61 +6,71 @@ return {
     },
   },
   {
-
     "folke/sidekick.nvim",
     optional = true,
-    -- dependencies = {
-    --   "saghen/blink.cmp",
-    --   ---@module "blink-cmp"
-    --   ---@type blink.cmp.Config
-    --   opts = {
-    --     keymap = {
-    --       ["<Tab>"] = {
-    --         function(cmp)
-    --           if cmp.is_active() then
-    --             return cmp.select_next()
-    --           end
-    --           if require("sidekick").nes_jump_or_apply() then
-    --             return
-    --           end
-    --         end,
-    --         "snippet_forward",
-    --         "fallback",
-    --       },
-    --     },
-    --   },
-    -- },
     ---@module "sidekick"
     ---@type sidekick.Config
     opts = {
       cli = {
-        ---@class sidekick.win.Opts
-        win = {
-          -- layout = "float",
-          split = {
-            width = 65,
-          },
-        },
-        ---@type table<string, sidekick.cli.Tool.spec>
+        ---@type table<string, sidekick.cli.Tool|{}>
         tools = {
           copilot = {
             cmd = { "copilot" },
+          },
+          opencode = {
+            cmd = { "opencode" },
+            env = { OPENCODE_THEME = "catppuccin-macchiato" },
+          },
+        },
+        win = {
+          split = {
+            width = math.floor(vim.o.columns * 0.4),
+          },
+          -- stylua: ignore
+          keys = {
+            stopinsert = { "<esc><esc>", "stopinsert", mode = "t" },
+            nav_h = { "<C-h>", function() vim.cmd.wincmd("h") end, mode = "t" },
+            nav_l = { "<C-l>", function() vim.cmd.wincmd("l") end, mode = "t" },
+            nav_j = { "<C-j>", function() vim.cmd.wincmd("j") end, mode = "t" },
+            nav_k = { "<C-k>", function() vim.cmd.wincmd("k") end, mode = "t" },
           },
         },
       },
     },
     keys = {
       {
-        "<Tab>",
+        "<leader>aa",
         function()
-          if not require("sidekick").nes_jump_or_apply() then
-            return "<Tab>"
-          end
+          require("sidekick.cli").toggle()
         end,
-        mode = { "n" },
-        expr = true,
-        desc = "Goto/Apply Next Edit Suggestion",
+        desc = "Sidekick Toggle CLI",
+      },
+      {
+        "<leader>ao",
+        function()
+          require("sidekick.cli").toggle({ name = "opencode", focus = true })
+        end,
+        desc = "Sidekick OpenCode Toggle",
       },
     },
+    init = function()
+      vim.keymap.del("n", "<leader>ac")
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "sidekick_terminal",
+        group = vim.api.nvim_create_augroup("local_sidekick_terminal", { clear = true }),
+        callback = function()
+          vim.keymap.set("t", "<C-/>", "<NOP>", { buffer = true })
+          vim.keymap.set("t", "<C-_>", "<NOP>", { buffer = true })
+        end,
+      })
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    optional = true,
+    opts = function(_, opts)
+      -- remove sidekick lualine component
+      table.remove(opts.sections.lualine_x, 2)
+    end,
   },
 }

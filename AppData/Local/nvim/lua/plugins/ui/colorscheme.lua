@@ -1,10 +1,9 @@
----@module "lazy.pkg.packspec"
----@type LazySpec[]
 return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-macchiato",
+      colorscheme = "catppuccin",
+      -- colorscheme = "kanagawa",
     },
   },
   {
@@ -13,6 +12,7 @@ return {
     ---@module "catppuccin"
     ---@class CatppuccinOptions
     opts = {
+      flavour = "macchiato",
       auto_integrations = true,
       integrations = {
         bufferline = false,
@@ -51,6 +51,21 @@ return {
           AvanteSidebarNormal = { link = "Normal" },
         }
       end,
+    },
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+    opts = {
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
     },
   },
 }
