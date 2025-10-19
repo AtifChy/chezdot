@@ -9,8 +9,9 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    build = "CatppuccinCompile",
     ---@module "catppuccin"
-    ---@class CatppuccinOptions
+    ---@type CatppuccinOptions
     opts = {
       flavour = "macchiato",
       auto_integrations = true,
@@ -23,6 +24,7 @@ return {
         },
       },
       custom_highlights = function(colors)
+        ---@type table<string, { fg?: string, bg?: string, style?: CtpHighlightArgs|false, link?: string }>
         return {
           -- WinBarNC = { fg = colors.overlay0 },
 
@@ -31,6 +33,9 @@ return {
           DiagnosticInfo = { style = false },
           DiagnosticHint = { style = false },
           DiagnosticOk = { style = false },
+
+          TabLineSel = { fg = colors.teal, bg = colors.surface0 },
+          TabLineFill = { fg = colors.overlay0, bg = colors.base },
 
           SnacksPickerTitle = { fg = colors.pink, bg = colors.mantle },
           SnacksPickerPreviewTitle = { link = "SnacksPickerTitle" },
@@ -49,6 +54,8 @@ return {
           TroubleIconField = { link = "WinBar" },
 
           AvanteSidebarNormal = { link = "Normal" },
+
+          DropBarMenuHoverIcon = { link = "Special" },
         }
       end,
     },
@@ -60,9 +67,7 @@ return {
       colors = {
         theme = {
           all = {
-            ui = {
-              bg_gutter = "none",
-            },
+            ui = { bg_gutter = "none" },
           },
         },
       },

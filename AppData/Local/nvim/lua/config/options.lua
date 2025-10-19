@@ -7,8 +7,6 @@
 local opt = vim.opt
 
 opt.winborder = "rounded"
-
--- General
 opt.expandtab = true
 -- opt.spell = true
 opt.spelloptions:prepend("camel")

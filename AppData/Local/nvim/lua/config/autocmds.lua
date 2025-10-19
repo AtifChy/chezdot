@@ -7,7 +7,17 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("lazyvim_wrap_spell", { clear = true }),
+  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+  callback = function()
+    if vim.tbl_contains({ "nofile", "prompt", "help" }, vim.bo.buftype) then
+      return
+    end
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("lazy_backdrop_fix", { clear = true }),
@@ -47,18 +57,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
-
--- vim.api.nvim_create_autocmd("QuitPre", {
---   callback = function()
---     local temp_shada = vim.fn.stdpath("data") .. "/shada/main.shada.tmp.x"
---     if vim.uv.fs_stat(temp_shada) then
---       local ok, _ = pcall(vim.uv.fs_unlink, temp_shada)
---       if not ok then
---         vim.fn.delete(temp_shada)
---       end
---     end
---   end,
--- })
 
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   callback = function()
