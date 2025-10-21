@@ -3,7 +3,7 @@ local M = {}
 ---@type Utils.Colors
 local colors = require("utils.colors")
 
----@class config Config
+---@param config Config
 function M.apply(config)
 	-- Window appearance
 	config.initial_rows = 38

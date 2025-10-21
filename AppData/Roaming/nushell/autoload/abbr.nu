@@ -16,7 +16,7 @@ $env.config.keybindings = $env.config.keybindings | append [
     mode: [emacs, vi_normal, vi_insert]
     event: [
       { send: menu name: abbr_menu }
-      { edit: insertchar value: ' '}
+      { edit: insertchar value: ' ' }
     ]
   }
 ]

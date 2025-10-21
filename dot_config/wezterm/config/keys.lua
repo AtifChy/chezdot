@@ -48,7 +48,7 @@ function M.get_keys()
 		{ key = "s", mods = "ALT|CTRL", action = action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "v", mods = "ALT|CTRL", action = action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 
-		-- Workaround for neovim ctrl+space keybinding
+		-- Send the actual key combinations
 		{ key = "Space", mods = "CTRL", action = action.SendKey({ key = "Space", mods = "CTRL" }) },
 		{ key = ".", mods = "CTRL", action = action.SendKey({ key = ".", mods = "CTRL" }) },
 	}

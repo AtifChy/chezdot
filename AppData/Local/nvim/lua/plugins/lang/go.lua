@@ -12,6 +12,24 @@ return {
     },
   },
   {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    dependencies = {
+      {
+        "mason-org/mason.nvim",
+        opts = function(_, opts)
+          if opts.ensure_installed then
+            opts.ensure_installed = vim.tbl_filter(
+              function(pkg) return pkg ~= "golangci-lint" end,
+              opts.ensure_installed
+            )
+          end
+        end,
+      },
+    },
+    opts = function(_, opts) opts.linters_by_ft.go = nil end,
+  },
+  {
     "mfussenegger/nvim-dap",
     optional = true,
     dependencies = {

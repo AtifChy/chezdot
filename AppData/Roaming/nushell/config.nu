@@ -26,10 +26,8 @@ oh-my-posh init nu --config ($nu.home-path | path join .config/oh-my-posh/starli
 # set default editor
 $env.EDITOR = "nvim"
 
-# enable vi mode
+# vi mode
 # $env.config.edit_mode = "vi"
-
-# vi mode cursor shape
 # $env.config.cursor_shape = {
 #   vi_insert: line,
 #   vi_normal: block,

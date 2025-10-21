@@ -34,14 +34,16 @@ end
 ---@param max_width number
 function M.update_tab_title(tab, _, _, _, hover, max_width)
 	local pad = 4
-	local prefix = (tab.tab_index + 1) .. ": "
 	local pane_count = #tab.panes ---@diagnostic disable-line: undefined-field
+
+	local prefix = (tab.tab_index + 1) .. ": "
 
 	local suffix = ""
 	if pane_count > 1 then
-		suffix = " [" .. pane_count .. "]"
-	elseif tab.active_pane.is_zoomed then
-		suffix = " [z]"
+		suffix = suffix .. " [" .. pane_count .. "]"
+	end
+	if tab.active_pane.is_zoomed then
+		suffix = suffix .. " [z]"
 	end
 
 	local title = tab_title(tab)

@@ -98,9 +98,7 @@ return {
       },
       {
         "<leader>at",
-        function()
-          require("codecompanion").toggle()
-        end,
+        function() require("codecompanion").toggle() end,
         desc = "Toggle (CodeCompanion)",
         mode = { "n", "v" },
       },
@@ -141,8 +139,6 @@ return {
         mode = { "n", "v" },
       },
     },
-    init = function()
-      require("plugins.ai.codecompanion.extensions.noice").init()
-    end,
+    init = function() require("plugins.ai.codecompanion.extensions.noice").init() end,
   },
 }

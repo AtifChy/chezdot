@@ -19,8 +19,9 @@ return {
           "harper_ls",
           -- "emmet_language_server",
         },
+        -- show_name = false,
         color = function()
-          return { fg = Snacks.util.color("Identifier") }
+          return { fg = Snacks.util.color("DiagnosticInfo") }
         end,
       })
       table.insert(opts.sections.lualine_x, {
@@ -43,7 +44,7 @@ return {
           mac = "",
         },
         color = function()
-          return { fg = Snacks.util.color("Tag") }
+          return { fg = Snacks.util.color("Identifier") }
         end,
       })
       opts.sections.lualine_z = {

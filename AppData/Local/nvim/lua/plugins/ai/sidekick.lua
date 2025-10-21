@@ -36,16 +36,12 @@ return {
     keys = {
       {
         "<leader>aa",
-        function()
-          require("sidekick.cli").toggle()
-        end,
+        function() require("sidekick.cli").toggle() end,
         desc = "Sidekick Toggle CLI",
       },
       {
         "<leader>ao",
-        function()
-          require("sidekick.cli").toggle({ name = "opencode", focus = true })
-        end,
+        function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end,
         desc = "Sidekick OpenCode Toggle",
       },
     },
@@ -55,6 +51,7 @@ return {
     optional = true,
     opts = function(_, opts)
       -- remove sidekick lualine component
+      table.remove(opts.sections.lualine_x, 2)
       table.remove(opts.sections.lualine_x, 2)
     end,
   },

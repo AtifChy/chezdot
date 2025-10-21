@@ -23,41 +23,44 @@ return {
           windows_sidebar_header_rounded = true,
         },
       },
-      custom_highlights = function(colors)
-        ---@type table<string, { fg?: string, bg?: string, style?: CtpHighlightArgs|false, link?: string }>
-        return {
-          -- WinBarNC = { fg = colors.overlay0 },
+      highlight_overrides = {
+        all = function(colors)
+          ---@type table<string, { fg?: string, bg?: string, style?: CtpHighlightArgs|false, link?: string }>
+          return {
+            -- WinBarNC = { fg = colors.overlay0 },
 
-          DiagnosticError = { style = false },
-          DiagnosticWarn = { style = false },
-          DiagnosticInfo = { style = false },
-          DiagnosticHint = { style = false },
-          DiagnosticOk = { style = false },
+            DiagnosticError = { style = false },
+            DiagnosticWarn = { style = false },
+            DiagnosticInfo = { style = false },
+            DiagnosticHint = { style = false },
+            DiagnosticOk = { style = false },
 
-          TabLineSel = { fg = colors.teal, bg = colors.surface0 },
-          TabLineFill = { fg = colors.overlay0, bg = colors.base },
+            TabLineSel = { fg = colors.teal, bg = colors.surface0 },
+            TabLineFill = { fg = colors.overlay0, bg = colors.base },
 
-          SnacksPickerTitle = { fg = colors.pink, bg = colors.mantle },
-          SnacksPickerPreviewTitle = { link = "SnacksPickerTitle" },
-          SnacksNotifierTitleInfo = { link = "SnacksNotifierInfo" },
-          SnacksNotifierTitleWarn = { link = "SnacksNotifierWarn" },
-          SnacksNotifierTitleDebug = { link = "SnacksNotifierDebug" },
-          SnacksNotifierTitleError = { link = "SnacksNotifierError" },
-          SnacksNotifierTitleTrace = { link = "SnacksNotifierTrace" },
+            SnacksPickerTitle = { fg = colors.pink, bg = colors.mantle },
+            SnacksPickerPreviewTitle = { link = "SnacksPickerTitle" },
+            SnacksNotifierTitleInfo = { link = "SnacksNotifierInfo" },
+            SnacksNotifierTitleWarn = { link = "SnacksNotifierWarn" },
+            SnacksNotifierTitleDebug = { link = "SnacksNotifierDebug" },
+            SnacksNotifierTitleError = { link = "SnacksNotifierError" },
+            SnacksNotifierTitleTrace = { link = "SnacksNotifierTrace" },
 
-          GitSignsCurrentLineBlame = { link = "LspInlayHint" },
+            GitSignsCurrentLineBlame = { link = "LspInlayHint" },
 
-          NoiceCmdlineIcon = { fg = colors.lavender, style = false },
-          NeogitSubtleText = { fg = colors.overlay0, style = false },
+            NoiceCmdlineIcon = { fg = colors.lavender, style = false },
+            NeogitSubtleText = { fg = colors.overlay0, style = false },
 
-          TroubleNormal = { link = "NormalFloat" },
-          TroubleIconField = { link = "WinBar" },
+            TroubleNormal = { link = "NormalFloat" },
+            TroubleIconField = { link = "WinBar" },
 
-          AvanteSidebarNormal = { link = "Normal" },
+            AvanteSidebarNormal = { link = "Normal" },
 
-          DropBarMenuHoverIcon = { link = "Special" },
-        }
-      end,
+            DropBarMenuHoverIcon = { link = "Special" },
+            DropBarIconUISeparatorNC = { link = "WinBarNC" },
+          }
+        end,
+      },
     },
   },
   {
