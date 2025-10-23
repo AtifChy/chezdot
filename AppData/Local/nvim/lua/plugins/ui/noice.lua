@@ -1,8 +1,6 @@
 return {
   {
     "folke/noice.nvim",
-    url = "https://github.com/AtifChy/noice.nvim",
-    branch = "dev",
     ---@module "noice"
     ---@type NoiceConfig
     opts = {
@@ -25,6 +23,32 @@ return {
         },
         hover = {
           enabled = false,
+        },
+      },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            kind = "shell_out",
+          },
+          view = "notify",
+          opts = {
+            title = "Shell Output",
+            level = "info",
+            merge = true,
+          },
+        },
+        {
+          filter = {
+            event = "msg_show",
+            kind = "shell_err",
+          },
+          view = "notify",
+          opts = {
+            title = "Shell Error",
+            level = "error",
+            merge = true,
+          },
         },
       },
     },

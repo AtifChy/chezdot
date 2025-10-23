@@ -1,5 +1,9 @@
 return {
   {
+    "stevearc/overseer.nvim",
+    version = "v1.6.0",
+  },
+  {
     "folke/which-key.nvim",
     optional = true,
     opts = {

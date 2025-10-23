@@ -31,4 +31,24 @@ function M.hex_to_rgba(hex, alpha)
 	return string.format("rgba(%d, %d, %d, %.2f)", r, g, b, alpha)
 end
 
+local superscript_numbers = {
+	["0"] = "⁰",
+	["1"] = "¹",
+	["2"] = "²",
+	["3"] = "³",
+	["4"] = "⁴",
+	["5"] = "⁵",
+	["6"] = "⁶",
+	["7"] = "⁷",
+	["8"] = "⁸",
+	["9"] = "⁹",
+}
+
+---@param str string
+function M.to_superscript(str)
+	return str:gsub("%d", function(digit)
+		return superscript_numbers[digit] or digit
+	end)
+end
+
 return M

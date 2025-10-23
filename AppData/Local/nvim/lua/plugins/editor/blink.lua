@@ -18,9 +18,7 @@ return {
       completion = {
         menu = {
           cmdline_position = function()
-            if vim.g.ui_cmdline_pos ~= nil then
-              return vim.g.ui_cmdline_pos
-            end
+            if vim.g.ui_cmdline_pos ~= nil then return vim.g.ui_cmdline_pos end
             local height = (vim.o.cmdheight == 0) and 1 or vim.o.cmdheight
             return { vim.o.lines - height, 0 }
           end,
@@ -29,9 +27,7 @@ return {
             components = {
               label = {
                 width = { fill = true, max = 60 },
-                text = function(ctx)
-                  return require("colorful-menu").blink_components_text(ctx)
-                end,
+                text = function(ctx) return require("colorful-menu").blink_components_text(ctx) end,
                 highlight = function(ctx)
                   return require("colorful-menu").blink_components_highlight(ctx)
                 end,
@@ -83,14 +79,4 @@ return {
       },
     },
   },
-  -- {
-  --   "MeanderingProgrammer/render-markdown.nvim",
-  --   optional = true,
-  --   opts = {
-  --     completions = {
-  --       blink = { enabled = true },
-  --       lsp = { enabled = true },
-  --     },
-  --   },
-  -- },
 }
