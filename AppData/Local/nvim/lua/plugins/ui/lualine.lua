@@ -20,21 +20,15 @@ return {
           -- "emmet_language_server",
         },
         -- show_name = false,
-        color = function()
-          return { fg = Snacks.util.color("DiagnosticInfo") }
-        end,
+        color = function() return { fg = Snacks.util.color("DiagnosticInfo") } end,
       })
       table.insert(opts.sections.lualine_x, {
         function()
           local linters = require("lint").get_running()
-          if #linters == 0 then
-            return ""
-          end
+          if #linters == 0 then return "" end
           return "󱉶 " .. table.concat(linters, " ")
         end,
-        color = function()
-          return { fg = Snacks.util.color("DiagnosticInfo") }
-        end,
+        color = function() return { fg = Snacks.util.color("DiagnosticWarn") } end,
       })
       table.insert(opts.sections.lualine_x, {
         "fileformat",
@@ -43,15 +37,25 @@ return {
           dos = "",
           mac = "",
         },
-        color = function()
-          return { fg = Snacks.util.color("Identifier") }
-        end,
+        color = function() return { fg = Snacks.util.color("Identifier") } end,
       })
       opts.sections.lualine_z = {
         function()
           local hour12 = tonumber(os.date("%I"))
-          local icons =
-            { "󱑋", "󱑌", "󱑍", "󱑎", "󱑏", "󱑐", "󱑑", "󱑒", "󱑓", "󱑔", "󱑕", "󱑖" }
+          local icons = {
+            "󱑋",
+            "󱑌",
+            "󱑍",
+            "󱑎",
+            "󱑏",
+            "󱑐",
+            "󱑑",
+            "󱑒",
+            "󱑓",
+            "󱑔",
+            "󱑕",
+            "󱑖",
+          }
           local icon = icons[hour12]
           return icon .. " " .. os.date("%I:%M")
         end,

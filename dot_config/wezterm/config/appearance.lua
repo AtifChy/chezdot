@@ -64,7 +64,7 @@ function M.apply(config)
 		})
 	end
 
-	config.command_palette_bg_color = colors.get().foreground
+	config.command_palette_fg_color = colors.get().foreground
 	config.command_palette_bg_color = colors.get().visual_bell
 	config.command_palette_rows = 15
 
