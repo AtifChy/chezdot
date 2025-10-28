@@ -9,7 +9,6 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    build = "CatppuccinCompile",
     ---@module "catppuccin"
     ---@type CatppuccinOptions
     opts = {
@@ -38,6 +37,7 @@ return {
             TabLineSel = { fg = colors.teal, bg = colors.surface0 },
             TabLineFill = { fg = colors.overlay0, bg = colors.base },
 
+            SnacksNormal = { link = "NormalFloat" },
             SnacksPickerTitle = { fg = colors.pink, bg = colors.mantle },
             SnacksPickerPreviewTitle = { link = "SnacksPickerTitle" },
             SnacksNotifierTitleInfo = { link = "SnacksNotifierInfo" },

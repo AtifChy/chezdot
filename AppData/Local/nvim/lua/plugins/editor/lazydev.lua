@@ -13,9 +13,12 @@ return {
       },
     }
 
-    local wez_config = vim.fn.expand("~/.config/wezterm/*/*.lua", nil, true)
-    table.insert(config.library, { path = wez_config, mods = { "wezterm" } })
+    ---@type string[]
+    local wez_config = vim.fn.glob("~/.config/wezterm/*/*.lua", true, true)
+    for _, path in ipairs(wez_config) do
+      table.insert(config.library, { path = path, mods = { "wezterm" } })
+    end
 
-    return vim.tbl_deep_extend("force", opts or {}, config)
+    return vim.tbl_deep_extend("force", opts, config)
   end,
 }
