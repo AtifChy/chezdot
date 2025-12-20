@@ -10,8 +10,9 @@ win + i                   : komorebic toggle-shortcuts
 
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
-# win + f                   : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
-# win + b                   : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
+# win + f                   : if (-not $wshell.AppActivate('Firefox')) { start firefox }
+# win + b                   : if (-not $wshell.AppActivate('Chrome')) { start chrome }
+win + b                   : if (-not $wshell.AppActivate('Edge')) { start msedge }
 
 ## Basic shortcuts
 win + q                   : komorebic close

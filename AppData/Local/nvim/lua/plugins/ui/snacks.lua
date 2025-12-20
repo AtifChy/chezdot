@@ -27,6 +27,9 @@ return {
         },
       },
     },
+    image = {
+      enabled = true,
+    },
     -- input = {
     --   win = {
     --     relative = "cursor",

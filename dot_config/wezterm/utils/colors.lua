@@ -8,12 +8,13 @@ local color_scheme = "Catppuccin Macchiato"
 
 ---@type Palette
 local scheme = {}
+local cached_scheme = nil
 
 function M.init()
-	local s = wezterm.get_builtin_color_schemes()[color_scheme]
-	if s then
-		scheme = s
+	if not cached_scheme then
+		cached_scheme = wezterm.get_builtin_color_schemes()[color_scheme] or {}
 	end
+	scheme = cached_scheme
 end
 
 ---@return string

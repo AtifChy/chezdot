@@ -6,7 +6,7 @@ local action = wezterm.action
 
 ---@param config Config
 function M.apply(config)
-	config.leader = { key = "Space", mods = "ALT", timeout_milliseconds = 1000 }
+	config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 1000 }
 	config.keys = M.get_keys()
 	config.key_tables = M.get_key_tables()
 end
@@ -51,6 +51,8 @@ function M.get_keys()
 		-- Send the actual key combinations
 		{ key = "Space", mods = "CTRL", action = action.SendKey({ key = "Space", mods = "CTRL" }) },
 		{ key = ".", mods = "CTRL", action = action.SendKey({ key = ".", mods = "CTRL" }) },
+		{ key = "h", mods = "CTRL", action = action.SendKey({ key = "h", mods = "CTRL" }) },
+		{ key = "l", mods = "CTRL", action = action.SendKey({ key = "l", mods = "CTRL" }) },
 	}
 
 	for i = 1, 9 do

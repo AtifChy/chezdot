@@ -66,7 +66,7 @@ alias ll = ls --all
 alias rm = rm --verbose
 alias mv = mv --verbose
 alias cp = cp --verbose
-# alias mkdir = mkdir --verbose
+alias mkdir = mkdir --verbose
 
 use aliases/git.nu *
 use aliases/chezmoi/chezmoi-aliases.nu *

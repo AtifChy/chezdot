@@ -11,32 +11,6 @@ function M.apply(config)
 	config.line_height = 1.2
 
 	config.font = wezterm.font_with_fallback({
-		-- {
-		-- 	family = "Monaspace Neon",
-		-- 	weight = "DemiBold",
-		-- 	harfbuzz_features = {
-		-- 		"calt",
-		-- 		"ss01",
-		-- 		"ss02",
-		-- 		"ss03",
-		-- 		"ss04",
-		-- 		"ss05",
-		-- 		"ss06",
-		-- 		"ss07",
-		-- 		"ss08",
-		-- 		"ss09",
-		-- 		"ss10",
-		-- 		"liga",
-		-- 	},
-		-- },
-		-- {
-		-- 	family = "Fira Code",
-		-- 	weight = "Medium",
-		-- },
-		-- {
-		-- 	family = "Zed Plex Mono",
-		-- 	weight = "Medium",
-		-- },
 		{
 			family = "Operator Mono SSm Lig",
 			weight = "Medium",

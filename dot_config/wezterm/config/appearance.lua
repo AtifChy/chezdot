@@ -5,6 +5,8 @@ local colors = require("utils.colors")
 
 ---@param config Config
 function M.apply(config)
+	local colors_cache = colors.get()
+	
 	-- Window appearance
 	config.initial_rows = 38
 	config.initial_cols = 112
@@ -39,36 +41,36 @@ function M.apply(config)
 	-- Colors
 	colors.override({
 		selection_fg = "none",
-		selection_bg = require("utils").hex_to_rgba(colors.get().selection_bg, 0.3),
+		selection_bg = require("utils").hex_to_rgba(colors_cache.selection_bg, 0.3),
 	})
 
 	if colors.get_scheme_name() == "Catppuccin Macchiato" then
 		colors.override({
 			tab_bar = {
 				active_tab = {
-					fg_color = colors.get().tab_bar.active_tab.bg_color,
-					bg_color = colors.get().background,
+					fg_color = colors_cache.tab_bar.active_tab.bg_color,
+					bg_color = colors_cache.background,
 				},
 				inactive_tab = {
-					fg_color = colors.get().split,
+					fg_color = colors_cache.split,
 				},
 				new_tab = {
-					fg_color = colors.get().split,
-					bg_color = colors.get().tab_bar.background,
+					fg_color = colors_cache.split,
+					bg_color = colors_cache.tab_bar.background,
 				},
 				new_tab_hover = {
-					fg_color = colors.get().tab_bar.inactive_tab.fg_color,
-					bg_color = colors.get().tab_bar.inactive_tab.bg_color,
+					fg_color = colors_cache.tab_bar.inactive_tab.fg_color,
+					bg_color = colors_cache.tab_bar.inactive_tab.bg_color,
 				},
 			},
 		})
 	end
 
-	config.command_palette_fg_color = colors.get().foreground
-	config.command_palette_bg_color = colors.get().visual_bell
+	config.command_palette_fg_color = colors_cache.foreground
+	config.command_palette_bg_color = colors_cache.visual_bell
 	config.command_palette_rows = 15
 
-	config.colors = colors.get()
+	config.colors = colors_cache
 end
 
 return M

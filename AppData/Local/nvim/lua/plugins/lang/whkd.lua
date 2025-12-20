@@ -4,6 +4,13 @@ vim.filetype.add({
   },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "whkd",
+  callback = function()
+    vim.opt_local.commentstring = "# %s"
+  end,
+})
+
 return {
   "nvim-treesitter/nvim-treesitter",
   optional = true,

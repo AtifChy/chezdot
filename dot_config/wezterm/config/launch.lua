@@ -8,8 +8,8 @@ local is_windows = wezterm.target_triple:find("windows") ~= nil
 ---@param config Config
 function M.apply(config)
 	config.front_end = "WebGpu"
-	config.max_fps = 165
-	config.animation_fps = 165
+	config.max_fps = 60
+	config.animation_fps = 30
 
 	if is_windows then
 		config.default_prog = { "nu.exe" }

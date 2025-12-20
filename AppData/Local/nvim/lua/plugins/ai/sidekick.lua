@@ -17,10 +17,10 @@ return {
           copilot = {
             cmd = { "copilot" },
           },
-          opencode = {
-            cmd = { "opencode" },
-            env = { OPENCODE_THEME = "catppuccin-macchiato" },
-          },
+          -- opencode = {
+          --   cmd = { "opencode" },
+          --   env = { OPENCODE_THEME = "catppuccin-macchiato" },
+          -- },
         },
         ---@type sidekick.win.Opts
         win = {
@@ -36,12 +36,16 @@ return {
     keys = {
       {
         "<leader>aa",
-        function() require("sidekick.cli").toggle() end,
+        function()
+          require("sidekick.cli").toggle()
+        end,
         desc = "Sidekick Toggle CLI",
       },
       {
         "<leader>ao",
-        function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end,
+        function()
+          require("sidekick.cli").toggle({ name = "opencode", focus = true })
+        end,
         desc = "Sidekick OpenCode Toggle",
       },
     },

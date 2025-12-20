@@ -10,9 +10,9 @@
   "border_width": 3,
   "border_offset": -1,
   "theme": {
-    "palette": "Base16",
-    "name": "CatppuccinMacchiato",
-    "bar_accent": "Base0D"
+    "palette": "Catppuccin",
+    "name": "Macchiato",
+    "bar_accent": "Maroon"
   },
   "global_work_area_offset": {
     "top": 48,
