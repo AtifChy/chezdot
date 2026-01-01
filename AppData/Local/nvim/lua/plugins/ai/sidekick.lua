@@ -17,10 +17,10 @@ return {
           copilot = {
             cmd = { "copilot" },
           },
-          -- opencode = {
-          --   cmd = { "opencode" },
-          --   env = { OPENCODE_THEME = "catppuccin-macchiato" },
-          -- },
+          opencode = {
+            cmd = { "opencode" },
+            env = { OPENCODE_THEME = "catppuccin-macchiato" },
+          },
         },
         ---@type sidekick.win.Opts
         win = {

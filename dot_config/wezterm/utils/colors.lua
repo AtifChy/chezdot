@@ -12,7 +12,7 @@ local cached_scheme = nil
 
 function M.init()
 	if not cached_scheme then
-		cached_scheme = wezterm.get_builtin_color_schemes()[color_scheme] or {}
+		cached_scheme = wezterm.color.get_builtin_schemes()[color_scheme] or {}
 	end
 	scheme = cached_scheme
 end

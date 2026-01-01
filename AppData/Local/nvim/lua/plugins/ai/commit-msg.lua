@@ -5,4 +5,23 @@ return {
   --   provider = "gemini",
   --   notifications = false,
   -- },
+  -- {
+  --   "404pilo/aicommits.nvim",
+  --   event = "VeryLazy",
+  --   dir = "~/Desktop/nvim-plugins/aicommits.nvim",
+  --   opts = {
+  --     active_provider = "gemini-api",
+  --     providers = {
+  --       ["gemini-api"] = {
+  --         enabled = true,
+  --         model = "gemini-2.5-flash",
+  --         max_length = 50,
+  --         generate = 3,
+  --         temperature = 0.7,
+  --         max_tokens = 200,
+  --         thinking_budget = 0,
+  --       },
+  --     },
+  --   },
+  -- },
 }

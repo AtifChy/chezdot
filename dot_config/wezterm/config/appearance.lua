@@ -6,7 +6,7 @@ local colors = require("utils.colors")
 ---@param config Config
 function M.apply(config)
 	local colors_cache = colors.get()
-	
+
 	-- Window appearance
 	config.initial_rows = 38
 	config.initial_cols = 112

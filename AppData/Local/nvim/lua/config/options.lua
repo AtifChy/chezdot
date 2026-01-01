@@ -17,11 +17,16 @@ opt.shellquote = ""
 opt.shellxquote = ""
 
 -- lazyvim settings
+vim.g.lazyvim_php_lsp = "intelephense"
 -- LazyVim.terminal.setup("pwsh")
 
 -- Windows specific settings
 local iswin32 = vim.fn.has("win32") == 1
 if iswin32 then
-  if vim.env.HOME == nil then vim.env.HOME = vim.env.USERPROFILE end
-  if vim.env.USER == nil then vim.env.USER = vim.env.USERNAME end
+  if vim.env.HOME == nil then
+    vim.env.HOME = vim.env.USERPROFILE
+  end
+  if vim.env.USER == nil then
+    vim.env.USER = vim.env.USERNAME
+  end
 end
