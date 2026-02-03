@@ -1,0 +1,113 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+# General settings
+version: 4
+shell_integration: true
+final_space: true
+
+# Upgrade configuration
+upgrade:
+  source: "cdn"
+  interval: "infinite"
+  auto: false
+  notice: false
+
+# Prompt blocks
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: session
+        style: plain
+        foreground: white
+        template: "{{ if .Root }}<red>󰒘</> {{end}}{{ if .SSHSession }} <b><cyan>{{ .UserName }}@{{ .HostName }}</> in {{ end }}"
+      - type: path
+        style: plain
+        template: " <b>{{ .Path }}</b> "
+        foreground_templates:
+          - "{{ if not .Writable }}red{{ else }}blue{{ end }}"
+        options:
+          folder_icon: …
+          max_depth: 3
+          style: agnoster_short
+          windows_registry_icon: " "
+      - type: git
+        style: plain
+        foreground: white
+        template: "on <b><magenta>{{ .HEAD }} </>\
+          {{ if .Working }}<b><black>[{{ end }}\
+          {{ if .BranchStatus }}<cyan>{{ .BranchStatus | replace \" \" \"\" }}</>{{ end }}\
+          {{ if .Working.Changed }} <red>{{ nospace .Working.String }}</>{{ end }}\
+          {{ if .Staging.Changed }} <green>{{ nospace .Staging.String }}</>{{ end }}\
+          {{ if gt .StashCount 0 }} <yellow>${{ .StashCount }}</>{{ end }}\
+          {{ if .Working }}]</>{{ end }} "
+        options:
+          fetch_status: true
+          fetch_upstream_icon: true
+          branch_icon: " "
+          cherry_pick_icon: " "
+          commit_icon: " "
+          merge_icon: " "
+          no_commits_icon: "󰂕 "
+          rebase_icon: " "
+          revert_icon: " "
+          tag_icon: " "
+          mapped_branches:
+            feat: &feat_icon " "
+            bug: &bug_icon " "
+            feature/*: *feat_icon
+            feat/*: *feat_icon
+            bug/*: *bug_icon
+            fix/*: *bug_icon
+            refactor/*: "󱁤 "
+      - type: go
+        style: plain
+        foreground: white
+        template: "{{ if .Full }}via <lightCyan> <b>{{ .Full }}</b></> {{ end }}"
+      - type: node
+        style: plain
+        foreground: white
+        template: "{{ if .Full }}via <green> <b>{{ .Full }}</b></> {{ end }}"
+      - type: python
+        style: plain
+        foreground: white
+        template: "{{ if .Full }}via <lightYellow> <b>{{ .Full }}</b></> {{ end }}"
+      - type: rust
+        style: plain
+        foreground: white
+        template: "{{ if .Full }}via <lightRed> <b>{{ .Full }}</b></> {{ end }}"
+      - type: lua
+        style: plain
+        foreground: white
+        template: "{{ if .Full }}via <lightBlue> <b>{{ .Full }}</b></> {{ end }}"
+      - type: executiontime
+        style: plain
+        foreground: white
+        template: "took <b><yellow>{{ nospace .FormattedMs }}</> "
+        options:
+          style: round
+          threshold: 5000
+      - type: status
+        style: plain
+        foreground: red
+        template: "{{ if eq .Code 0 }}✔{{ else }} {{ reason .Code }}{{ end }}"
+  - type: prompt
+    alignment: right
+    overflow: hide
+    segments:
+      - type: text
+        style: plain
+        foreground: cyan
+        template: " <b>{{ .Shell }}</b>"
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: status
+        style: powerline
+        foreground: green
+        template: ➜
+        foreground_templates:
+          - "{{ if gt .Code 0 }}red{{ end }}"
+        options:
+          always_enabled: true
