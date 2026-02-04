@@ -5,4 +5,5 @@ return {
   { import = "plugins.lang" },
   { import = "plugins.treesitter" },
   { import = "plugins.ui" },
+  { import = "plugins.misc" },
 }

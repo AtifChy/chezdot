@@ -2,7 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "catppuccin-macchiato",
       -- colorscheme = "kanagawa",
     },
   },
@@ -12,7 +12,6 @@ return {
     ---@module "catppuccin"
     ---@type CatppuccinOptions
     opts = {
-      flavour = "macchiato",
       auto_integrations = true,
       integrations = {
         bufferline = false,

@@ -6,5 +6,8 @@ return {
     codelens = {
       enabled = true,
     },
+    folds = {
+      enabled = false,
+    },
   },
 }
