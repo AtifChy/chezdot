@@ -21,7 +21,7 @@
 $env.config.show_banner = false
 
 # prompt config
-oh-my-posh init nu --config ($nu.home-path | path join .config/oh-my-posh/starlight.omp.yaml)
+oh-my-posh init nu --config ($nu.home-dir | path join .config/oh-my-posh/starlight.omp.yaml)
 
 # set default editor
 $env.EDITOR = "nvim"
@@ -36,6 +36,8 @@ $env.EDITOR = "nvim"
 # bat theme
 $env.BAT_THEME = "Catppuccin Macchiato"
 
+use modules/fnm/fnm.nu
+
 ## completions
 $env.config.completions.algorithm = 'substring'
 
@@ -46,6 +48,7 @@ use completions/uvx-completions.nu *
 use completions/wsl-completions.nu *
 use completions/yasbc-completions.nu *
 use completions/oh-my-posh-completions.nu *
+use completions/fnm-completions.nu *
 
 use custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
 use custom-completions/komorebi/komorebi-completions.nu *
@@ -68,10 +71,30 @@ alias mv = mv --verbose
 alias cp = cp --verbose
 alias mkdir = mkdir --verbose
 
+# alias docker = podman
+
 use aliases/git.nu *
 use aliases/chezmoi/chezmoi-aliases.nu *
 
-let abbr = {
+def pkill [
+  pattern: string # Pattern to match in process names
+] {
+  let processes = ps | where name =~ $pattern
+  if ($processes | length) > 0 {
+    $processes | get pid | uniq | each { |p| kill -f $p }
+    echo $"Killed processes matching '($pattern)'"
+  } else {
+    echo $"No processes found matching '($pattern)'"
+  }
+}
+
+def pgrep [
+  pattern: string # Pattern to match in process names
+] {
+  ps | where ($it.name | str downcase) =~ $pattern | select pid name
+}
+
+const abbr = {
   ff: fastfetch,
   v: nvim,
 

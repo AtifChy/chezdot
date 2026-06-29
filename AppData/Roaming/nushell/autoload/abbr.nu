@@ -10,6 +10,15 @@ $env.config.keybindings = $env.config.keybindings | append [
     ]
   }
   {
+    name: accept_abbr
+    modifier: control
+    keycode: char_y
+    mode: [emacs, vi_normal, vi_insert]
+    event: [
+      { send: HistoryHintComplete }
+    ]
+  }
+  {
     name: abbr_menu
     modifier: none
     keycode: space
@@ -20,6 +29,12 @@ $env.config.keybindings = $env.config.keybindings | append [
     ]
   }
 ]
+
+# $env.config.cursor_shape = {
+#   vi_insert: line
+#   vi_normal: block
+#   emacs: line
+# }
 
 $env.config.menus = $env.config.menus | append [
   {

@@ -44,7 +44,7 @@ export extern "wsl" [
 
 # Install a Windows Subsystem for Linux distribution
 export extern "wsl --install" [
-  distro: string@"nu-complete online-distros"     # Install a distro (positional)
+  distro?: string@"nu-complete online-distros"     # Install a distro (positional)
   --enable-wsl1                                   # Enable WSL1 support
   --fixed-vhd                                     # Create fixed-size VHD
   --from-file: path                               # Install from local file
