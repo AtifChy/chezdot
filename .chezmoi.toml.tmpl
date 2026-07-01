@@ -1,4 +1,8 @@
 verbose = true
 
+encryption = "gpg"
+[gpg]
+recipient = "D12A5A6E1ABB2229E336E2DAB415AEF8443D7C9C"
+
 [cd]
 command = '{{ if lookPath "nu" }}nu{{ else if lookPath "pwsh" }}pwsh{{ else }}powershell{{ end }}'

@@ -243,33 +243,6 @@ widgets:
       #   color: "#000000"
       #   offset: [0, 1]
       #   radius: 2
-  weather:
-    type: "yasb.weather.WeatherWidget"
-    options:
-      label: "<span>{icon}</span> {temp}"
-      label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: {{ (bitwarden "item" "weather-api-key").notes }}
-      update_interval: 600
-      hide_decimal: true
-      location: Bangladesh Dhaka
-      callbacks:
-        on_left: "toggle_label"
-      icons:
-        sunnyDay: "\ue30d"
-        clearNight: "\ue32b"
-        cloudyDay: "\ue312"
-        cloudyNight: "\ue311"
-        rainyDay: "\ue308"
-        rainyNight: "\ue333"
-        snowyIcyDay: "\ue30a"
-        snowyIcyNight: "\ue335"
-        blizzardDay: "\udb83\udf36"
-        blizzardNight: "\udb83\udf36"
-        foggyDay: "\ue303"
-        foggyNight: "\ue346"
-        thunderstormDay: "\ue30f"
-        thunderstormNight: "\ue338"
-        default: "\uebaa"
   wifi:
     type: "yasb.wifi.WifiWidget"
     options:
