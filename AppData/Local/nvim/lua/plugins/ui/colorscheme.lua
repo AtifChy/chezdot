@@ -2,8 +2,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-macchiato",
-      -- colorscheme = "kanagawa",
+      -- colorscheme = "catppuccin-mocha",
+      colorscheme = "kanagawa",
     },
   },
   {
@@ -12,6 +12,10 @@ return {
     ---@module "catppuccin"
     ---@type CatppuccinOptions
     opts = {
+      background = {
+        light = "latte",
+        dark = "macchiato",
+      },
       auto_integrations = true,
       integrations = {
         bufferline = false,
@@ -57,6 +61,9 @@ return {
 
             DropBarMenuHoverIcon = { link = "Special" },
             DropBarIconUISeparatorNC = { link = "WinBarNC" },
+
+            TreesitterContext = { link = "Normal" },
+            TreesitterContextLineNumber = { link = "LineNr" },
           }
         end,
       },
@@ -65,14 +72,36 @@ return {
   {
     "rebelot/kanagawa.nvim",
     lazy = true,
+    ---@module "kanagawa"
+    ---@type KanagawaConfig
     opts = {
+      compile = true,
+      undercurl = true,
       colors = {
         theme = {
           all = {
-            ui = { bg_gutter = "none" },
+            ui = {
+              bg_gutter = "none",
+            },
           },
         },
       },
+      ---@param colors KanagawaColors
+      overrides = function(colors)
+        return {
+          TreesitterContext = { link = "Normal" },
+          TreesitterContextLineNumber = { link = "LineNr" },
+          TreesitterContextBottom = { sp = colors.theme.ui.nontext, underline = true },
+          TreesitterContextLineNumberBottom = { link = "TreesitterContextBottom" },
+
+          StatusLine = { bg = colors.theme.ui.bg_p1 },
+
+          RenderMarkdownCode = { bg = colors.theme.ui.float.bg },
+        }
+      end,
     },
+    init = function()
+      vim.g.kanagawa_lualine_bold = true
+    end,
   },
 }

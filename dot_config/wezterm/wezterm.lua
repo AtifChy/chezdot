@@ -13,6 +13,9 @@ require("config.appearance").apply(config)
 require("config.fonts").apply(config)
 require("config.keys").apply(config)
 
+-- Apply plugin configurations
+require("config.resurrect").apply(config)
+
 -- Setup event handlers
 require("config.events").setup()
 

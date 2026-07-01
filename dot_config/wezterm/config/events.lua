@@ -18,12 +18,26 @@ function M.setup()
 end
 
 ---@param tab TabInformation
-local function tab_title(tab)
+---@return string
+local function get_title(tab)
 	local title = tab.tab_title
 	if title and #title > 0 then
 		return title
 	end
 	return tab.active_pane.title
+end
+
+---@param tab TabInformation
+---@return string
+local function get_domain(tab)
+	local pane = tab.active_pane
+	if pane and pane.domain_name then
+		---@type string
+		local domain = pane.domain_name:match("([^%.:%s]+)") or pane.domain_name
+		domain = domain:lower()
+		return (domain == "local" and "") or domain
+	end
+	return ""
 end
 
 ---@param tab TabInformation
@@ -40,14 +54,18 @@ function M.update_tab_title(tab, _, _, _, hover, max_width)
 
 	local suffix = ""
 	if pane_count > 1 then
-		suffix = suffix .. " [" .. pane_count .. "]"
+		suffix = suffix .. " (" .. pane_count .. ")"
 	end
 	if tab.active_pane.is_zoomed then
-		suffix = suffix .. " [z]"
+		suffix = suffix .. " 󰁌"
 	end
 
-	local title = tab_title(tab)
+	local domain = get_domain(tab)
+	if domain ~= "" then
+		prefix = "[" .. domain .. "] " .. prefix
+	end
 
+	local title = get_title(tab)
 	local available = max_width - pad - #prefix - #suffix
 	if available > 1 and #title > available then
 		title = prefix .. "…" .. title:sub(-available + 1) .. suffix

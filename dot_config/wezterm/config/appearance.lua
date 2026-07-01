@@ -8,9 +8,9 @@ function M.apply(config)
 	local colors_cache = colors.get()
 
 	-- Window appearance
-	config.initial_rows = 38
+	config.initial_rows = 32
 	config.initial_cols = 112
-	config.window_decorations = "RESIZE"
+	-- config.window_decorations = "RESIZE"
 	config.window_padding = { left = 10, right = 10, top = 5, bottom = 5 }
 	config.window_content_alignment = { horizontal = "Center", vertical = "Center" }
 	config.use_resize_increments = true
@@ -44,7 +44,7 @@ function M.apply(config)
 		selection_bg = require("utils").hex_to_rgba(colors_cache.selection_bg, 0.3),
 	})
 
-	if colors.get_scheme_name() == "Catppuccin Macchiato" then
+	if colors.get_scheme_name():match("^Catppuccin") then
 		colors.override({
 			tab_bar = {
 				active_tab = {

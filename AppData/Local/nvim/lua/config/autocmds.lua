@@ -20,15 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("lazy_backdrop_fix", { clear = true }),
-  pattern = "lazy_backdrop",
-  callback = function(ctx)
-    local win = vim.fn.win_findbuf(ctx.buf)[1]
-    vim.api.nvim_win_set_config(win, { border = "none" })
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("snacks_no_indent", { clear = true }),
   pattern = {
     "text",

@@ -35,6 +35,7 @@ function M.get_keys()
 		{ key = "w", mods = "LEADER", action = action.CloseCurrentTab({ confirm = true }) },
 		{ key = "[", mods = "LEADER", action = action.ActivateTabRelative(-1) },
 		{ key = "]", mods = "LEADER", action = action.ActivateTabRelative(1) },
+		{ key = "`", mods = "ALT", action = action.ActivateLastTab },
 		{ key = "m", mods = "LEADER", action = action.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
 
 		{ key = "p", mods = "LEADER", action = action.PasteFrom("Clipboard") },

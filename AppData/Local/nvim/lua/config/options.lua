@@ -6,6 +6,8 @@
 
 local opt = vim.opt
 
+opt.fileformats = "unix,dos"
+
 opt.winborder = "rounded"
 opt.expandtab = true
 -- opt.spell = true
@@ -17,7 +19,10 @@ opt.shellquote = ""
 opt.shellxquote = ""
 
 -- lazyvim settings
-vim.g.lazyvim_php_lsp = "intelephense"
+vim.g.ai_cmp = false
+-- vim.g.lazyvim_php_lsp = "intelephense"
+vim.g.lazyvim_python_lsp = "ty"
+vim.g.lazyvim_ts_lsp = "tsgo"
 -- LazyVim.terminal.setup("pwsh")
 
 -- Windows specific settings

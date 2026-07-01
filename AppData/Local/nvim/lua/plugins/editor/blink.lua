@@ -3,14 +3,14 @@ return {
     "saghen/blink.cmp",
     dependencies = {
       "xzbdmw/colorful-menu.nvim",
-      {
-        "jdrupal-dev/css-vars.nvim",
-        url = "https://github.com/AtifChy/css-vars.nvim",
-        branch = "fix/blink",
-        opts = {
-          search_extensions = { ".js", ".ts", ".jsx", ".tsx" },
-        },
-      },
+      -- {
+      --   "jdrupal-dev/css-vars.nvim",
+      --   url = "https://github.com/AtifChy/css-vars.nvim",
+      --   branch = "fix/blink",
+      --   opts = {
+      --     search_extensions = { ".js", ".ts", ".jsx", ".tsx" },
+      --   },
+      -- },
     },
     -- version = false, -- Use the latest version
     -- build = "cargo build --release",
@@ -18,26 +18,26 @@ return {
     ---@type blink.cmp.Config
     opts = {
       keymap = {
-        preset = "enter",
-        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-        ["<C-b>"] = { "scroll_documentation_up", "scroll_signature_up", "fallback" },
-        ["<C-f>"] = { "scroll_documentation_down", "scroll_signature_down", "fallback" },
-        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+        -- preset = "enter",
+        -- ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        -- ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+        -- ["<C-b>"] = { "scroll_documentation_up", "scroll_signature_up", "fallback" },
+        -- ["<C-f>"] = { "scroll_documentation_down", "scroll_signature_down", "fallback" },
+        -- ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
       },
       sources = {
-        per_filetype = {
-          css = { inherit_defaults = true, "css_vars" },
-        },
+        -- per_filetype = {
+        --   css = { inherit_defaults = true, "css_vars" },
+        -- },
         providers = {
-          css_vars = {
-            name = "CSS",
-            module = "css-vars.blink",
-            score_offset = 50,
-          },
-          copilot = {
-            name = "Copilot",
-          },
+          -- css_vars = {
+          --   name = "CSS",
+          --   module = "css-vars.blink",
+          --   score_offset = 50,
+          -- },
+          -- copilot = {
+          --   name = "Copilot",
+          -- },
         },
       },
       completion = {

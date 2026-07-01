@@ -3,14 +3,17 @@ local M = {}
 
 ---@param dst table
 ---@param src table
+---@return table
 function M.merge(dst, src)
 	for k, v in pairs(src) do
 		dst[k] = v
 	end
+	return dst
 end
 
 ---@param dst table
 ---@param src table
+---@return table
 function M.deep_merge(dst, src)
 	for k, v in pairs(src) do
 		if type(v) == "table" and type(dst[k]) == "table" then
@@ -19,6 +22,17 @@ function M.deep_merge(dst, src)
 			dst[k] = v
 		end
 	end
+	return dst
+end
+
+---@param dst any[]
+---@param src any[]
+---@return any[]
+function M.extend(dst, src)
+	for _, v in ipairs(src) do
+		dst[#dst + 1] = v
+	end
+	return dst
 end
 
 ---@param hex string

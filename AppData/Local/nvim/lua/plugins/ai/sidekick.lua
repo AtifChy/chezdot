@@ -1,12 +1,15 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    optional = true,
     dependencies = {
       "folke/sidekick.nvim",
     },
   },
   {
     "folke/sidekick.nvim",
+    url = "https://github.com/mateuszsip/sidekick.nvim",
+    branch = "feat/agy-cli",
     optional = true,
     ---@module "sidekick"
     ---@type sidekick.Config
@@ -50,13 +53,13 @@ return {
       },
     },
   },
-  {
-    "nvim-lualine/lualine.nvim",
-    optional = true,
-    opts = function(_, opts)
-      -- remove sidekick lualine component
-      table.remove(opts.sections.lualine_x, 2)
-      table.remove(opts.sections.lualine_x, 2)
-    end,
-  },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   optional = true,
+  --   opts = function(_, opts)
+  --     -- remove sidekick lualine component
+  --     table.remove(opts.sections.lualine_x, 2)
+  --     table.remove(opts.sections.lualine_x, 2)
+  --   end,
+  -- },
 }

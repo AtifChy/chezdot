@@ -4,7 +4,7 @@ return {
     ---@type vim.diagnostic.Opts
     diagnostics = {},
     codelens = {
-      enabled = true,
+      enabled = false,
     },
     folds = {
       enabled = false,

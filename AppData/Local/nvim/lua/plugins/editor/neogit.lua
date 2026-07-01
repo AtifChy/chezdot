@@ -61,11 +61,14 @@ return {
   {
     "404pilo/aicommits.nvim",
     lazy = true,
-    url = "https://github.com/AtifChy/aicommits.nvim",
-    branch = "fix/cross_platform",
     opts = {
-      active_provider = "gemini-api",
+      active_provider = "vertex",
       providers = {
+        vertex = {
+          enabled = true,
+          model = "gemini-2.5-flash",
+          project = "chromium-geo-488205",
+        },
         ["gemini-api"] = {
           enabled = true,
           model = "gemini-2.5-flash",
@@ -74,6 +77,15 @@ return {
           temperature = 0.7,
           max_tokens = 200,
           thinking_budget = 0,
+        },
+      },
+      integrations = {
+        neogit = {
+          enabled = true,
+          mappings = {
+            enabled = true,
+            key = "C",
+          },
         },
       },
     },

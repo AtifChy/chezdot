@@ -12,6 +12,7 @@ function M.apply(config)
 	config.animation_fps = 30
 
 	if is_windows then
+		-- config.default_domain = "WSL:archlinux"
 		config.default_prog = { "nu.exe" }
 		config.launch_menu = {
 			{

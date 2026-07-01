@@ -57,6 +57,11 @@
       "kind": "Title",
       "id": "Car Race",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "VirtualBoxVM.exe",
+      "matching_strategy": "Equals"
     }
   ],
   "ignore_rules": [

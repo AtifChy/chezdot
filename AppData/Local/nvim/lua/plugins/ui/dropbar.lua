@@ -7,19 +7,25 @@ return {
     keys = {
       {
         "<leader>;",
-        function() require("dropbar.api").pick() end,
+        function()
+          require("dropbar.api").pick()
+        end,
         desc = "Select Buffer Symbols (dropbar)",
         mode = "n",
       },
       {
         "[;",
-        function() require("dropbar.api").goto_context_start() end,
+        function()
+          require("dropbar.api").goto_context_start()
+        end,
         desc = "Goto start of current context (dropbar)",
         mode = "n",
       },
       {
         "];",
-        function() require("dropbar.api").select_next_context() end,
+        function()
+          require("dropbar.api").select_next_context()
+        end,
         desc = "Select next context (dropbar)",
         mode = "n",
       },
@@ -48,7 +54,9 @@ return {
             end
 
             local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(buf))
-            if stat and stat.size > 1024 * 1024 then return false end
+            if stat and stat.size > 1024 * 1024 then
+              return false
+            end
 
             return vim.bo[buf].ft == "markdown"
               or pcall(vim.treesitter.get_parser, buf)
@@ -67,16 +75,22 @@ return {
                 while menu and menu.prev_menu do
                   menu = menu.prev_menu
                 end
-                if menu then menu:close() end
+                if menu then
+                  menu:close()
+                end
               end
 
               -- Expands the entry if possible.
               local function expand()
                 local menu = menu_utils.get_current()
-                if not menu then return end
+                if not menu then
+                  return
+                end
                 local row = vim.api.nvim_win_get_cursor(menu.win)[1]
                 local component = menu.entries[row]:first_clickable()
-                if component then menu:click_on(component, nil, 1, "l") end
+                if component then
+                  menu:click_on(component, nil, 1, "l")
+                end
               end
 
               return {
